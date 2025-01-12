@@ -1,0 +1,207 @@
+{% extends 'master.html' %}
+{% load static %}
+
+{% block title %}
+    <title>Home</title>
+{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'CSS/home.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="container-fluid">
+         <div class="banner">
+             <img src="{% static 'Images/banner.jpg' %}" alt="banner" class="img-fluid">
+         </div>
+    </div>
+
+    {# OUR SERVICES #}
+    <div class="container">
+         <h2 class="text-center p-3 services">Our Services</h2>
+         <div class="row">
+             <div class="col-sm-3">
+                 <div class="service-box p-3">
+                     <h3 class="text-center">Emergency Services</h3>
+                     <div class="details">
+                         <p>
+                             NovaCare provides immediate care for acute injuries,
+                             illnesses, and life-threatening conditions. Staffed with
+                             emergency physicians, nurses, and other healthcare professionals,
+                             this department operates 24/7 to handle emergencies such as trauma,
+                             heart attacks, strokes, and accidents
+                         </p>
+                     </div>
+                 </div>
+             </div>
+
+             <div class="col-sm-3">
+                 <div class="service-box p-3">
+                     <h3 class="text-center">Inpatient & Outpatient Services</h3>
+                     <div class="details">
+                         <p>
+                             We offer comprehensive healthcare services providing round-the-clock care for
+                             admitted patients (inpatient) and convenient same-day treatments, diagnostics,
+                             and consultations (outpatient), ensuring seamless and personalized medical care
+                             for all needs.
+                         </p>
+                     </div>
+                 </div>
+             </div>
+             <div class="col-sm-3">
+                 <div class="service-box p-3">
+                     <h3 class="text-center">Surgical Services</h3>
+                     <div class="details">
+                         <p>
+                             Our surgical services encompass preoperative, operative, and postoperative care
+                             for patients undergoing surgeries. This includes operating rooms equipped with
+                             advanced technology, skilled surgeons, anesthetists, and support staff to perform
+                             procedures ranging from minor surgeries to complex operations.
+                         </p>
+                     </div>
+                 </div>
+             </div>
+             <div class="col-sm-3">
+                 <div class="service-box p-3">
+                     <h3 class="text-center">Maternity & Neonatal Services</h3>
+                     <div class="details">
+                         <p>
+                             This focuses on the care of pregnant women, childbirth, and newborn babies.
+                             It includes services such as prenatal care, labor and delivery, postnatal care,
+                             and neonatal intensive care units (NICUs) for premature or critically ill newborns.
+                         </p>
+                     </div>
+                 </div>
+             </div>
+         </div>
+    </div>
+
+    {# ABOUT US #}
+    <div class="container about-container mt-4 pb-3">
+        <h2 class="text-center p-3 about-us">About Us</h2>
+        <div class="row">
+            <div class="col-sm-3">
+                <div class="about-section-img d-flex justify-content-center">
+                    <img src="{% static 'Images/bed.png' %}" alt="bed" class="img-fluid">
+                </div>
+                <div class="capacity d-flex justify-content-center pt-2">
+                    1800
+                </div>
+                <div class="item d-flex justify-content-center">
+                    <p class="text-white">Bed Capacity</p>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="about-section-img d-flex justify-content-center">
+                    <img src="{% static 'Images/employees.png' %}" alt="bed" class="img-fluid">
+                </div>
+                <div class="capacity d-flex justify-content-center pt-2">
+                    6000
+                </div>
+                <div class="item d-flex justify-content-center">
+                    <p class="text-white">Employees</p>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="about-section-img d-flex justify-content-center">
+                    <img src="{% static 'Images/years.png' %}" alt="bed" class="img-fluid">
+                </div>
+                <div class="capacity d-flex justify-content-center pt-2">
+                    25
+                </div>
+                <div class="item d-flex justify-content-center">
+                    <p class="text-white">Years of Service</p>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="about-section-img d-flex justify-content-center">
+                    <img src="{% static 'Images/clinic.png' %}" alt="bed" class="img-fluid">
+                </div>
+                <div class="capacity d-flex justify-content-center pt-2">
+                    16
+                </div>
+                <div class="item d-flex justify-content-center">
+                    <p class="text-white">Clinics</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    {# OUR PARTNERS #}
+    <div class="container">
+         <h2 class="text-center p-3 services">Our Partners</h2>
+         <div class="row d-flex align-items-center">
+             <div class="col-sm-3">
+                 <div class="partners-img d-flex justify-content-center align-items-center">
+                     <img src="{% static 'Images/partner04.webp' %}" alt="logo" class="img-fluid">
+                 </div>
+             </div>
+             <div class="col-sm-3">
+                 <div class="partners-img d-flex justify-content-center align-items-center">
+                     <img src="{% static 'Images/partner03.png' %}" alt="logo" class="img-fluid">
+                 </div>
+             </div>
+             <div class="col-sm-3">
+                 <div class="partners-img d-flex justify-content-center align-items-center">
+                     <img src="{% static 'Images/partner02.webp' %}" alt="logo" class="img-fluid">
+                 </div>
+             </div>
+             <div class="col-sm-3">
+                 <div class="partners-img d-flex justify-content-center align-items-center">
+                     <img src="{% static 'Images/partner01.png' %}" alt="logo" class="img-fluid">
+                 </div>
+             </div>
+         </div>
+    </div>
+
+    {# FOOTER #}
+    <div class="footer">
+        <div class="container pb-3">
+            <div class="row">
+                <div class="col-sm-4">
+                    <h4 class="pt-3 about-us">NovaCare</h4>
+                    <p class="motto">
+                        Your Health, Our Commitment
+                    </p>
+                    <p class="description">
+                        NovaCare is a state-of-the-art healthcare facility offering high-quality
+                        medical services with compassion and precision. We specialize in various fields,
+                        including general medicine, surgery, pediatrics, and diagnostics, ensuring comprehensive
+                        care for all. With a dedicated team and advanced technology, NovaCare is committed to your
+                        well-being and a healthier future.
+                    </p>
+                </div>
+                <div class="col-sm-4 contacts">
+                    <h4 class="pt-3 about-us">Contact Us</h4>
+                    <p class="p-2">
+                        <i class='bx bxs-map' style='color:#ffffff'  ></i>
+                        Hospital Rd, Nairobi
+                    </p>
+                    <p class="p-2">
+                        <i class='bx bxs-phone' style='color:#ffffff'  ></i>
+                        +254 712345678
+                    </p>
+                    <p class="p-2">
+                        <i class='bx bx-envelope' style='color:#ffffff'  ></i>
+                        ncadmin@novacare.com
+                    </p>
+                </div>
+                <div class="col-sm-4">
+                    <h4 class="pt-3 about-us">Our Partners</h4>
+                    <div class="link pt-2">
+                        <a href="#">Care Hospital</a>
+                    </div>
+                    <div class="link pt-2">
+                        <a href="#">Getrude Children's Hospital</a>
+                    </div>
+                    <div class="link pt-2">
+                        <a href="#">Capital Hospital</a>
+                    </div>
+                    <div class="link pt-2">
+                        <a href="#">Pediatric Partners Hospital</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
