@@ -1,8 +1,136 @@
 {% extends 'master.html' %}
+{% load static %}
 
 {% block title %}
-    <title>About Us</title>
+    <title>NovaCare - About Us</title>
+{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'CSS/about.css' %}">
 {% endblock %}
 
 {% block content %}
+    <div class="container-fluid">
+         <div class="banner">
+             <img src="{% static 'Images/banner.jpg' %}" alt="banner" class="img-fluid">
+         </div>
+    </div>
+    
+    {# OUR FOUNDERS #}
+    <div class="container">
+        <h2 class="text-center p-3 founders">Our Founders</h2>
+        <div class="row offset-1">
+                <div class="col-sm-5 our-founders">
+                    <p class="founder-details">
+                        Dr. Rashid Omari is a visionary medical professional dedicated to advancing 
+                        healthcare standards through innovation and compassion. With years of experience 
+                        and a deep commitment to patient care, he founded NovaCare to provide accessible 
+                        and high-quality medical services to the community. Dr. Omari’s leadership and expertise 
+                        inspire a culture of excellence, making NovaCare a trusted name in modern healthcare.
+                    </p>
+                    <img src="{% static 'Images/user2.png' %}" alt="user" class="img-fluid">
+                    <p class="user-details">
+                        <b>Dr. Rashid Omari</b> <br>
+                        Founder
+                    </p>
+                </div>
+                <div class="col-sm-5 our-founders">
+                    <p class="founder-details">
+                        Dr. Jennifer Lopez, the co-founder of NovaCare, is a renowned healthcare leader 
+                        passionate about delivering patient-centered medical care. With extensive experience 
+                        in clinical practice and healthcare management, she brings a unique perspective to NovaCare’s 
+                        mission of excellence. Dr. Lopez’s dedication to innovation and community health plays a pivotal 
+                        role in shaping the hospital’s commitment to superior care.
+                    </p>
+                    <img src="{% static 'Images/user1.png' %}" alt="user" class="img-fluid">
+                    <p class="user-details">
+                        <b>Dr. Jennifer Lopez</b> <br>
+                        Co-Founder
+                    </p>
+                </div>
+            </div>
+    </div>
+    
+    {# OUR PHILOSOPHY #}
+    <div class="container mb-4 pb-2">
+        <h2 class="text-center p-3 our-philosophy">Our Philosophy</h2>
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="philosophy p-3">
+                    <h3 class="text-center">Vision</h3>
+                    <p class="philosophy-details">
+                        To be a trusted leader in delivering compassionate, innovative, and 
+                        accessible healthcare for all.
+                    </p>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="philosophy p-3">
+                    <h3 class="text-center">Mission</h3>
+                    <p class="philosophy-details">
+                        To provide exceptional, patient-centered healthcare by combining 
+                        advanced technology, skilled professionals, and a commitment to community 
+                        well-being.
+                    </p>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="philosophy p-3">
+                    <h3 class="text-center">Values</h3>
+                    <ul>
+                        <li class="pt-2">Professionalism</li>
+                        <li class="pt-2">Respect</li>
+                        <li class="pt-2">Integrity</li>
+                        <li class="pt-2">Collaboration</li>
+                        <li class="pt-2">Excellence</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    {# FOOTER #}
+    <div class="footer">
+        <div class="container pb-3">
+            <div class="row">
+                <div class="col-sm-4">
+                    <h4 class="pt-3 about-us">NovaCare</h4>
+                    <p class="motto">
+                        Your Health, Our Commitment
+                    </p>
+                    <p class="description">
+                        NovaCare is a state-of-the-art healthcare facility offering high-quality
+                        medical services with compassion and precision. We specialize in various fields,
+                        including general medicine, surgery, pediatrics, and diagnostics, ensuring comprehensive
+                        care for all. With a dedicated team and advanced technology, NovaCare is committed to your
+                        well-being and a healthier future.
+                    </p>
+                </div>
+                <div class="col-sm-4 contacts">
+                    <h4 class="pt-3 about-us">Contact Us</h4>
+                    <p class="p-2">
+                        <i class='bx bxs-map' style='color:#ffffff'  ></i>
+                        Hospital Rd, Nairobi
+                    </p>
+                    <p class="p-2">
+                        <i class='bx bxs-phone' style='color:#ffffff'  ></i>
+                        +254 712345678
+                    </p>
+                    <p class="p-2">
+                        <i class='bx bx-envelope' style='color:#ffffff'  ></i>
+                        ncadmin@novacare.com
+                    </p>
+                </div>
+                <div class="col-sm-4">
+                    <h4 class="pt-3 about-us">Our Partners</h4>
+                    <ul class="partners">
+                        <li class="pt-2"> Care Hospital</li>
+                        <li class="pt-2"> Getrude Children's Hospital</li>
+                        <li class="pt-2"> Capital Hospital</li>
+                        <li class="pt-2"> Pediatric Partners Hospital</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
