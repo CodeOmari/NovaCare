@@ -25,7 +25,7 @@ body{
     font-style: normal;
 }
 .nav-item a:hover, .nav-item a:active{
-    color: #e64e4e;
+    color: rgb(0, 122, 204) !important;
 }
 .top-banner{
     background-color: #f5f5f5;

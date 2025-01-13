@@ -1,41 +1,47 @@
-.services{
+.founders, .our-philosophy{
     color: #004f71;
     font-family: "Lato", serif;
     font-weight: 700;
     font-style: normal;
 }
-.service-box{
+.our-founders{
+    border-left: 4px solid #004f71;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+.our-founders img{
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+    margin: 0 10px;
+}
+.founder-details{
+    color: #004f71;
+    font-family: "Lato", serif;
+    font-weight: 500;
+    font-style: normal;
+}
+.user-details{
+    color: #004f71;
+    font-family: "Lato", serif;
+    font-weight: 500;
+    font-style: normal;
+}
+.philosophy{
     background: #004f71;
 }
-.service-box h3{
+.philosophy h3{
     color: #fff;
     font-family: "Lato", serif;
     font-weight: 700;
     font-style: normal;
     font-size: 1.225em;
 }
-.details p{
+.philosophy-details, .philosophy ul li{
     color: #fff;
     font-family: "Lato", serif;
     font-weight: 500;
     font-style: normal;
-    font-size: 1.025em;
-}
-.about-us{
-    color: #fff;
-    font-family: "Lato", serif;
-    font-weight: 700;
-    font-style: normal;
-}
-.about-container{
-    background: #004f71;
-}
-.capacity, .item p{
-    color: #fff;
-    font-family: "Lato", serif;
-    font-weight: 700;
-    font-style: normal;
-    font-size: 1.225em;
 }
 .footer{
     background: #004f71;
@@ -63,4 +69,10 @@
     font-weight: 500;
     font-style: normal;
     font-size: 1.015em;
+}
+.about-us{
+    color: #fff;
+    font-family: "Lato", serif;
+    font-weight: 700;
+    font-style: normal;
 }
