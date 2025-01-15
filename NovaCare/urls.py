@@ -23,5 +23,7 @@ urlpatterns = [
     path('', views.home, name='home'),
     path('about/', views.about, name='about'),
     path('careers/', views.careers, name='careers'),
+    path('register/', views.add_client, name='add_client'),
+    path('add/client', views.add_adult_client, name='add_adult_client'),
     path('admin/', admin.site.urls),
 ]
