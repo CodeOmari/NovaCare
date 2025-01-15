@@ -47,8 +47,13 @@
                 Patients
               </a>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Patient Registration</a></li>
-                <li><a class="dropdown-item" href="#">Patient Records</a></li>
+                <li><h3 class="dropdown-header">Patient Registration</h3></li>
+                <li><a class="dropdown-item" href="{% url 'add_client' %}">Child</a></li>
+                <li><a class="dropdown-item" href="{% url 'add_adult_client' %}">Adult</a></li>
+
+                <li><h3 class="dropdown-header">Patient Records</h3></li>
+                <li><a class="dropdown-item" href="#">Personal Details</a></li>
+                <li><a class="dropdown-item" href="#">Medical Records</a></li>
               </ul>
             </li>
 
@@ -90,6 +95,15 @@
         </div>
       </div>
     </nav>
+
+    <div class="container">
+        {% for message in messages %}
+            <div class="alert {{ message.tags }} alert-dismissible fade show mt-2" role="alert">
+                <p>{{ message }}</p>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        {% endfor %}
+    </div>
 
     {% block content %}
     {% endblock %}
