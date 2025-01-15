@@ -18,13 +18,31 @@ body{
 .title:hover{
     color: #fff;
 }
-.nav-item a{
+.nav-link{
     color: #fff;
     font-family: "Lato", serif;
     font-weight: 500;
     font-style: normal;
+    transition: color 0.15s;
 }
-.nav-item a:hover, .nav-item a:active{
+.nav-link:hover{
+    color: rgb(0, 122, 204) !important;
+}
+.dropdown-header{
+    color: #fff;
+    font-family: "Lato", serif;
+    font-weight: 700;
+    font-style: normal;
+    font-size: 1.1em;
+}
+.dropdown-item{
+    color: #fff;
+    font-family: "Lato", serif;
+    font-weight: 500;
+    font-style: normal;
+    transition: color 0.15s;
+}
+.dropdown-item:hover{
     color: rgb(0, 122, 204) !important;
 }
 .top-banner{
