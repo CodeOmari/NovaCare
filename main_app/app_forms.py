@@ -18,6 +18,7 @@ class ChildForm(forms.ModelForm):
             'phone_number': forms.TextInput(attrs={'type': 'number'}),
         }
 
+
 ADULT_CHOICES = {"Male": "Male", "Female": "Female"}
 class AdultForm(forms.ModelForm):
     gender = forms.ChoiceField(choices=ADULT_CHOICES, widget=forms.RadioSelect)
@@ -27,3 +28,9 @@ class AdultForm(forms.ModelForm):
         widgets = {
             'phone_number': forms.TextInput(attrs={'type': 'number'}),
         }
+
+
+
+class LoginForm(forms.Form):
+    username = forms.CharField(max_length=20)
+    password = forms.CharField(widget=forms.PasswordInput)
