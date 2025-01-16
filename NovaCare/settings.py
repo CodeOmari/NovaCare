@@ -52,6 +52,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
 ]
 
 ROOT_URLCONF = 'NovaCare.urls'
@@ -141,6 +142,13 @@ MESSAGE_TAGS = {
     messages.WARNING: 'alert-warning',
     messages.ERROR: 'alert-danger',
 }
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://flying-regularly-honeybee.ngrok-free.app"
+]
+
+# disable secure cookies
+CSRF_COOKIE_SECURE = False
 
 
 LOGIN_URL = 'login'
