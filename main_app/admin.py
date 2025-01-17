@@ -13,3 +13,4 @@ admin.site.site_header = 'NovaCare Administration'
 admin.site.site_title = 'NovaCare Administration'
 
 #NCadmin@gmail.com
+# NovaCare
