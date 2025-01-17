@@ -10,16 +10,15 @@ from main_app.models import AdultPatient, ChildPatient
 
 
 # Create your views here.
-@login_required
+
 def home(request):
     return render(request, 'Home.html')
 
-@login_required
+
 def about(request):
     return render(request, 'About.html')
 
 
-@login_required
 def careers(request):
     return render(request, 'Careers.html')
 
@@ -84,3 +83,32 @@ def register(request):
     else:
         form = UserCreationForm()
     return render(request, 'Register.html', {'form': form})
+
+
+@login_required
+def clients(request):
+    return render(request, 'client_details.html')
+
+
+def child_details(request):
+    return None
+
+
+def adult_details(request):
+    return None
+
+
+def update_adult_details(request):
+    return None
+
+
+def update_child_details(request):
+    return None
+
+
+def delete_child_details(request):
+    return None
+
+
+def delete_adult_details(request):
+    return None
