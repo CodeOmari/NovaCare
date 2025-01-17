@@ -14,9 +14,6 @@ class ChildForm(forms.ModelForm):
         fields = ['first_name', 'last_name', 'gender','parent_first_name',
                   'parent_last_name', 'parent_gender', 'parent_phone_number',
                   'relationship']
-        widgets = {
-            'phone_number': forms.TextInput(attrs={'type': 'number'}),
-        }
 
 
 ADULT_CHOICES = {"Male": "Male", "Female": "Female"}
@@ -25,9 +22,6 @@ class AdultForm(forms.ModelForm):
     class Meta:
         model = AdultPatient
         fields = ['first_name', 'last_name', 'gender','phone_number']
-        widgets = {
-            'phone_number': forms.TextInput(attrs={'type': 'number'}),
-        }
 
 
 
