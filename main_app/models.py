@@ -14,7 +14,7 @@ class AdultPatient(models.Model):
         return self.first_name + " " + self.last_name
 
     class Meta:
-        db_table = 'adult patients'
+        db_table = 'adult_patients'
 
 
 class ChildPatient(models.Model):
@@ -24,7 +24,7 @@ class ChildPatient(models.Model):
     parent_first_name = models.CharField(max_length=30)
     parent_last_name = models.CharField(max_length=30)
     parent_gender = models.CharField(max_length=10)
-    parent_phone_number = models.CharField(max_length=10, unique=True)
+    parent_phone_number = models.CharField(max_length=10)
     relationship = models.CharField(max_length=20)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -33,4 +33,4 @@ class ChildPatient(models.Model):
         return self.first_name + " " + self.last_name
 
     class Meta:
-        db_table = 'child patients'
+        db_table = 'child_patients'
