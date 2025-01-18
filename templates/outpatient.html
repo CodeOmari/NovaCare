@@ -1,0 +1,104 @@
+{% extends 'master.html' %}
+{% load static %}
+
+{% block title %}
+    <title>NovaCare - Outpatient services</title>
+{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'CSS/services.css' %}">
+    <link rel="stylesheet" href="{% static 'CSS/about.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="container-fluid">
+        <img src="{% static 'Images/banner.jpg' %}" alt="emergency" class="img-fluid" height="500px">
+    </div>
+    
+    <div class="container">
+        <div class="services p-3 mt-4 mb-5">
+            <h2 class="text-center mt-2">Outpatient Services</h2>
+            <p>
+                NovaCare's outpatient services offer convenient and efficient medical care 
+                without the need for hospital admission. Our dedicated team of healthcare 
+                professionals provides a wide range of services, including consultations, 
+                diagnostic tests, minor procedures, and follow-up care, all tailored to meet 
+                your unique health needs. We are committed to delivering quality care with minimal 
+                disruption to your daily life.
+            </p>
+        </div>
+    </div>
+    
+    <div class="container mb-5">
+        <div class="row">
+            <div class="col-sm-4">
+                <img src="{% static 'Images/outpatient-1.jpg' %}" alt="emergency" class="img-fluid pb-3">
+            </div>
+            <div class="col-sm-4">
+                <img src="{% static 'Images/outpatient-2.jpg' %}" alt="emergency" class="img-fluid pb-3">
+            </div>
+            <div class="col-sm-4">
+                <img src="{% static 'Images/outpatient-.jpg' %}" alt="emergency" class="img-fluid pb-3">
+            </div>
+        </div>
+    </div>
+    
+    <div class="container mb-5">
+        <div class="row d-flex justify-content-end ps-3">
+            <div class="col-sm-5 service-assurance">
+                <h3>
+                    Your Health, <br> Our Commitment
+                </h3>
+                <p>
+                    The Hospital has 12 operating rooms that 
+                    are adequately equipped to handle major and minor outpatient operations.
+                </p>
+            </div>
+        </div>
+    </div>
+    
+    {# FOOTER #}
+    <div class="footer">
+        <div class="container pb-3">
+            <div class="row">
+                <div class="col-sm-4">
+                    <h4 class="pt-3 about-us">NovaCare</h4>
+                    <p class="motto">
+                        Your Health, Our Commitment
+                    </p>
+                    <p class="description">
+                        NovaCare is a state-of-the-art healthcare facility offering high-quality
+                        medical services with compassion and precision. We specialize in various fields,
+                        including general medicine, surgery, pediatrics, and diagnostics, ensuring comprehensive
+                        care for all. With a dedicated team and advanced technology, NovaCare is committed to your
+                        well-being and a healthier future.
+                    </p>
+                </div>
+                <div class="col-sm-4 contacts">
+                    <h4 class="pt-3 about-us">Contact Us</h4>
+                    <p class="p-2">
+                        <i class='bx bxs-map' style='color:#ffffff'  ></i>
+                        Hospital Rd, Nairobi
+                    </p>
+                    <p class="p-2">
+                        <i class='bx bxs-phone' style='color:#ffffff'  ></i>
+                        +254 712345678
+                    </p>
+                    <p class="p-2">
+                        <i class='bx bx-envelope' style='color:#ffffff'  ></i>
+                        ncadmin@novacare.com
+                    </p>
+                </div>
+                <div class="col-sm-4">
+                    <h4 class="pt-3 about-us">Our Partners</h4>
+                    <ul class="partners">
+                        <li class="pt-2"> Care Hospital</li>
+                        <li class="pt-2"> Getrude Children's Hospital</li>
+                        <li class="pt-2"> Capital Hospital</li>
+                        <li class="pt-2"> Pediatric Partners Hospital</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
