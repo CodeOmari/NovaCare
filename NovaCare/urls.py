@@ -22,6 +22,11 @@ from main_app import views
 urlpatterns = [
     path('', views.home, name='home'),
     path('about/', views.about, name='about'),
+    path('emergency/services', views.emergency_services, name='emergency_services'),
+    path('inpatient/services', views.inpatient_services, name='inpatient_services'),
+    path('outpatient/services', views.outpatient_services, name='outpatient_services'),
+    path('surgical/services', views.surgical_services, name='surgical_services'),
+    path('maternity/services', views.maternity_services, name='maternity_services'),
     path('careers/', views.careers, name='careers'),
     path('clients/', views.clients, name='clients'),
     path('child/personal/details/<int:child_patients_id>', views.child_details, name='child_details'),
