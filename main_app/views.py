@@ -112,3 +112,23 @@ def delete_child_details(request):
 
 def delete_adult_details(request):
     return None
+
+
+def emergency_services(request):
+    return render(request, 'emergency.html')
+
+
+def inpatient_services(request):
+    return render(request, 'inpatient.html')
+
+
+def outpatient_services(request):
+    return render(request, 'outpatient.html')
+
+
+def surgical_services(request):
+    return render(request, 'surgical.html')
+
+
+def maternity_services(request):
+    return render(request, 'maternity.html')
