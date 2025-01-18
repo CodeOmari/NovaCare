@@ -1,0 +1,32 @@
+.services{
+    background-color: #004f71;
+}
+.services h2{
+    color: #fff;
+    font-family: "Lato", serif;
+    font-weight: 700;
+    font-style: normal;
+}
+.services p{
+    font-family: "Lato", serif;
+    font-weight: 500;
+    font-style: normal;
+    color: #fff;
+    font-size: 1.2em;
+}
+.service-assurance{
+    border-left: 4px solid #004f71;
+}
+.service-assurance h3{
+    color: #004f71;
+    font-family: "Lato", serif;
+    font-weight: 700;
+    font-style: normal;
+}
+.service-assurance p{
+    font-family: "Lato", serif;
+    font-weight: 500;
+    font-style: normal;
+    color: #004f71;
+    font-size: 1.1em;
+}
