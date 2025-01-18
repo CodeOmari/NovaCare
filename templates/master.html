@@ -44,6 +44,19 @@
 
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Services
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="{% url 'emergency_services' %}">Emergency</a></li>
+                <li><a class="dropdown-item" href="{% url 'inpatient_services' %}">Inpatient</a></li>
+                <li><a class="dropdown-item" href="{% url 'outpatient_services' %}">Outpatient</a></li>
+                <li><a class="dropdown-item" href="{% url 'surgical_services' %}">Surgical</a></li>
+                <li><a class="dropdown-item" href="{% url 'maternity_services' %}">Maternity & Neonatal</a></li>
+              </ul>
+            </li>
+
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Patients
               </a>
               <ul class="dropdown-menu">
