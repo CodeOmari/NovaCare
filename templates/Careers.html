@@ -1,8 +1,190 @@
 {% extends 'master.html' %}
+{% load static %}
 
 {% block title %}
     <title>NovaCare - Careers</title>
 {% endblock %}
 
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'CSS/careers.css' %}">
+    <link rel="stylesheet" href="{% static 'CSS/about.css' %}">
+{% endblock %}
+
 {% block content %}
+    <div class="container mb-4">
+        <div class="row">
+            <div class="col-sm-8 careers">
+                <h2 class="pt-3">Careers</h2>
+                <p class="pb-2">
+                    NovaCare Hospital is a Private Corporation whose vision is to be a 
+                    world-class Referral Hospital providing innovative and specialized healthcare. 
+                    The Hospital seeks to recruit dynamic, highly motivated, innovative and experienced 
+                    individuals to fill the following vacant positions.
+                </p>
+                <table class="table-sm table-bordered table-striped table-responsive mb-3">
+                    <tr>
+                        <th>NO.</th>
+                        <th>POSITION</th>
+                        <th>REFERENCE NO.</th>
+                        <th>POSITIONS</th>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>Senior Director Clinical Services</td>
+                        <td>NCH/NCD/10/1</td>
+                        <td>1</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Director, Nursing Services</td>
+                        <td>NCH/NCD/10/2</td>
+                        <td>1</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Gynaecologist</td>
+                        <td>NCH/NCD/10/3</td>
+                        <td>2</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>Neurologist</td>
+                        <td>NCH/NCD/10/4</td>
+                        <td>1</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>ICT Specialist</td>
+                        <td>NCH/NCD/10/5</td>
+                        <td>2</td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>Finance Manager</td>
+                        <td>NCH/NCD/10/6</td>
+                        <td>1</td>
+                    </tr>
+                </table>
+                
+                <p>
+                    Interested applicants who meet the requirements of the listed vacancies are
+                    invited to make applications. The application form together with a detailed
+                    C.V listing the qualifications, experience, current responsibilities, copies 
+                    of testimonials, and certificates are to be submitted at NovaCare Hospital
+                    Central Registry situated in the Hospitals Administration block 
+                    <b>on or before 31 <sup>st</sup> January 2025.</b>
+                </p>
+                
+                <p>
+                    The application can also be posted to the address below:
+                </p>
+                <p class="text-center">
+                    <b>The Chief Executive Officer</b> <br>
+                    <b>NovaCare Hospital</b> <br>
+                    <b>P.0 Box 25631-00202</b> <br>
+                    <b>Nairobi</b>
+                </p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="container mb-5 pb-5">
+        <div class="row">
+            <div class="col-sm-8 more-info">
+                <p>
+                    "NovaCare Hospital is an equal opportunity employer and qualified
+                    candidates with disabilities are encouraged to apply".
+                </p>
+                
+                <p>
+                    <b>NB:</b>
+                </p>
+                
+                <ol type="1">
+                    <li>
+                        NovaCare Hospital <b>DOES NOT</b> charge <b>ANY FEES</b> for application
+                    </li>
+                    <li>
+                        Only shortlisted candidates will be contacted through telephone number 0712345678
+                    </li>
+                    <li>
+                        Successful candidate will be required to submit the document listed below to comply with 
+                        the requirements of Chapter Six (6) of the Constitution of Kenya,2010: – 
+                    </li>
+                </ol>
+                
+                <ul style="list-style-type: disc">
+                    <li>
+                        <b>A certificate of good conduct from the National Police Service</b>
+                    </li>
+                    <li>
+                        <b>EACC Clearance</b>
+                    </li>
+                    <li>
+                        <b>Credit Reference Bureau Clearance</b>
+                    </li>
+                    <li>
+                        <b>HELB Compliance</b>
+                    </li>
+                    <li>
+                        <b>KRA Tax Compliance </b>
+                    </li>
+                </ul>
+                
+                <p class="disclaimer">
+                    “ANY FORM OF CANVASSING WILL LEAD TO AUTOMATIC DISQUALIFICATION”
+                </p>
+                
+                <p class="department-head">
+                    <b>EVEREST S. OSWALD, CBS, EBS</b> <br>
+                    <b class="role">CHIEF EXECUTIVE OFFICER</b>
+                </p>
+            </div>
+        </div>
+    </div>
+    
+    {# FOOTER #}
+    <div class="footer">
+        <div class="container pb-3">
+            <div class="row">
+                <div class="col-sm-4">
+                    <h4 class="pt-3 about-us">NovaCare</h4>
+                    <p class="motto">
+                        Your Health, Our Commitment
+                    </p>
+                    <p class="description">
+                        NovaCare is a state-of-the-art healthcare facility offering high-quality
+                        medical services with compassion and precision. We specialize in various fields,
+                        including general medicine, surgery, pediatrics, and diagnostics, ensuring comprehensive
+                        care for all. With a dedicated team and advanced technology, NovaCare is committed to your
+                        well-being and a healthier future.
+                    </p>
+                </div>
+                <div class="col-sm-4 contacts">
+                    <h4 class="pt-3 about-us">Contact Us</h4>
+                    <p class="p-2">
+                        <i class='bx bxs-map' style='color:#ffffff'  ></i>
+                        Hospital Rd, Nairobi
+                    </p>
+                    <p class="p-2">
+                        <i class='bx bxs-phone' style='color:#ffffff'  ></i>
+                        +254 712345678
+                    </p>
+                    <p class="p-2">
+                        <i class='bx bx-envelope' style='color:#ffffff'  ></i>
+                        ncadmin@novacare.com
+                    </p>
+                </div>
+                <div class="col-sm-4">
+                    <h4 class="pt-3 about-us">Our Partners</h4>
+                    <ul class="partners">
+                        <li class="pt-2"> Care Hospital</li>
+                        <li class="pt-2"> Getrude Children's Hospital</li>
+                        <li class="pt-2"> Capital Hospital</li>
+                        <li class="pt-2"> Pediatric Partners Hospital</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
