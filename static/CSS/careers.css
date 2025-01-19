@@ -1,0 +1,50 @@
+.careers h2{
+    font-family: "Lato", serif;
+    font-weight: 700;
+    font-style: normal;
+    color: #004f71;
+}
+.careers p{
+    font-family: "Lato", serif;
+    font-weight: 500;
+    font-style: normal;
+    color: #004f71;
+    font-size: 1.1em;
+}
+.table-sm tr th{
+    font-family: "Lato", serif;
+    font-weight: 700;
+    font-style: normal;
+    color: #004f71;
+}
+.table-sm tr td{
+    font-family: "Lato", serif;
+    font-weight: 500;
+    font-style: normal;
+    color: #004f71;
+    font-size: 1.02em;
+}
+.more-info p{
+    font-family: "Lato", serif;
+    font-weight: 500;
+    font-style: normal;
+    color: #004f71;
+    font-size: 1.1em;
+}
+.more-info ol li{
+    font-family: "Lato", serif;
+    font-weight: 500;
+    font-style: normal;
+    color: #004f71;
+    font-size: 1.1em;
+}
+.more-info ul li{
+    font-family: "Lato", serif;
+    font-weight: 500;
+    font-style: normal;
+    color: #004f71;
+    font-size: 1.1em;
+}
+.role{
+    text-decoration: underline;
+}
