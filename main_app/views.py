@@ -3,9 +3,9 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from django.http import HttpResponse
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 
-from main_app.app_forms import ChildForm, AdultForm, LoginForm
+from main_app.app_forms import ChildForm, AdultForm, LoginForm, AdultAppointment
 from main_app.models import AdultPatient, ChildPatient
 
 
@@ -132,3 +132,21 @@ def surgical_services(request):
 
 def maternity_services(request):
     return render(request, 'maternity.html')
+
+@login_required
+def book_adult_appointment(request, id):
+    patient = get_object_or_404(AdultPatient, pk=id)
+
+    if request.method == 'POST':
+        form = AdultAppointment(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Appointment booked successfully!')
+            return redirect('home')
+    else:
+        form = AdultAppointment()
+    return render(request, 'adult_appointment_form.html', {'form': form})
+
+
+def book_child_appointment(request):
+    return None
