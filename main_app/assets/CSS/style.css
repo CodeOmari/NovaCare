@@ -28,13 +28,6 @@ body{
 .nav-link:hover{
     color: rgb(0, 122, 204) !important;
 }
-.dropdown-header{
-    color: #fff;
-    font-family: "Lato", serif;
-    font-weight: 700;
-    font-style: normal;
-    font-size: 1.1em;
-}
 .dropdown-item{
     color: #fff;
     font-family: "Lato", serif;
