@@ -1,12 +1,10 @@
 from django.contrib import admin
 
-from main_app.models import AdultPatient, ChildPatient
+from main_app.models import Appointments
 
 # Register your models here.
 
-admin.site.register(AdultPatient)
-
-admin.site.register(ChildPatient)
+admin.site.register(Appointments)
 
 admin.site.site_header = 'NovaCare Administration'
 
