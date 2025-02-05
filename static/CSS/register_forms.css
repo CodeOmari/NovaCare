@@ -1,0 +1,22 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.register_form{
+    background: #004f71;
+    font-family: "Lato", sans-serif;
+}
+.company{
+    font-family: "Lato", sans-serif;
+    font-size: 1.6em;
+    font-weight: 600;
+    font-style: normal;
+    color: #fff;
+}
+.form-name{
+    font-family: "Lato", sans-serif;
+    font-size: 1.4em;
+    font-weight: 500;
+    font-style: normal;
+    color: #fff;
+}
