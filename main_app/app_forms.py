@@ -35,7 +35,7 @@ class AppointmentForm(forms.ModelForm):
      appointment_time = forms.ChoiceField(choices=TIME_CHOICES, widget=forms.Select)
      class Meta:
          model = Appointment
-         fields = ['appointment_date', 'appointment_time', 'appointment_type', 'department']
+         fields = ['patient', 'appointment_date', 'appointment_time', 'appointment_type', 'department']
          widgets = {
              'appointment_date': forms.DateInput(attrs={'type': 'date', 'min': datetime.date.today() + datetime.timedelta(days=7)}),
          }
@@ -45,6 +45,7 @@ class AppointmentForm(forms.ModelForm):
 class LoginForm(forms.Form):
     username = forms.CharField(max_length=20)
     password = forms.CharField(widget=forms.PasswordInput)
+
 
 
 
