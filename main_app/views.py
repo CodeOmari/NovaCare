@@ -6,7 +6,7 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 
 from main_app.app_forms import LoginForm, AppointmentForm, RegistrationForm
-from main_app.models import Patient
+from main_app.models import Patient, Appointment
 
 
 # Create your views here.
@@ -83,26 +83,15 @@ def book_appointment(request):
         form = AppointmentForm(request.POST)
         if form.is_valid():
             form.save()
-            messages.success(request, 'Appointment booking was successful!')
+            messages.success(request, 'Appointment booked successfully!')
             return redirect('home')
     else:
         form = AppointmentForm()
     return render(request, 'appointment_form.html', {'form': form})
 
-@login_required
-def appointments(request, patient_id):
-    client = get_object_or_404(Patient, id=patient_id)
-    if request.method == "POST":
-        form = AppointmentForm(request.POST)
-        if form.is_valid():
-            appointment = form.save(commit=False)
-            appointment.patient = patient
-            appointment.save()
-            messages.success(request, 'Appointment booked successfully!')
-            return redirect('home')
-    else:
-        form = AppointmentForm()
-    return render(request, 'appointment_form.html', {'form': form, 'patient':patient})
+# def appointments(request, patient_id):
+#     appointment = Appointment.objects.get(id=patient_id)
+#     return render(request, 'appointments.html', {'appointment': appointment})
 
 
 def patient(request):
