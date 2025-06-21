@@ -28,11 +28,5 @@ urlpatterns = [
     path('surgical/services/', views.surgical_services, name='surgical_services'),
     path('maternity/services/', views.maternity_services, name='maternity_services'),
     path('careers/', views.careers, name='careers'),
-    path('appointment/booking/', views.book_appointment, name='book_appointment'),
-    # path('appointment/details/<int:patient_id>', views.appointments, name='appointments'),
-    path('register/patient/', views.patient, name='patient'),
-    path('login/', views.login_user, name='login'),
-    path('logout/', views.signout, name='logout'),
-    path('register/', views.register, name='register'),
     path('admin/', admin.site.urls),
 ]
