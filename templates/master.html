@@ -58,47 +58,10 @@
               </ul>
             </li>
 
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Patients
-              </a>
-              <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="{% url 'patient' %}">Register</a><li>
-              </ul>
-            </li>
-
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Appointments
-              </a>
-              <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="{% url 'book_appointment' %}">Book Appointment</a><li>
-                <li><a class="dropdown-item" href="#">My Appointments</a></li>
-              </ul>
-            </li>
-
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Staff
-              </a>
-              <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Manager</a></li>
-                <li><a class="dropdown-item" href="#">Administrator</a></li>
-                <li><a class="dropdown-item" href="#">Doctors</a></li>
-                <li><a class="dropdown-item" href="#">Finance Officer</a></li>
-                <li><a class="dropdown-item" href="#">Pharmacist</a></li>
-                <li><a class="dropdown-item" href="#">Nurses</a></li>
-                <li><a class="dropdown-item" href="#">Lab Technicians</a></li>
-              </ul>
-            </li>
-
             <li class="nav-item">
               <a class="nav-link" href="{% url 'careers' %}">Careers</a>
             </li>
 
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'logout' %}">Log out</a>
-            </li>
           </ul>
           <form class="d-flex">
               <input class="form-control me-2" type="text" placeholder="Search">
