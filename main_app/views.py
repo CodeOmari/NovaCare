@@ -1,12 +1,5 @@
-from django.contrib import messages
-from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.decorators import login_required
-from django.contrib.auth.forms import UserCreationForm
-from django.http import HttpResponse
-from django.shortcuts import render, redirect, get_object_or_404
-
-from main_app.app_forms import LoginForm, AppointmentForm, RegistrationForm
-from main_app.models import Patient, Appointment
+from django.shortcuts import render, redirect
+from main_app.app_forms import LoginForm
 
 
 # Create your views here.
@@ -21,42 +14,6 @@ def about(request):
 
 def careers(request):
     return render(request, 'Careers.html')
-
-
-def login_user(request):
-    if request.method == "GET":
-        form = LoginForm()
-        return render(request, "login_form.html", {"form": form})
-    elif request.method == "POST":
-        form = LoginForm(request.POST)
-        if form.is_valid():
-            username = form.cleaned_data['username']
-            password = form.cleaned_data['password']
-            user = authenticate(request, username=username, password=password)
-            if user:
-                login(request, user)
-                return redirect('home')
-        messages.error(request, "Invalid username or password")
-        return render(request, "login_form.html", {"form": form})
-
-
-@login_required
-def signout(request):
-    logout(request)
-    return redirect('login')
-
-
-def register(request):
-    if request.method == 'POST':
-        form = UserCreationForm(request.POST)
-        if form.is_valid():
-            form.save()
-            username = form.cleaned_data.get('username')
-            messages.success(request, f'Account creation for {username} was successful!')
-            return redirect('login')
-    else:
-        form = UserCreationForm()
-    return render(request, 'Register.html', {'form': form})
 
 def emergency_services(request):
     return render(request, 'emergency.html')
@@ -76,31 +33,3 @@ def surgical_services(request):
 
 def maternity_services(request):
     return render(request, 'maternity.html')
-
-@login_required
-def book_appointment(request):
-    if request.method == "POST":
-        form = AppointmentForm(request.POST)
-        if form.is_valid():
-            form.save()
-            messages.success(request, 'Appointment booked successfully!')
-            return redirect('home')
-    else:
-        form = AppointmentForm()
-    return render(request, 'appointment_form.html', {'form': form})
-
-# def appointments(request, patient_id):
-#     appointment = Appointment.objects.get(id=patient_id)
-#     return render(request, 'appointments.html', {'appointment': appointment})
-
-
-def patient(request):
-    if request.method == "POST":
-        form = RegistrationForm(request.POST)
-        if form.is_valid():
-            form.save()
-            messages.success(request, 'Registration was successful!')
-            return redirect('home')
-    else:
-        form = RegistrationForm()
-    return render(request, 'register_form.html', {'form': form})
