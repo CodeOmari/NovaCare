@@ -1,5 +1,5 @@
 from django.contrib import messages
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from user_management.app_forms import LoginForm
@@ -35,6 +35,10 @@ def register(request):
         form = UserCreationForm()
     return render(request, 'register.html', {'form': form})
 
+def signout_user(request):
+    logout(request)
+    return redirect('home')
+
 
 @login_required
 def dashboard(request):
@@ -45,7 +49,13 @@ def dashboard(request):
 
 
 def patient_dashboard(request):
-    return render(request, 'patient_dashboard.html')
+    context = {
+        'username': request.user.username,
+    }
+    return render(request, 'patient_dashboard.html', context)
 
 def staff_dashboard(request):
-    return render(request, 'staff_dashboard.html')
+    context = {
+        'username': request.user.username,
+    }
+    return render(request, 'staff_dashboard.html', context)
