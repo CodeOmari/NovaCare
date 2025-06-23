@@ -6,6 +6,7 @@ app_name = 'user_management'
 urlpatterns = [
     path('login/', views.login_user, name='login'),
     path('register/', views.register, name='register'),
+    path('logout/', views.signout_user, name='logout'),
 
 
     path('portal/', views.dashboard, name='dashboard'),
