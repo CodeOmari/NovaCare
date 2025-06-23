@@ -30,7 +30,7 @@ urlpatterns = [
     path('careers/', views.careers, name='careers'),
 
 
-    path('users/', include('user_management.urls')),
+    path('novacare/', include('user_management.urls')),
 
     path('admin/', admin.site.urls),
 ]
