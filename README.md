@@ -8,7 +8,9 @@ User management section, Appointment page and Careers page.
 # Tech Stack
 The following languages are used in this project: JavaScript, CSS, HTML & Python(Django)
 
-# Project Screenshot
+# Project Screenshots
+![Login page screenshot](static/Images/nova-2.png)
+<br><br>
 ![Home page screenshot](static/Images/novacare.png)
 <br><br>
 ![Services page screenshot](static/Images/nova-1.png)
