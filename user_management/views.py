@@ -1,5 +1,6 @@
 from django.contrib import messages
 from django.contrib.auth import authenticate, login
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from user_management.app_forms import LoginForm
 from django.contrib.auth.forms import UserCreationForm
@@ -18,7 +19,7 @@ def login_user(request):
             user = authenticate(request, username=username, password=password)
             if user:
                 login(request, user)
-                return redirect('careers')
+                return redirect('user_management:dashboard')
         messages.error(request, "Invalid username or password")
         return render(request, "login.html", {"form": form})
 
@@ -33,3 +34,18 @@ def register(request):
     else:
         form = UserCreationForm()
     return render(request, 'register.html', {'form': form})
+
+
+@login_required
+def dashboard(request):
+    if request.user.is_staff:
+        return redirect('user_management:staff_dashboard')
+    else:
+        return redirect('user_management:patient_dashboard')
+
+
+def patient_dashboard(request):
+    return render(request, 'patient_dashboard.html')
+
+def staff_dashboard(request):
+    return render(request, 'staff_dashboard.html')
