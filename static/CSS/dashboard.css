@@ -1,0 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Quicksand:wght@300..700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Lato", serif;
+}
+.username h3{
+    color: #fff;
+    font-family: "Lato", serif;
+    font-weight: 700;
+    font-style: normal;
+}
+.navigation{
+    width: 200px;
+    height: 460px;
+    background: #004f71;
+}
+.logout-icon{
+    width: 50px;
+}
+.info-container h3{
+    color: #004f71;
+    font-size: 1.2em;
+    font-weight: 700;
+    font-style: normal;
+}
