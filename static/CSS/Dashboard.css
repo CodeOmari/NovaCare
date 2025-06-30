@@ -2,26 +2,23 @@
 *{
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
     font-family: "Lato", serif;
 }
-.username h3{
-    color: #fff;
-    font-family: "Lato", serif;
+body{
+    background-color: lightgray;
+}
+.users{
+    margin-left: 30px;
+    margin-top: 15px;
+}
+.welcome h3{
+    font-size: 1.3em;
     font-weight: 700;
     font-style: normal;
 }
 .navigation{
-    width: 200px;
-    height: 460px;
-    background: #004f71;
-}
-.logout-icon{
-    width: 50px;
-}
-.info-container h3{
-    color: #004f71;
-    font-size: 1.2em;
-    font-weight: 700;
-    font-style: normal;
+    background-color: #fff;
+    width: 180px;
+    padding: 20px;
+    height: 425px;
 }
