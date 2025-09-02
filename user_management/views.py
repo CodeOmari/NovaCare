@@ -40,6 +40,8 @@ def signout_user(request):
     return redirect('home')
 
 
+
+
 @login_required
 def dashboard(request):
     if request.user.is_staff:
