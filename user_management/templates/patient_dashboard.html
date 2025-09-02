@@ -13,8 +13,8 @@
             <title>Patient Dashboard</title>
         </head>
         <body>
-            <div class="users d-flex">
-                <div class="mt-3 ms-3 navigation">
+            <div class="container users d-flex">
+                <div class="container mt-3 navigation">
                     <div class="username d-flex justify-content-center text-dark">
                         <img src="{% static 'Images/nova.jpeg' %}" alt="novacare logo" class="w-25 h-25 me-2 rounded">
                         <p class="pt-2">NovaCare</p>
@@ -41,33 +41,33 @@
                     </div>
                 </div>
 
-                <div class="info-container ms-4">
-                    <div class="welcome mt-5 ms-3">
+                <div class="container info-container">
+                    <div class="container welcome mt-5 ms-3">
                         <h3>Hello {{ username }},</h3>
                     </div>
 
-                    <div class="information ms-3 pt-3 d-flex">
-                        <div class="info bg-white me-3 p-3 rounded">
-                            <h3>Appointments</h3>
+                    <div class="container information ms-3 pt-3 d-flex">
+                        <div class="info me-2 bg-white w-50 pt-2 pb-2 ps-4 rounded">
+                            <h4>Appointments</h4>
                         </div>
 
-                        <div class="info bg-white me-3 p-3 rounded">
-                            <h3>Medical records</h3>
+                        <div class="info me-2 bg-white w-25 p-2 rounded">
+                            <h4>Medical records</h4>
                         </div>
 
-                        <div class="info bg-white me-3 p-3 rounded">
-                            <h3>Personal details</h3>
+                        <div class="info bg-white w-25 p-2 rounded">
+                            <h4>Personal details</h4>
                         </div>
                     </div>
 
-                    <div class="information ms-3 pt-3 d-flex">
-                        <div class="info bg-white me-3 p-4 w-100 d-flex justify-content-center rounded">
+                    <div class="container information ms-3 pt-3 d-flex">
+                        <div class="info bg-white p-4 w-100 d-flex justify-content-center rounded">
                             <h3 class="vision">Your Health, Our Commitment</h3>
                         </div>
                     </div>
 
-                     <div class="information ms-3 pt-3 d-flex h-75">
-                        <div class="info bg-white me-3 p-4 w-100 d-flex justify-content-center rounded">
+                     <div class="container information ms-3 pt-3 d-flex h-50">
+                        <div class="info bg-white p-4 w-100 d-flex justify-content-center rounded">
                             <h3 class="vision">Your Health, Our Commitment</h3>
                         </div>
                     </div>
