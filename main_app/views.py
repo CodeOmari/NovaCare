@@ -1,5 +1,5 @@
-from django.shortcuts import render, redirect
-from main_app.app_forms import LoginForm
+from django.shortcuts import render
+
 
 
 # Create your views here.
