@@ -2,8 +2,7 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
-from user_management.app_forms import LoginForm, PasswordResetRequestForm, SetNewPasswordForm
-from django.contrib.auth.forms import UserCreationForm
+from user_management.app_forms import LoginForm, PasswordResetRequestForm, SetNewPasswordForm, CustomUserCreationForm
 
 from django.core.signing import TimestampSigner, SignatureExpired, BadSignature
 from django.contrib.auth.models import User
@@ -34,14 +33,14 @@ def login_user(request):
 
 def register(request):
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = CustomUserCreationForm(request.POST)
         if form.is_valid():
             form.save()
             username = form.cleaned_data.get('username')
             messages.success(request, f'Account creation for {username} was successful!')
             return redirect('user_management:login')
     else:
-        form = UserCreationForm()
+        form = CustomUserCreationForm()
     return render(request, 'register.html', {'form': form})
 
 def signout_user(request):
