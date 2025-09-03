@@ -31,6 +31,12 @@
                         <h2 class="company-name text-center">NovaCare</h2>
                         {% csrf_token %}
                         {{ form | crispy }}
+
+                        <div class="mb-2 text-center">
+                            <a href="{% url 'user_management:password_reset_request' %}" class="create-account">
+                                 Forgot password?</a>
+                        </div>
+
                         <button class="btn btn-primary rounded-0 w-100">Sign In</button>
 
                         <div class="text-center mt-2">
