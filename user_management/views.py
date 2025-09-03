@@ -9,6 +9,7 @@ from django.contrib.auth.models import User
 from django.conf import settings
 from django.core.mail import send_mail
 from django.contrib.auth.hashers import make_password
+from django.urls import reverse
 
 
 signer = TimestampSigner() # creates signed tokens
@@ -56,13 +57,29 @@ def password_reset_request(request):
             try:
                 user = User.objects.get(email=email)
                 token = signer.sign(user.pk) # sign user id
-                reset_link = request.build_absolute_uri(f"/reset-password-confirm/{token}")
+                reset_link = request.build_absolute_uri(
+                    reverse('user_management:password_reset_confirm', args=[token])
+                )
+
+                message = f"""
+                Hi {user.username},
+                
+                You requested for a password reset.
+                
+                Click the link below to set a new password:
+                {reset_link}
+                
+                If you didn’t request this, please ignore this email.
+                
+                Thanks,
+                The Novacare Team
+                """
 
                 # send email
-                send_mail("Password Reset Request",
-                          f"Click the link below to reset your password:\n{reset_link}",
-                          settings.DEFAULT_FROM_EMAIL,
-                          [email],
+                send_mail(subject= "Password Reset Request",
+                          message=message,
+                          from_email= settings.DEFAULT_FROM_EMAIL,
+                         recipient_list= [email],
                           fail_silently=False,
                 )
                 messages.success(request, f'Your password reset link has been sent to {email}.')
