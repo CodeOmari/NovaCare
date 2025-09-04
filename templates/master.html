@@ -32,43 +32,53 @@
     <nav class="navbar navbar-expand-sm navigation p-3">
       <div class="container-fluid">
         <a class="navbar-brand title" href="{% url 'home' %}">NovaCare</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+
+        {#  Offcanvas toggler  #}
+        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
           <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarNavDropdown">
-          <ul class="navbar-nav me-auto">
-            <li class="nav-item">
-              <a class="nav-link" aria-current="page" href="{% url 'home' %}">Home</a>
-            </li>
 
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'about' %}">About Us</a>
-            </li>
+        {# Offcanvas menu #}
+        <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+           <div class="offcanvas-header">
+               <h5 class="offcanvas-title" id="offcanvasNavbarLabel">NovaCare</h5>
+               <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+           </div>
+           <div class="offcanvas-body">
+               <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                      <a class="nav-link" aria-current="page" href="{% url 'home' %}">Home</a>
+                    </li>
 
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Services
-              </a>
-              <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="{% url 'emergency_services' %}">Emergency</a></li>
-                <li><a class="dropdown-item" href="{% url 'inpatient_services' %}">Inpatient</a></li>
-                <li><a class="dropdown-item" href="{% url 'outpatient_services' %}">Outpatient</a></li>
-                <li><a class="dropdown-item" href="{% url 'surgical_services' %}">Surgical</a></li>
-                <li><a class="dropdown-item" href="{% url 'maternity_services' %}">Maternity & Neonatal</a></li>
-              </ul>
-            </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="{% url 'about' %}">About Us</a>
+                    </li>
 
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'careers' %}">Careers</a>
-            </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Services
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="{% url 'emergency_services' %}">Emergency</a></li>
+                            <li><a class="dropdown-item" href="{% url 'inpatient_services' %}">Inpatient</a></li>
+                            <li><a class="dropdown-item" href="{% url 'outpatient_services' %}">Outpatient</a></li>
+                            <li><a class="dropdown-item" href="{% url 'surgical_services' %}">Surgical</a></li>
+                            <li><a class="dropdown-item" href="{% url 'maternity_services' %}">Maternity & Neonatal</a></li>
+                        </ul>
+                    </li>
 
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'user_management:login' %}">Portal</a>
-            </li>
-          </ul>
-          <div class="d-flex">
-              <h5 class="text-white">Your Health, Our Commitment</h5>
-          </div>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'careers' %}">Careers</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'user_management:login' %}">Portal</a>
+                    </li>
+               </ul>
+                <div class="d-flex">
+                    <h5 class="text-white">Your Health, Our Commitment</h5>
+                </div>
+           </div>
         </div>
       </div>
     </nav>
