@@ -23,13 +23,13 @@
                     <div class="navigation-links d-flex justify-content-center">
                         <ul class="nav flex-column pt-3">
                             <li class="nav-item">
-                                <a href="#" class="nav-link">Details</a>
+                                <a href="#" class="nav-link">Medical Records</a>
                             </li>
                             <li class="nav-item">
-                                <a href="#" class="nav-link">Appointments</a>
+                                <a href="#" class="nav-link">Messages</a>
                             </li>
                             <li class="nav-item">
-                                <a href="#" class="nav-link">Records</a>
+                                <a href="#" class="nav-link">Billing & Payments</a>
                             </li>
                             <li class="nav-item pt-5 mt-5">
                                 <a href="{% url 'user_management:logout' %}" class="nav-link">
@@ -46,21 +46,23 @@
                         <h3>Hello {{ username }},</h3>
                     </div>
 
-                    <div class="container information ms-3 pt-3 d-flex">
-                        <div class="info me-2 bg-white w-50 pt-2 pb-2 ps-4 rounded">
-                            <h4>Appointments</h4>
-                        </div>
+                    <div class="container user-information w-75 ms-4 pt-3">
+                        <div class="row">
+                            <div class="col-sm-4 mb-2 user-info bg-white p-2 rounded">
+                                <a href="#" class="nav-link">Personal Details</a>
+                            </div>
 
-                        <div class="info me-2 bg-white w-25 p-2 rounded">
-                            <h4>Medical records</h4>
-                        </div>
+                            <div class="col-sm-4 mb-2 user-info bg-white p-2 rounded">
+                                <a href="#" class="nav-link">Appointments</a>
+                            </div>
 
-                        <div class="info bg-white w-25 p-2 rounded">
-                            <h4>Personal details</h4>
+                            <div class="col-sm-4 mb-2 user-info bg-white p-2 rounded">
+                                <a href="#" class="nav-link">Notifications</a>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="container information ms-3 pt-3 d-flex">
+                    <div class="container information ms-3 pt-2 d-flex">
                         <div class="info bg-white p-4 w-100 d-flex justify-content-center rounded">
                             <h3 class="vision">Your Health, Our Commitment</h3>
                         </div>
