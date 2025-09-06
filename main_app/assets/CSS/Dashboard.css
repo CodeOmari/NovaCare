@@ -18,10 +18,13 @@ body{
 }
 .navigation{
     background-color: #fff;
-    width: 180px;
+    width: 350px;
     padding: 20px;
     height: 425px;
 }
 .vision{
     color: #004f71;
+}
+.icon{
+    width: 10px;
 }
