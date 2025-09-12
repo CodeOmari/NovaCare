@@ -11,6 +11,8 @@ The following languages are used in this project: JavaScript, CSS, HTML & Python
 # Project Screenshots
 ![Home page screenshot](static/Images/novacare.png)
 <br><br>
+![Registration page screenshot](static/Images/nova-register.png)
+<br><br>
 ![Login page screenshot](static/Images/nova-2.png)
 <br><br>
 ![Services page screenshot](static/Images/nova-1.png)
