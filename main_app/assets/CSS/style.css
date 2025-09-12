@@ -48,3 +48,8 @@ body{
     font-size: 0.9em;
     font-weight: 700;
 }
+.navigation-menu{
+    width: 250px;
+    color: #fff;
+    background-color: #004f71;
+}
