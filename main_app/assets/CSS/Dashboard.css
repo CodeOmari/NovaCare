@@ -18,7 +18,7 @@ body{
 }
 .navigation{
     background-color: #fff;
-    width: 350px;
+    width: 250px;
     padding: 20px;
     height: 425px;
 }
@@ -26,5 +26,5 @@ body{
     color: #004f71;
 }
 .icon{
-    width: 10px;
+    width: 35px;
 }
