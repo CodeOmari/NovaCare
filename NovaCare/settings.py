@@ -151,7 +151,7 @@ MESSAGE_TAGS = {
 }
 
 CSRF_TRUSTED_ORIGINS = [
-    https://novacare-cphz.onrender.com
+    'https://novacare-cphz.onrender.com'
 ]
 
 # disable secure cookies
