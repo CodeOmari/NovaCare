@@ -7,9 +7,10 @@ from user_management.app_forms import LoginForm, PasswordResetRequestForm, SetNe
 from django.core.signing import TimestampSigner, SignatureExpired, BadSignature
 from django.contrib.auth.models import User
 from django.conf import settings
-from django.core.mail import send_mail
 from django.contrib.auth.hashers import make_password
 from django.urls import reverse
+from django.core.mail import EmailMultiAlternatives
+from django.utils import timezone
 
 
 signer = TimestampSigner() # creates signed tokens
@@ -61,31 +62,58 @@ def password_reset_request(request):
                     reverse('user_management:password_reset_confirm', args=[token])
                 )
 
-                message = f"""
-                Hi {user.username},
-                
-                You requested for a password reset.
-                
-                Click the link below to set a new password:
-                {reset_link}
-                
-                If you didn’t request this, please ignore this email.
-                
-                Thanks,
-                The Novacare Team
+                html_content = f"""
+                    <div>
+                        <h2 style='color: #004f71; text-align: center;'> NovaCare </h2>
+
+                        <p> Hi <strong>{user.username}</strong>, </p>
+
+                        <p>
+                            You requested a password reset. Click the link below to set a new password:
+                        </p>
+
+                        <p style='margin: 20px 0;'>
+                            <a href="{reset_link}" style='display: inline-block; 
+                                                   padding: 10px 15px; background-color: #004f71; color: white; 
+                                                   text-decoration: none; border-radius: 5px;'>
+                                Reset Password
+                            </a>
+                        </p>
+
+                        <p>
+                            If the above button doesn't work, copy and paste the following link into your browser:
+                        </p>
+
+                        <p>
+                            <a href="{reset_link}">{reset_link}</a>
+                        </p>
+
+                        <p>
+                            The link is valid for 30 minutes only.
+                        </p>
+
+                        <hr>
+
+                        <p>
+                            If you did not request a password reset, please ignore this email. <br>
+                            &copy; {timezone.now().year} NovaCare. All rights reserved.
+                        </p>
+                    </div>
                 """
 
-                # send email
-                send_mail(subject= "Password Reset Request",
-                          message=message,
-                          from_email= settings.DEFAULT_FROM_EMAIL,
-                         recipient_list= [email],
-                          fail_silently=False,
-                )
+                subject = "Password Reset Request"
+                from_email = settings.DEFAULT_FROM_EMAIL
+                to = [email]
+
+                message = EmailMultiAlternatives(subject, "", from_email, to)
+                message.attach_alternative(html_content, "text/html")
+                message.send()
+
+
                 messages.success(request, f'Your password reset link has been sent to {email}.')
                 return redirect('user_management:login')
             except User.DoesNotExist:
-                messages.error(request, f'No user found with email {email}.')
+                messages.error(request, f'No user found with the email {email}.')
     else:
         form = PasswordResetRequestForm()
     return render(request, "password_reset_request.html", {'form': form})
