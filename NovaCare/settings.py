@@ -32,7 +32,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DEBUG', 'False').lower() == 'true'
 
-ALLOWED_HOSTS = ['*', 'novacare-cphz.onrender.com']
+ALLOWED_HOSTS = ['*', 'novacare-t5ee.onrender.com']
 
 
 # Application definition
@@ -151,7 +151,7 @@ MESSAGE_TAGS = {
 }
 
 CSRF_TRUSTED_ORIGINS = [
-    'https://novacare-cphz.onrender.com'
+    'https://novacare-t5ee.onrender.com'
 ]
 
 # disable secure cookies
