@@ -1,5 +1,5 @@
 # NovaCare
-A hospital management system
+A hospital management system built with Django
 
 # Features
 This project contains the following features: Home page, About page, Services page, 
