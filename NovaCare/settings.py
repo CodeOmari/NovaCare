@@ -155,7 +155,7 @@ MESSAGE_TAGS = {
 }
 
 CSRF_TRUSTED_ORIGINS = [
-    'https://omari14.pythonanywhere.com'
+    'https://omari14.pythonanywhere.com/'
 ]
 
 # disable secure cookies
