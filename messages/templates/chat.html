@@ -1,0 +1,31 @@
+<html>
+    <head>
+        <title>NovaCare</title>
+    </head>
+    <body>
+        <textarea id="chat-log" cols="80" rows="20" readonly></textarea><br>
+        <input id="chat-message-input" type="text" size="80">
+        <button id="chat-message-submit">Send</button>
+
+        <script>
+            const conversationId = "{{ conversation.id }}";
+            const chatSocket = new WebSocket(
+                'ws://' + window.location.host + '/ws/message/' + conversationId + '/'
+            );
+
+            // When a message is received, append it to the chat log
+            chatSocket.onmessage = function(e) {
+                const data = JSON.parse(e.data);
+                document.querySelector('#chat-log').value += `${data.sender}: ${data.message}\n`;
+            };
+
+            // When the send button is clicked, send the message
+            document.querySelector('#chat-message-submit').onclick = function() {
+                const messageInput = document.querySelector('#chat-message-input');
+                chatSocket.send(JSON.stringify({'message': messageInput.value}));
+                messageInput.value = '';
+            };
+        </script>
+
+    </body>
+</html>
