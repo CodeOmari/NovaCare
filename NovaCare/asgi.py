@@ -11,6 +11,22 @@ import os
 
 from django.core.asgi import get_asgi_application
 
+from channels.routing import ProtocolTypeRouter, URLRouter
+from channels.auth import AuthMiddlewareStack
+# from messages.routing import websocket_urlpatterns
+
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'NovaCare.settings')
 
-application = get_asgi_application()
+
+# Define how to handle different connection types (HTTP, WebSocket, etc.)
+application = ProtocolTypeRouter({
+    "http": get_asgi_application(),  # Normal Django HTTP requests
+    "websocket": AuthMiddlewareStack(  # For WebSocket connections (chat)
+        URLRouter(websocket_urlpatterns)  # Route WebSocket URLs to consumers
+    ),
+})
+
+
+# ProtocolTypeRouter directs traffic --HTTP request to go to Django, WebSockets connectons go to our chat
+# AuthMiddlewareStack keeps user authentication active during a WebSocket connection
+# URLRouter loads WebSocket from our chat app
