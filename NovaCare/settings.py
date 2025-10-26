@@ -48,6 +48,8 @@ INSTALLED_APPS = [
     'user_management.apps.UserManagementConfig',
     'crispy_forms',
     'crispy_bootstrap5',
+    'channels',
+    'messages.apps.MessagesConfig',
 ]
 
 MIDDLEWARE = [
@@ -87,16 +89,24 @@ WSGI_APPLICATION = 'NovaCare.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': os.getenv('DB_NAME'),
+#         'USER': os.getenv('DB_USER'),
+#         'PASSWORD': os.getenv('DB_PASSWORD'),
+#         'HOST': os.getenv('DB_HOST'),
+#         'PORT': os.getenv('DB_PORT'),
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': os.getenv('DB_NAME'),
-        'USER': os.getenv('DB_USER'),
-        'PASSWORD': os.getenv('DB_PASSWORD'),
-        'HOST': os.getenv('DB_HOST'),
-        'PORT': os.getenv('DB_PORT'),
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
 
 
 # Password validation
@@ -137,6 +147,10 @@ STATIC_URL = 'static/'
 STATIC_ROOT = BASE_DIR / 'static'
 STATICFILES_DIRS = [BASE_DIR / 'main_app/assets']
 
+# Handles file/image uploads from the chats
+MEDIA_URL = 'media/'
+MEDIA_ROOT = BASE_DIR / 'media'
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
@@ -171,3 +185,27 @@ DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 
 LOGIN_URL = 'login'
+
+
+# Install channels for adding WebSocket support to Django
+# pip install channels channels_redis
+# channel_redis connects Django Channels with Redis to manage real time events
+# add channels in your INSTALLED_APPS
+
+# Install Redis server on your machine
+# sudo apt install redis-server
+# This acts as the message broker that temporary stores live connection data
+
+
+# tells Django to use Channels' ASGI server
+ASGI_APPLICATION = 'NovaCare.asgi.application'
+
+# connect Django Channels to Redis
+CHANNEL_LAYERS = {  
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            'hosts': [('127.0.0.1', 6379)],  # Redis runs on this port locally
+        },
+    },
+}
