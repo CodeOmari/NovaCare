@@ -13,12 +13,13 @@ from django.core.asgi import get_asgi_application
 
 from channels.routing import ProtocolTypeRouter, URLRouter
 from channels.auth import AuthMiddlewareStack
-# from messages.routing import websocket_urlpatterns
+from messaging.routing import websocket_urlpatterns
 
+# defines which settings will be used
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'NovaCare.settings')
 
 
-# Define how to handle different connection types (HTTP, WebSocket, etc.)
+# Defines how to handle different connection types (HTTP, WebSocket, etc.)
 application = ProtocolTypeRouter({
     "http": get_asgi_application(),  # Normal Django HTTP requests
     "websocket": AuthMiddlewareStack(  # For WebSocket connections (chat)
