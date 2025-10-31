@@ -18,7 +18,7 @@ def generate_unique_name(instance, filename):
 
 
 # Create your models here.
-# A chat conversation can involve multiple participants
+# store the users involved in a specific chat
 class Conversation(models.Model):
     participants = models.ManyToManyField(User, related_name='conversations')
     created_at = models.DateTimeField(auto_now_add=True)
