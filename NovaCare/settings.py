@@ -188,9 +188,9 @@ DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 LOGIN_URL = 'login'
 
 
-# Install channels for adding WebSocket support to Django
+# Install channels for adding WebSocket support to Django(for live chat)
 # pip install channels channels_redis
-# channel_redis connects Django Channels with Redis to manage real time events
+# channels_redis connects Django Channels with Redis to manage real time events
 # add channels in your INSTALLED_APPS
 
 # Install Redis server on your machine
