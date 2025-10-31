@@ -5,6 +5,7 @@ from .models import Conversation, Message
 from .utils import set_user_online, set_user_offline
 from channels.db import database_sync_to_async
 
+# ChatConsumer inherits from AsyncWebSocketConsumer enabling it handle connections asynchronously
 class ChatConsumer(AsyncWebsocketConsumer):
     # Runs when a user connects
     async def connect(self):
@@ -12,7 +13,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
         self.room_group_name = f'chat_{self.conversation_id}'
         user = self.scope["user"]
 
-        # Mark user as online
+        # Mark user as online if they are authenticated via AuthMiddleWareStack in asgi.py file
         if user.is_authenticated:
             set_user_online(user.id)
 
@@ -28,7 +29,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
         # Leave the chat group
         await self.channel_layer.group_discard(self.room_group_name, self.channel_name)
 
-    # Receive message from WebSocket
+    # Receive message over the WebSocket connection
     async def receive(self, text_data):
         data = json.loads(text_data)
         message = data.get('message')
@@ -73,3 +74,6 @@ class ChatConsumer(AsyncWebsocketConsumer):
 # disconnect() — runs when user leaves; marks them offline.
 # receive() — handles messages coming in from frontend → saves to DB → broadcasts to all users in the room.
 # chat_message() — sends data back to browser clients in real-time.
+
+# Database connections are synchronous, we wrap them using @database_sync_to_async.
+# This allows them to be safely called from the asynchronous receive function
