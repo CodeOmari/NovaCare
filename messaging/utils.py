@@ -1,5 +1,5 @@
 # We’ll store online users temporarily in Redis
-
+# Help communicate with the Redis Server
 import redis
 
 # Connect to Redis database
@@ -19,6 +19,8 @@ def is_user_online(user_id):
 
 
 # We use Redis “sets” to store online user IDs.
-# sadd → add to set (user is online)
-# srem → remove from set (user is offline)
-# sismember → check if user is online
+# Sets automatically prevent duplicates and offer fast operations for adding, removing or checking membership
+# Set Add(sadd) - add to set (user is online)
+# Set Remove(srem) - remove from set (user is offline)
+# Set Is Member(sismember) - check if user is online
+# sismember returns a Boolean True if the user is online and vice versa.
