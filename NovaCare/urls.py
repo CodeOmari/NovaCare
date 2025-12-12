@@ -19,8 +19,6 @@ from django.urls import path, include
 
 from main_app import views
 
-from NovaCare import settings
-from django.conf.urls.static import static
 
 urlpatterns = [
     path('', views.home, name='home'),
@@ -35,7 +33,5 @@ urlpatterns = [
 
     path('novacare/', include('user_management.urls')),
 
-    path('messages/', include('messaging.urls')),
-
     path('admin/', admin.site.urls),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+]
