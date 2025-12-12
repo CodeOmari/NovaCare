@@ -48,9 +48,7 @@ INSTALLED_APPS = [
     'main_app.apps.MainAppConfig',
     'user_management.apps.UserManagementConfig',
     'crispy_forms',
-    'crispy_bootstrap5',
-    'channels',
-    'messaging.apps.MessagingConfig',
+    'crispy_bootstrap5'
 ]
 
 MIDDLEWARE = [
@@ -148,9 +146,6 @@ STATIC_URL = 'static/'
 STATIC_ROOT = BASE_DIR / 'static'
 STATICFILES_DIRS = [BASE_DIR / 'main_app/assets']
 
-# Handles file/image uploads from the chats
-MEDIA_URL = 'media/'
-MEDIA_ROOT = BASE_DIR / 'media'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
@@ -188,25 +183,7 @@ DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 LOGIN_URL = 'login'
 
 
-# Install channels for adding WebSocket support to Django(for live chat)
-# pip install channels channels_redis
-# channels_redis connects Django Channels with Redis to manage real time events
-# add channels in your INSTALLED_APPS
-
-# Install Redis server on your machine
-# sudo apt install redis-server
-# This acts as the message broker that temporary stores live connection data
-
-
-# tells Django to use Channels' ASGI server
-ASGI_APPLICATION = 'NovaCare.asgi.application'
-
-# connect Django Channels to Redis
-CHANNEL_LAYERS = {  
-    'default': {
-        'BACKEND': 'channels_redis.core.RedisChannelLayer',
-        'CONFIG': {
-            'hosts': [('127.0.0.1', 6379)],  # Redis runs on this port locally
-        },
-    },
-}
+# Password Reset Using email
+# create an app password
+# Configure your Email Backend settings in your settings.py file
+# Configure urls, views and necessary templates
