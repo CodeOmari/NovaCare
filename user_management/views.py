@@ -1,8 +1,8 @@
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render, redirect
-from user_management.app_forms import LoginForm, PasswordResetRequestForm, SetNewPasswordForm, CustomUserCreationForm
+from django.shortcuts import render, redirect,  get_object_or_404
+from user_management.app_forms import LoginForm, PasswordResetRequestForm, SetNewPasswordForm, CustomUserCreationForm, PersonalDetailsForm
 
 from django.core.signing import TimestampSigner, SignatureExpired, BadSignature
 from django.contrib.auth.models import User
@@ -11,6 +11,8 @@ from django.contrib.auth.hashers import make_password
 from django.urls import reverse
 from django.core.mail import EmailMultiAlternatives
 from django.utils import timezone
+
+from user_management.models import Details
 
 
 signer = TimestampSigner() # creates signed tokens
@@ -161,3 +163,32 @@ def staff_dashboard(request):
         'username': request.user.username,
     }
     return render(request, 'staff_dashboard.html', context)
+
+
+@login_required
+def user_details(request, user_id):
+    user = get_object_or_404(User, id=user_id)
+    details = (Details.objects.filter(user=user).order_by('-updated_at').first())
+    if not details:
+        details = Details.objects.create(user=user)
+    return render(request, 'user_details.html', {'user': user, 'details': details})
+
+
+@login_required
+def add_details(request):
+    try:
+        details = Details.objects.get(user=request.user)
+    except Details.DoesNotExist:
+        details= None
+
+    if request.method == "POST":
+        form = PersonalDetailsForm(request.POST, request.FILES)
+        if form.is_valid():
+            personal_details = form.save(commit=False)
+            personal_details.user = request.user
+            personal_details.save()
+            messages.success(request, "Details updated successfully")
+            return redirect('user_management:dashboard')
+    else:
+        form = PersonalDetailsForm(instance=details)
+    return render(request, 'user_update_form.html', {"form": form})
