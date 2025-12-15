@@ -1,6 +1,9 @@
 from django.urls import  path
 from user_management import views
 
+from NovaCare import settings
+from django.conf.urls.static import static
+
 app_name = 'user_management'
 
 urlpatterns = [
@@ -15,4 +18,7 @@ urlpatterns = [
     path('portal/', views.dashboard, name='dashboard'),
     path('staff/', views.staff_dashboard, name='staff_dashboard'),
     path('users/', views.patient_dashboard, name='patient_dashboard'),
-]
+
+    path('user/details/<int:user_id>', views.user_details, name='user_details'),
+    path('user/add/details', views.add_details, name='add_details'),
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
