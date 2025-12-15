@@ -2,6 +2,9 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 
+from user_management.models import Details
+from datetime import date
+
 
 class CustomUserCreationForm(UserCreationForm):
     email = forms.EmailField(required=True)
@@ -40,3 +43,26 @@ class SetNewPasswordForm(forms.Form):
         if password1 and password2 and password1 != password2:
             raise forms.ValidationError("Passwords don't match")
         return cleaned_data
+    
+
+GENDER_CHOICES = {
+    "Male": "Male",
+    "Female": "Female"
+}
+IDENTITY_CHOICES = {
+    "ID": "ID",
+    "Passport": "Passport",
+    "Birth Certificate": "Birth Certificate"
+}
+class PersonalDetailsForm(forms.ModelForm):
+    gender = forms.ChoiceField(choices=GENDER_CHOICES, widget=forms.RadioSelect)
+    identity_type = forms.ChoiceField(choices=IDENTITY_CHOICES, widget=forms.RadioSelect)
+
+    class Meta:
+        model = Details
+        fields = ['identity_type', 'identity_number', 'first_name', 'last_name', 'gender', 'dob', 'phone_number', 'profile_pic']
+        # .isofformat ensure the input follows the YYYY-MM-DD format
+        widgets = {
+            'dob': forms.DateInput(attrs={'type': 'date', 'min':'1935-01-01', 'max': date.today().isoformat()}),
+            'identity_number': forms.TextInput(attrs={'placeholder': 'Enter ID, Passport, or Birth Certificate number' })
+        }
