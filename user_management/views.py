@@ -177,12 +177,12 @@ def user_details(request, user_id):
 @login_required
 def add_details(request):
     try:
-        details = Details.objects.get(user=request.user)
+        details = Details.objects.filter(user=request.user).order_by('-updated_at').first()
     except Details.DoesNotExist:
         details= None
 
     if request.method == "POST":
-        form = PersonalDetailsForm(request.POST, request.FILES)
+        form = PersonalDetailsForm(request.POST, request.FILES, instance=details)
         if form.is_valid():
             personal_details = form.save(commit=False)
             personal_details.user = request.user
