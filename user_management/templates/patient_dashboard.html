@@ -13,6 +13,16 @@
             <title>Patient Dashboard</title>
         </head>
         <body>
+            <div class="container">
+                {% for message in messages %}
+                    <div class="alert {{ message.tags }} alert-dismissible fade show mt-2" role="alert">
+                        <p>{{ message }}</p>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                {% endfor %}
+            </div>
+
+            
             <div class="container users d-flex">
                 <div class="container mt-3 navigation">
                     <div class="username d-flex justify-content-center align-items-center text-dark">
@@ -23,7 +33,7 @@
                     <div class="navigation-links d-flex justify-content-center">
                         <ul class="nav flex-column pt-2">
                             <li class="nav-item">
-                                <a href="#" class="nav-link">
+                                <a href="{% url 'user_management:user_details' user.id %}" class="nav-link">
                                     <img src="{% static 'Images/user-circle.png' %}" alt="user icon" class="icon">
                                     Profile
                                 </a>
