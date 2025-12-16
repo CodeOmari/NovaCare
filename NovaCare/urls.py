@@ -32,6 +32,7 @@ urlpatterns = [
 
 
     path('novacare/', include('user_management.urls')),
+    path('novacare/', include('payments_app.urls')),
 
     path('admin/', admin.site.urls),
 ]
