@@ -10,6 +10,13 @@ body{
 .create-form{
     background-color: #fff;
 }
-.form-label, .create-form h2{
+.create-form h2{
     color: #004f71;
+    font-weight: 700;
+    font-size: 1.8em;
+}
+.form-label{
+    color: black;
+    font-weight: 700;
+    font-size: 0.9em;
 }
