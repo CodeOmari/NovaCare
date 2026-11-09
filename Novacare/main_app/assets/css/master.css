@@ -1,0 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&family=Manrope:wght@200..800&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+}
+.emergency-details{
+    margin-bottom: -10px;
+    background-color: #004f71;
+    font-family: "Figtree", sans-serif;
+    font-size: 0.9rem;
+    color: #fff;
+}
+.app-logo{
+    width: 50px;
+    height: auto;
+    object-fit: contain;
+}
+.navigation-link{
+    font-family: "Figtree", sans-serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: color 0.15s ease;
+}
+.navigation-link:hover{
+    color: #004f71;
+}
