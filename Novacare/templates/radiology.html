@@ -1,0 +1,24 @@
+{% extends 'master.html' %}
+{% load static %}
+
+{% block title %}
+    <title>Novacare: Radiology</title>
+{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/departments.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="container-fluid department-introduction pb-5">
+        <div class="container mt-5">
+            <h5 class="first-header">DEPARTMENT</h5>
+
+            <h3 class="second-header">Radiology</h3>
+
+            <p class="text-secondary w-50 department-duty">
+                Digital X-ray, ultrasound, CT and MRI imaging with rapid reporting by experienced radiologists.
+            </p>
+        </div>
+    </div>
+{% endblock %}
