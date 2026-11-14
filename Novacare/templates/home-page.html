@@ -5,8 +5,229 @@
     <title>Novacare</title>
 {% endblock %}
 
+{% block extra_css%}
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+{% endblock %}
+
 {% block content %}
-    <div>
-        <h4>Home page</h4>
+    <div class="container-fluid home-container pb-5">
+        <div class="container mt-5 mb-5 pb-5">
+            <div class='row'>
+                <div class='col-12 col-sm-5'>
+                    <p class='trust rounded-pill ps-2 pt-1 pb-1'>
+                        <svg  xmlns="http://www.w3.org/2000/svg" width="18" height="18"  
+                            fill="#004f71" viewBox="0 0 24 24" >
+                            <!--Boxicons v3.0.8 https://boxicons.com | License  https://docs.boxicons.com/free-->
+                            <path d="m20.42 6.11-7.97-4c-.28-.14-.62-.14-.9 0l-7.97 4c-.31.15-.51.45-.55.79-.01.11-.96 10.76 8.55 15.01a.98.98 0 0 0 .82 0C21.91 17.66 20.97 7 20.95 6.9a.98.98 0 0 0-.55-.79ZM12 19.9C5.26 16.63 4.94 9.64 5 7.64l7-3.51 7 3.51c.04 1.99-.33 9.02-7 12.26"></path><path d="m11 12.59-1.29-1.3-1.42 1.42 2.71 2.7 4.71-4.7-1.42-1.42z"></path>
+                        </svg>
+                        Trusted healthcare for every family
+                    </p>
+
+                    <p class='care'>
+                        <span class="trust-care">Care you can trust,</span>close <br>to home.
+                    </p>
+
+                    <p class="introduction text-secondary">
+                        Welcome to Novacare. Experienced doctors, modern facilities and a patient portal 
+                        that puts your health records at your fingertips.
+                    </p>
+
+                    <div class="d-flex align-items-center justify-content-between mt-4">
+                        <div class="appointments">
+                            <a href="" class="appointment-link pt-2 pb-2 ps-3 pe-3 rounded">
+                                <svg  xmlns="http://www.w3.org/2000/svg" width="18" height="18"  
+                                    fill="currentColor" viewBox="0 0 24 24" >
+                                    <!--Boxicons v3.0.8 https://boxicons.com | License  https://docs.boxicons.com/free-->
+                                    <path d="M19 4h-2V2h-2v2H9V2H7v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2M5 20V8h14V6v14z"></path><path d="m11 14.59-2.29-2.3-1.42 1.42 3.71 3.7 5.71-5.7-1.42-1.42z"></path>
+                                </svg>
+                                Book Appointment
+                            </a>
+                        </div>
+                        <div class="patients">
+                            <a href="" class="patient-login pt-2 pb-2 ps-3 pe-3 rounded">
+                                <svg  xmlns="http://www.w3.org/2000/svg" width="18" height="18"  
+                                    fill="#004f71" viewBox="0 0 24 24" >
+                                    <!--Boxicons v3.0.8 https://boxicons.com | License  https://docs.boxicons.com/free-->
+                                    <path d="m16 12-6-5v4H3v2h7v4z"></path><path d="M19 3h-7v2h7v14h-7v2h7c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2"></path>
+                                </svg>
+                                Patient Login
+                            </a>
+                        </div>
+                        <div class="contact-us-btn">
+                            <a href="" class="contact-us pt-2 pb-2 ps-3 pe-3 rounded">
+                                <svg  xmlns="http://www.w3.org/2000/svg" width="18" height="18"  
+                                    fill="#004f71" viewBox="0 0 24 24" >
+                                    <!--Boxicons v3.0.8 https://boxicons.com | License  https://docs.boxicons.com/free-->
+                                    <path d="M18.07 22h.35c.47-.02.9-.26 1.17-.64l2.14-3.09c.23-.33.32-.74.24-1.14s-.31-.74-.64-.97l-4.64-3.09a1.47 1.47 0 0 0-.83-.25c-.41 0-.81.16-1.1.48l-1.47 1.59c-.69-.43-1.61-1.07-2.36-1.82s-1.39-1.68-1.82-2.36l1.59-1.47c.54-.5.64-1.32.23-1.93L7.84 2.67c-.22-.33-.57-.57-.97-.64a1.46 1.46 0 0 0-1.13.24L2.65 4.41c-.39.27-.62.7-.64 1.17-.03.69-.16 6.9 4.68 11.74 4.35 4.35 9.81 4.69 11.38 4.69ZM6.88 10.05c-.16.15-.21.39-.11.59.05.09 1.15 2.24 2.74 3.84 1.6 1.6 3.75 2.7 3.84 2.75.2.1.44.06.59-.11l1.99-2.15 3.86 2.57-1.7 2.46c-1.16 0-6.13-.24-9.99-4.1S4 7.06 4 5.91l2.46-1.7 2.57 3.86-2.15 1.99ZM20.1 13.1c2.53-2.53 2.53-6.66 0-9.19s-6.66-2.53-9.19 0l1.41 1.41a4.51 4.51 0 0 1 6.36 0 4.51 4.51 0 0 1 0 6.36l1.41 1.41Z"></path><path d="M17.71 10.71a3.114 3.114 0 0 0 0-4.41 3.114 3.114 0 0 0-4.41 0l1.41 1.41c.44-.44 1.15-.44 1.59 0s.44 1.15 0 1.59z"></path>
+                                </svg>
+                                Contact Us
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="statistics mt-4 d-flex align-items-center justify-content-between w-75">
+                        <div class="stats d-flex flex-column">
+                            <b class="figure">25&plus;</b>
+                            <span class="text-secondary stat-name">Specialist</span>
+                        </div>
+                        <div class="stats d-flex flex-column">
+                            <b class="figure">8</b>
+                            <span class="text-secondary stat-name">Departments</span>
+                        </div>
+                        <div class="stats d-flex flex-column">
+                            <b class="figure">50k</b>
+                            <span class="text-secondary stat-name">Patients served</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class='col-12 col-sm-7 mb-5 pb-3'>
+                    <div class='hospital-helpdesk'>
+                        <img src={% static 'images/hero-img.jpg' %} alt='novacare help desk' class="img-fluid rounded">
+                        <div class="emergency-line d-flex align-items-center rounded p-2">
+                            <svg  xmlns="http://www.w3.org/2000/svg" width="40" height="40"  
+                                fill="#DB2D34" viewBox="0 0 24 24"  class="alert-icon p-2 rounded me-2">
+                                <!--Boxicons v3.0.8 https://boxicons.com | License  https://docs.boxicons.com/free-->
+                                <path d="M7 19H4v2h16v-2h-3v-6c0-2.76-2.24-5-5-5s-5 2.24-5 5zm2-6c0-1.65 1.35-3 3-3s3 1.35 3 3v6H9zm4-7V3h-2v3zm6 5v2h3v-2zM5 13v-2H2v2zm12.66-5.24 1.06-1.06 1.06-1.06-.71-.71-.71-.71-1.06 1.06-1.06 1.06.71.71zm-11.32 0 .71-.71.71-.71L6.7 5.28 5.64 4.22l-.71.71-.71.71L5.28 6.7z"></path>
+                                <div class="d-flex flex-column">
+                                    <span class="text-secondary stat-name">Emergency line</span>
+                                    <b class="emergency-number">Call 0746090609</b>
+                                </div>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="our-services">
+                <h3 class="section-title mb-4">Our services</h3>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="service-container rounded ps-3 pt-3 pb-3">
+                                <svg  xmlns="http://www.w3.org/2000/svg" width="30" height="30"  
+                                    fill="#0097b2" viewBox="0 0 24 24" >
+                                    <!--Boxicons v3.0.8 https://boxicons.com | License  https://docs.boxicons.com/free-->
+                                    <path d="M19.1 7.8c-.38-.5-.97-.8-1.6-.8H15V6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2 0 1.65 1.35 3 3 3s3-1.35 3-3h4c0 1.65 1.35 3 3 3s3-1.35 3-3c1.1 0 2-.9 2-2v-3.67c0-.43-.14-.86-.4-1.2zM17.5 9l1.5 2h-4V9zM7 19a1.003 1.003 0 0 1-.87-1.5c.37-.63 1.36-.63 1.73 0 .09.15.13.32.13.49 0 .55-.45 1-1 1Zm2.23-3s-.05-.05-.08-.07c-.06-.06-.12-.11-.17-.16-.12-.11-.25-.21-.38-.29a3 3 0 0 0-.67-.32c-.07-.02-.14-.05-.21-.07Q7.375 15 7 15c-.375 0-.49.04-.72.09-.07.02-.14.05-.21.07-.16.05-.31.11-.45.19-.07.04-.15.08-.22.13-.13.09-.26.18-.38.29-.06.05-.12.1-.18.16-.02.03-.05.04-.08.07h-.77V6h9v10H9.22ZM17 19a1.003 1.003 0 0 1-.87-1.5c.37-.63 1.36-.63 1.73 0 .09.15.13.32.13.49 0 .55-.45 1-1 1Zm3-3h-.77s-.05-.05-.08-.07c-.06-.06-.12-.11-.17-.16-.12-.11-.25-.21-.38-.29a3 3 0 0 0-.67-.32c-.07-.02-.14-.05-.21-.07Q17.375 15 17 15c-.375 0-.47.04-.7.09-.06.01-.12.03-.18.05-.18.06-.36.13-.52.22l-.12.06c-.17.1-.33.21-.48.35v-2.76h5v3Z"></path><path d="M9.5 7h-2v2.5H5v2h2.5V14h2v-2.5H12v-2H9.5z"></path>
+                                </svg>
+                                <div class="service-details mt-3">
+                                    <h5 class="service-name">24/7 Emergency</h5>
+                                    <p class="text-secondary">
+                                        Round-the-clock emergency and trauma care.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="service-container rounded ps-3 pt-3 pb-3">
+                                <svg  xmlns="http://www.w3.org/2000/svg" width="30" height="30"  
+                                    fill="#0097b2" viewBox="0 0 24 24" >
+                                    <!--Boxicons v3.0.8 https://boxicons.com | License  https://docs.boxicons.com/free-->
+                                    <path d="M15 7.66V4h1V2H8v2h1v3.66l-5.4 6.95c-1.08 1.38-1.27 3.29-.48 4.86S5.47 22 7.22 22h9.57c1.75 0 3.32-.97 4.1-2.53s.6-3.48-.48-4.86l-5.4-6.95Zm-4 .69V4.01h2v4.34l5.2 6.68c-1.79-.3-2.9-1.03-4.14-1.86-1.31-.87-2.77-1.83-5.11-2.18zm8.1 10.23c-.44.88-1.33 1.43-2.31 1.43H7.21c-.98 0-1.87-.55-2.31-1.43s-.34-1.96.27-2.74l2.32-2.98c2.6.1 3.94.97 5.45 1.98 1.54 1.02 3.28 2.16 6.4 2.31.05.48-.03.98-.25 1.43Z"></path>
+                                </svg>
+                                <div class="service-details mt-3">
+                                    <h5 class="service-name">Laboratory</h5>
+                                    <p class="text-secondary">
+                                        Accurate diagnostics with fast turnaround.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="service-container rounded ps-3 pt-3 pb-3">
+                                <svg  xmlns="http://www.w3.org/2000/svg" width="30" height="30"  
+                                    fill="#0097b2" viewBox="0 0 24 24" >
+                                    <!--Boxicons v3.0.8 https://boxicons.com | License  https://docs.boxicons.com/free-->
+                                    <path d="m10.95 4.07-6.88 6.88c-2.48 2.47-2.48 6.5 0 8.98 1.24 1.24 2.86 1.86 4.49 1.86s3.25-.62 4.49-1.86l6.88-6.88c2.48-2.47 2.48-6.5 0-8.98-2.47-2.47-6.5-2.47-8.98 0m.69 14.44c-1.7 1.7-4.45 1.7-6.15 0a4.364 4.364 0 0 1 0-6.15l2.73-2.73 6.15 6.15zm6.88-6.88-2.73 2.73-6.15-6.15 2.73-2.73c.85-.85 1.96-1.27 3.07-1.27s2.23.42 3.07 1.27a4.364 4.364 0 0 1 0 6.15Z"></path>
+                                </svg>
+                                <div class="service-details mt-3">
+                                    <h5 class="service-name">Pharmacy</h5>
+                                    <p class="text-secondary">
+                                        In-house pharmacy with qualified pharmacists.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="service-container rounded ps-3 pt-3 pb-3">
+                                <svg  xmlns="http://www.w3.org/2000/svg" width="30" height="30"  
+                                    fill="#0097b2" viewBox="0 0 24 24" >
+                                    <!--Boxicons v3.0.8 https://boxicons.com | License  https://docs.boxicons.com/free-->
+                                    <path d="M4 17h16v3h2v-9c0-1.1-.9-2-2-2V5c0-.55-.45-1-1-1H5c-.55 0-1 .45-1 1v4c-1.1 0-2 .9-2 2v9h2zM18 6v3h-5V6zM6 6h5v3H6zm-2 5h16v4H4z"></path>
+                                </svg> 
+                                <div class="service-details mt-3">
+                                    <h5 class="service-name">Inpatient care</h5>
+                                    <p class="text-secondary">
+                                        Comfortable wards and private rooms.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="departments-section">
+        <div class="container">
+            <div class="service-title mt-5 mb-4 d-flex align-items-center">
+                <h3 class="section-title">Featured departments</h3>
+
+                <div class="ms-auto">
+                    <a href="" class="all-departments align-items-center">
+                        All departments
+                        <svg  xmlns="http://www.w3.org/2000/svg" width="20" height="20"  
+                            fill="#0097b2" viewBox="0 0 24 24" >
+                            <!--Boxicons v3.0.8 https://boxicons.com | License  https://docs.boxicons.com/free-->
+                            <path d="M6 13h8.09l-3.3 3.29 1.42 1.42 5.7-5.71-5.7-5.71-1.42 1.42 3.3 3.29H6z"></path>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
+            <div class="container mb-5">
+                <div class="row g-4">
+                    {% for department in departments %}
+                        <div class="col-sm-3">
+                            <div class="departments-container d-flex align-items-start rounded pt-3 ps-3 h-100">
+                                <div class="department-icon rounded p-1 me-2">
+                                     {{ department.icon|safe }}
+                                </div>
+                                <div class="department-details">
+                                    <h5>
+                                        <a href="{% url department.url %}" class="department-name">{{ department.name }}</a>
+                                    </h5>
+
+                                    <p class="department-description text-secondary">
+                                        {{ department.description }}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="meet-doctors">
+        <div class="container">
+            <div class="team-title mt-5 mb-4 d-flex align-items-center">
+                <h3 class="section-title">Meet our doctors</h3>
+
+                <div class="ms-auto">
+                    <a href="" class="all-departments align-items-center">
+                        All doctors
+                        <svg  xmlns="http://www.w3.org/2000/svg" width="20" height="20"  
+                            fill="#0097b2" viewBox="0 0 24 24" >
+                            <!--Boxicons v3.0.8 https://boxicons.com | License  https://docs.boxicons.com/free-->
+                            <path d="M6 13h8.09l-3.3 3.29 1.42 1.42 5.7-5.71-5.7-5.71-1.42 1.42 3.3 3.29H6z"></path>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
     </div>
 {% endblock %}
