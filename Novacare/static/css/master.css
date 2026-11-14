@@ -15,6 +15,9 @@
     height: auto;
     object-fit: contain;
 }
+.navigation-section{
+    background-color: #fff;
+}
 .navigation-link{
     font-family: "Figtree", sans-serif;
     font-size: 0.9rem;
@@ -23,4 +26,34 @@
 }
 .navigation-link:hover{
     color: #004f71;
+}
+.patient-login{
+    background-color: #F6FAFB;
+    border: 1px solid #D3DDE1;
+    transition: background-color 0.3s ease;
+}
+.patient-login:hover{
+    background-color: #bee5ec;
+}
+.patient-link{
+    color: #004f71;
+    font-family: "Figtree", sans-serif;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+.book-appointment{
+    background-color: #004f71;
+    transition: opacity 0.3s ease;
+}
+.book-appointment:hover{
+    opacity: 0.9;
+}
+.book-link{
+    color:#fff;
+    font-family: "Figtree", sans-serif;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+.book-link:hover{
+    color:#fff;
 }
