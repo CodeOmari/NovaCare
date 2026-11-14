@@ -1,0 +1,25 @@
+{% extends 'master.html' %}
+{% load static %}
+
+{% block title %}
+    <title>Novacare: Cardiology</title>
+{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/departments.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="container-fluid department-introduction pb-5">
+        <div class="container mt-5">
+            <h5 class="first-header">DEPARTMENT</h5>
+
+            <h3 class="second-header">Cardiology</h3>
+
+            <p class="text-secondary w-50 department-duty">
+                Advanced cardiac diagnostics and treatment, from ECGs and echocardiograms 
+                to management of hypertension and heart failure.
+            </p>
+        </div>
+    </div>
+{% endblock %}
