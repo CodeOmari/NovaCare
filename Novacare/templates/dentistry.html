@@ -1,0 +1,25 @@
+{% extends 'master.html' %}
+{% load static %}
+
+{% block title %}
+    <title>Novacare: Dentistry</title>
+{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/departments.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="container-fluid department-introduction pb-5">
+        <div class="container mt-5">
+            <h5 class="first-header">DEPARTMENT</h5>
+
+            <h3 class="second-header">Dentistry</h3>
+
+            <p class="text-secondary w-50 department-duty">
+                Complete dental care for the whole family, from routine check-ups 
+                to restorative and cosmetic treatments.
+            </p>
+        </div>
+    </div>
+{% endblock %}
