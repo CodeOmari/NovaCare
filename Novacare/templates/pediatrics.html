@@ -1,0 +1,25 @@
+{% extends 'master.html' %}
+{% load static %}
+
+{% block title %}
+    <title>Novacare: Pediatrics</title>
+{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/departments.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="container-fluid department-introduction pb-5">
+        <div class="container mt-5">
+            <h5 class="first-header">DEPARTMENT</h5>
+
+            <h3 class="second-header">Pediatrics</h3>
+
+            <p class="text-secondary w-50 department-duty">
+                Dedicated pediatric specialists care for infants, children and 
+                adolescents in a calm, family-centered environment.
+            </p>
+        </div>
+    </div>
+{% endblock %}
