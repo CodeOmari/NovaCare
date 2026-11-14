@@ -1,0 +1,144 @@
+@import url('https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&family=Manrope:wght@200..800&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+}
+.home-container{
+    background-color: #F6FAFB;
+    border-top: 1px solid #D3DDE1;
+}
+.trust{
+    width: 270px;
+    background-color: #bee5ec;
+    color: #004f71;
+    font-family: "Figtree", sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+.care{
+    color: #0097b2;
+    font-size: 1.9rem;
+    font-weight: 900;
+    font-family: "Manrope", sans-serif;
+    letter-spacing: 2px;
+}
+.trust-care{
+    color: #004f71;
+}
+.introduction{
+    font-family: "Figtree", sans-serif;
+    font-size: 1.1rem;
+    font-weight: 400;
+}
+.appointment-link{
+    background-color: #004f71;
+    text-decoration: none;
+    color: #fff;
+    font-family: "Figtree", sans-serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: opacity 0.3s ease;
+}
+.appointment-link:hover{
+    opacity: 0.9;
+}
+.patient-login{
+    background-color: #fff;
+    text-decoration: none;
+    color: #004f71;
+    font-family: "Figtree", sans-serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+.contact-us{
+    text-decoration: none;
+    color: #004f71;
+    font-family: "Figtree", sans-serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+}
+.contact-us:hover{
+    background-color: #bee5ec;
+}
+.figure{
+    color: #004f71;
+    font-size: 1.4rem;
+    font-weight: 700;
+}
+.stat-name{
+    font-size: 0.8rem;
+    font-weight: 400;
+    font-family: "Figtree", sans-serif;
+}
+.hospital-helpdesk{
+    position: relative;
+}
+.emergency-line{
+    position: absolute;
+    background-color: #fff;
+    top: 92%;
+    left: 7%;
+    border: 1px solid #D3DDE1
+}
+.alert-icon{
+    background-color: #FDECEC;
+}
+.emergency-number{
+    font-family: "Figtree", sans-serif;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #050b0e;
+}
+.section-title{
+    color: #004f71;
+    font-family: "Figtree", sans-serif;
+    font-weight: 700;
+}
+.service-container{
+    background-color: #fff;
+    border: 1px solid #D3DDE1
+}
+.service-name{
+    color: #050b0e;
+    font-family: "Manrope", sans-serif;
+    font-size: 1rem;
+    font-weight: 500;
+}
+.service-details p, .department-description{
+    font-size: 0.9rem;
+    font-weight: 400;
+    font-family: "Figtree", sans-serif;
+}
+.all-departments{
+    text-decoration: none;
+    color: #0097b2;
+    font-size: 0.97rem;
+    font-weight: 600;
+}
+.department-icon{
+    background-color: #bee5ec;
+}
+.department-name{
+    color: #050b0e;
+    font-family: "Manrope", sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+.department-name:hover{
+    color: #0097b2;
+}
+.departments-container{
+    border: 1px solid #D3DDE1;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+.departments-container:hover{
+    border: 1px solid #0097b2;
+    background-color: #F6FAFB;
+}
+.meet-doctors{
+    background-color: #F6FAFB;
+}
