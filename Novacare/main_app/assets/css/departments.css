@@ -1,0 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&family=Manrope:wght@200..800&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+}
+.department-introduction{
+    background-color: #F6FAFB;
+    border-top: 1px solid #D3DDE1;
+}
+.first-header{
+    color: #0097b2;
+    font-size: 1rem;
+    font-weight: 700;
+    font-family: "Manrope", sans-serif;
+}
+.second-header{
+    color: #004f71;
+    font-size: 2.1rem;
+    font-weight: 600;
+    font-family: "Manrope", sans-serif;
+}
+.department-duty{
+    font-size: 0.9rem;
+    font-weight: 500;
+    font-family: "Manrope", sans-serif;
+}
