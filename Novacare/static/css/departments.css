@@ -4,7 +4,7 @@
     padding: 0;
 }
 .department-introduction{
-    background-color: #F6FAFB;
+    background-color: #bee5ec;
     border-top: 1px solid #D3DDE1;
 }
 .first-header{
@@ -23,4 +23,58 @@
     font-size: 0.9rem;
     font-weight: 500;
     font-family: "Manrope", sans-serif;
+}
+.department-services{
+    background-color: #F6FAFB;
+    border-top: 1px solid #D3DDE1;
+}
+.service-container{
+    border: 1px solid #D3DDE1;
+    background-color: #fff;
+    font-family: "Figtree", sans-serif;
+}
+.department-head{
+    border: 1px solid #D3DDE1;
+}
+.department-head{
+    background-color: #fff;
+}
+.service-offered h5, .specialist-details h5{
+    font-size: 1.5rem;
+    font-weight: 600;
+    font-family: "Figtree", sans-serif;
+}
+.booking-appointment{
+    background-color: #004f71;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+}
+.booking-appointment:hover{
+    opacity: 0.9;
+}
+.appointment-booking{
+    text-decoration: none;
+    color: #fff;
+    font-family: "Figtree", sans-serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+.head-title{
+    font-family: "Figtree", sans-serif;
+    font-size: 1rem;
+    font-weight: 400;
+    margin-top: 10px;
+}
+.doctor-name{
+    color: #050b0e;
+    font-family: "Figtree", sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    margin-top: -18px;
+}
+.our-specialist{
+    background-color: #F6FAFB;
+}
+.doctor-img{
+    width: 140px;
 }
