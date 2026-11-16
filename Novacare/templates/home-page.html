@@ -105,66 +105,19 @@
                 <h3 class="section-title mb-4">Our services</h3>
                 <div class="container">
                     <div class="row">
-                        <div class="col-sm-3">
-                            <div class="service-container rounded ps-3 pt-3 pb-3">
-                                <svg  xmlns="http://www.w3.org/2000/svg" width="30" height="30"  
-                                    fill="#0097b2" viewBox="0 0 24 24" >
-                                    <!--Boxicons v3.0.8 https://boxicons.com | License  https://docs.boxicons.com/free-->
-                                    <path d="M19.1 7.8c-.38-.5-.97-.8-1.6-.8H15V6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2 0 1.65 1.35 3 3 3s3-1.35 3-3h4c0 1.65 1.35 3 3 3s3-1.35 3-3c1.1 0 2-.9 2-2v-3.67c0-.43-.14-.86-.4-1.2zM17.5 9l1.5 2h-4V9zM7 19a1.003 1.003 0 0 1-.87-1.5c.37-.63 1.36-.63 1.73 0 .09.15.13.32.13.49 0 .55-.45 1-1 1Zm2.23-3s-.05-.05-.08-.07c-.06-.06-.12-.11-.17-.16-.12-.11-.25-.21-.38-.29a3 3 0 0 0-.67-.32c-.07-.02-.14-.05-.21-.07Q7.375 15 7 15c-.375 0-.49.04-.72.09-.07.02-.14.05-.21.07-.16.05-.31.11-.45.19-.07.04-.15.08-.22.13-.13.09-.26.18-.38.29-.06.05-.12.1-.18.16-.02.03-.05.04-.08.07h-.77V6h9v10H9.22ZM17 19a1.003 1.003 0 0 1-.87-1.5c.37-.63 1.36-.63 1.73 0 .09.15.13.32.13.49 0 .55-.45 1-1 1Zm3-3h-.77s-.05-.05-.08-.07c-.06-.06-.12-.11-.17-.16-.12-.11-.25-.21-.38-.29a3 3 0 0 0-.67-.32c-.07-.02-.14-.05-.21-.07Q17.375 15 17 15c-.375 0-.47.04-.7.09-.06.01-.12.03-.18.05-.18.06-.36.13-.52.22l-.12.06c-.17.1-.33.21-.48.35v-2.76h5v3Z"></path><path d="M9.5 7h-2v2.5H5v2h2.5V14h2v-2.5H12v-2H9.5z"></path>
-                                </svg>
-                                <div class="service-details mt-3">
-                                    <h5 class="service-name">24/7 Emergency</h5>
-                                    <p class="text-secondary">
-                                        Round-the-clock emergency and trauma care.
-                                    </p>
+                        {% for service in services %}
+                            <div class="col-sm-3">
+                                <div class="service-container rounded ps-3 pt-3 pb-3">
+                                    {{ service.icon|safe }}
+                                    <div class="service-details mt-3">
+                                        <h5 class="service-name">{{ service.name }}</h5>
+                                        <p class="text-secondary">
+                                            {{ service.description }}
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-sm-3">
-                            <div class="service-container rounded ps-3 pt-3 pb-3">
-                                <svg  xmlns="http://www.w3.org/2000/svg" width="30" height="30"  
-                                    fill="#0097b2" viewBox="0 0 24 24" >
-                                    <!--Boxicons v3.0.8 https://boxicons.com | License  https://docs.boxicons.com/free-->
-                                    <path d="M15 7.66V4h1V2H8v2h1v3.66l-5.4 6.95c-1.08 1.38-1.27 3.29-.48 4.86S5.47 22 7.22 22h9.57c1.75 0 3.32-.97 4.1-2.53s.6-3.48-.48-4.86l-5.4-6.95Zm-4 .69V4.01h2v4.34l5.2 6.68c-1.79-.3-2.9-1.03-4.14-1.86-1.31-.87-2.77-1.83-5.11-2.18zm8.1 10.23c-.44.88-1.33 1.43-2.31 1.43H7.21c-.98 0-1.87-.55-2.31-1.43s-.34-1.96.27-2.74l2.32-2.98c2.6.1 3.94.97 5.45 1.98 1.54 1.02 3.28 2.16 6.4 2.31.05.48-.03.98-.25 1.43Z"></path>
-                                </svg>
-                                <div class="service-details mt-3">
-                                    <h5 class="service-name">Laboratory</h5>
-                                    <p class="text-secondary">
-                                        Accurate diagnostics with fast turnaround.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-3">
-                            <div class="service-container rounded ps-3 pt-3 pb-3">
-                                <svg  xmlns="http://www.w3.org/2000/svg" width="30" height="30"  
-                                    fill="#0097b2" viewBox="0 0 24 24" >
-                                    <!--Boxicons v3.0.8 https://boxicons.com | License  https://docs.boxicons.com/free-->
-                                    <path d="m10.95 4.07-6.88 6.88c-2.48 2.47-2.48 6.5 0 8.98 1.24 1.24 2.86 1.86 4.49 1.86s3.25-.62 4.49-1.86l6.88-6.88c2.48-2.47 2.48-6.5 0-8.98-2.47-2.47-6.5-2.47-8.98 0m.69 14.44c-1.7 1.7-4.45 1.7-6.15 0a4.364 4.364 0 0 1 0-6.15l2.73-2.73 6.15 6.15zm6.88-6.88-2.73 2.73-6.15-6.15 2.73-2.73c.85-.85 1.96-1.27 3.07-1.27s2.23.42 3.07 1.27a4.364 4.364 0 0 1 0 6.15Z"></path>
-                                </svg>
-                                <div class="service-details mt-3">
-                                    <h5 class="service-name">Pharmacy</h5>
-                                    <p class="text-secondary">
-                                        In-house pharmacy with qualified pharmacists.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-3">
-                            <div class="service-container rounded ps-3 pt-3 pb-3">
-                                <svg  xmlns="http://www.w3.org/2000/svg" width="30" height="30"  
-                                    fill="#0097b2" viewBox="0 0 24 24" >
-                                    <!--Boxicons v3.0.8 https://boxicons.com | License  https://docs.boxicons.com/free-->
-                                    <path d="M4 17h16v3h2v-9c0-1.1-.9-2-2-2V5c0-.55-.45-1-1-1H5c-.55 0-1 .45-1 1v4c-1.1 0-2 .9-2 2v9h2zM18 6v3h-5V6zM6 6h5v3H6zm-2 5h16v4H4z"></path>
-                                </svg> 
-                                <div class="service-details mt-3">
-                                    <h5 class="service-name">Inpatient care</h5>
-                                    <p class="text-secondary">
-                                        Comfortable wards and private rooms.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
+                        {% endfor %}
                     </div>
                 </div>
             </div>
