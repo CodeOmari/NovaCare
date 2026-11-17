@@ -75,6 +75,65 @@
 .our-specialist{
     background-color: #F6FAFB;
 }
-.doctor-img{
-    width: 140px;
+.doctor-image{
+    width: 350px;
+}
+.details-section{
+    background-color: #fff;
+    width: 350px;
+}
+.doctor-names{
+    color: #050b0e;
+    font-family: "Figtree", sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+}
+.role{
+    margin-top: -15px;
+    color: #1CA3BA;
+    font-size: 1rem;
+    font-weight: 500;
+    font-family: "Figtree", sans-serif;
+}
+.qualification{
+    font-size: 0.8rem;
+    font-weight: 400;
+    font-family: "Figtree", sans-serif;
+    margin-top: -10px;
+}
+.availability-days{
+    font-size: 0.8rem;
+    font-weight: 400;
+    font-family: "Figtree", sans-serif;
+}
+.view-profile{
+    background-color: #F6FAFB;
+    border: 1px solid #D3DDE1;
+    color: #004f71;
+    font-family: "Figtree", sans-serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+.view-profile:hover{
+    background-color: #bee5ec;
+}
+.book-appointment-link{
+    background-color: #004f71;
+    transition: opacity 0.3s ease;
+    color:#fff;
+    font-family: "Figtree", sans-serif;
+    font-size: 0.8rem;
+    font-weight: 500;
+    text-decoration: none;
+}
+.book-appointment-link:hover{
+    opacity: 0.9;
+}
+.rating{
+    color: #050b0e;
+    font-family: "Figtree", sans-serif;
+    font-size: 1rem;
+    font-weight: 600; 
 }
