@@ -142,3 +142,53 @@
 .meet-doctors{
     background-color: #F6FAFB;
 }
+.choose-us{
+    background-color: #004f71;
+}
+.section-name{
+    color: #fff;
+    font-family: "Manrope", sans-serif;
+    font-weight: 700;
+}
+.why-name{
+    color: #fff;
+    font-family: "Manrope", sans-serif;
+    font-size: 1rem;
+    font-weight: 500;
+}
+.why-description{
+    color: #d4d4d4;
+    font-family: "Manrope", sans-serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+.opening-hours{
+    background-color: #F6FAFB;
+}
+.emergency-section{
+    background-color: #FDECEC;
+    border: 1px solid #DB2D34;
+}
+.hours-section{
+    background-color: #fff;
+    border: 1px solid #D3DDE1;
+}
+.emergency-title{
+    color: #DB2D34;
+}
+.emergency-call-number{
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+.emergency-description{
+    color: #585858;
+    font-family: "Manrope", sans-serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+.open-hours{
+    color: #004f71;
+}
+.footer{
+    background-color: #fff;
+}
