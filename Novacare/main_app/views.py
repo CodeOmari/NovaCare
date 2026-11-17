@@ -9,9 +9,11 @@ from .orthopedics import orthopedicswork
 from .pediatrics import pediatricwork
 from .radiology import radiologywork
 from .services import services
+from .doctors import doctordetails
+from .choose_us import why_us
 # Create your views here.
 def home_page(request):
-    return render(request, 'home-page.html', {'departments': departments, 'services': services})
+    return render(request, 'home-page.html', {'departments': departments, 'services': services, 'doctordetails': doctordetails, 'why_us': why_us })
 
 def general_medicine(request):
     return render(request, 'general_medicine.html', {'services': services})
