@@ -175,10 +175,15 @@
 }
 .emergency-title{
     color: #DB2D34;
+    font-size: 1rem;
+    font-family: "Manrope", sans-serif;
+    font-weight: 500;
 }
 .emergency-call-number{
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     font-weight: 700;
+    color: #050b0e;
+    font-family: "Manrope", sans-serif;
 }
 .emergency-description{
     color: #585858;
@@ -188,4 +193,7 @@
 }
 .open-hours{
     color: #004f71;
+    font-size: 1rem;
+    font-family: "Manrope", sans-serif;
+    font-weight: 500;
 }
