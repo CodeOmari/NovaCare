@@ -1,0 +1,180 @@
+{% extends 'master.html' %}
+{% load static %}
+
+{% block title %}
+    <title>Doctor Profile</title>
+{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/profile.css' %}">
+    <link rel="stylesheet" href="{% static 'css/footer.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="profile-container">
+        <div class="container pb-5">
+            <div class="top-section mt-4 pb-4">
+                <a href="{% url 'doctors'%}" class="all-doctors">
+                    <svg  xmlns="http://www.w3.org/2000/svg" width="24" height="24"  
+                        fill="#6C757D" viewBox="0 0 24 24" >
+                        <!--Boxicons v3.0.8 https://boxicons.com | License  https://docs.boxicons.com/free-->
+                        <path d="M11.79 6.29 6.09 12l5.7 5.71 1.42-1.42L9.91 13H18v-2H9.91l3.3-3.29z"></path>
+                    </svg>
+                    All doctors
+                </a>
+            </div>
+
+            <div class="doctor-container p-5 rounded">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <img src="{% static doctor.image %}" alt="{{ doctor.alt }}" class="img-fluid rounded">
+                        </div>
+                        <div class="col-sm-8">
+                            <div class="personal-details">
+                                <h5 class="field">{{ doctor.field }}</h5>
+
+                                <h3 class="name">{{ doctor.name }}</h3>
+
+                                <h5 class="profession">{{ doctor.role }}</h5>
+
+                                <p class="rating">
+                                    {{ doctor.rating_icon|safe }}
+                                    {{ doctor.rating }} patient rating
+                                </p>
+
+                                <p class="text-secondary about-doctor">
+                                    {{ doctor.about }}
+                                </p>
+                            </div>
+
+                            <div class="qualifications d-flex align-items-center gap-2">
+                                <div class="qualification-container d-flex align-items-start rounded pt-3 ps-3 h-100 w-100">
+                                    <div class="department-icon rounded p-1 me-2">
+                                        <svg  xmlns="http://www.w3.org/2000/svg" width="20" height="20"  
+                                            fill="#004f71" viewBox="0 0 24 24" >
+                                            <!--Boxicons v3.0.8 https://boxicons.com | License  https://docs.boxicons.com/free-->
+                                            <path d="m21.45 8.61-9-4.5a1 1 0 0 0-.89 0l-6 3-3 1.5-1 .5a1 1 0 0 0-.55.89v6h2v-5.38l2 1v3.83c0 2.06 3.12 4.56 7 4.56s7-2.49 7-4.56v-3.83l2.45-1.22c.34-.17.55-.52.55-.89s-.21-.72-.55-.89Zm-15 .29L12 6.12l6.76 3.38L12 12.88 5.24 9.5l1.21-.61ZM17 15.45c0 .76-2.11 2.56-5 2.56s-5-1.79-5-2.56v-2.83l4.55 2.28c.14.07.29.11.45.11s.31-.04.45-.11L17 12.62z"></path>
+                                        </svg>
+                                    </div>
+                                    <div class="department-details">
+                                        <h5 class="section-title text-secondary">
+                                            Qualifications
+                                        </h5>
+
+                                        <p class="achievement">
+                                            {{ doctor.qualification }}
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="experience-container d-flex align-items-start rounded pt-3 ps-3 h-100 w-100">
+                                    <div class="department-icon rounded p-1 me-2">
+                                        <svg  xmlns="http://www.w3.org/2000/svg" width="20" height="20"  
+                                            fill="#004f71" viewBox="0 0 24 24" >
+                                            <!--Boxicons v3.0.8 https://boxicons.com | License  https://docs.boxicons.com/free-->
+                                            <path d="M20 6h-3V4c0-1.1-.9-2-2-2H9c-1.1 0-2 .9-2 2v2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2M9 4h6v2H9zM4 20V8h3v12zm5 0V8h6v12zm8 0V8h3v12z"></path>
+                                        </svg>
+                                    </div>
+                                    <div class="department-details">
+                                        <h5 class="section-title text-secondary">
+                                            Experience
+                                        </h5>
+
+                                        <p class="achievement">
+                                            {{ doctor.experience }}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="availability pt-3">
+                                <h5 class="weekly-availability">
+                                    {{ doctor.calender_icon|safe }} Weekly availability
+                                </h5>
+                                <p class="days">
+                                    {{ doctor.availability }}
+                                </p>
+                            </div>
+
+                            <div>
+                                <a href="" class="appointment rounded pt-2 pb-2 ps-3 pe-3">
+                                    <svg  xmlns="http://www.w3.org/2000/svg" width="16" height="16"  
+                                    fill="#fff" viewBox="0 0 24 24" >
+                                    <!--Boxicons v3.0.8 https://boxicons.com | License  https://docs.boxicons.com/free-->
+                                    <path d="M19 4h-2V2h-2v2H9V2H7v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2M5 20V8h14V6v14z"></path><path d="m11 14.59-2.29-2.3-1.42 1.42 3.71 3.7 5.71-5.7-1.42-1.42z"></path>
+                                    </svg>
+                                    Book appointment
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+     <div class="footer">
+        <div class="footer-details">
+            <div class="container-xl">
+                <div class="row gy-4">
+
+                    <!-- Brand -->
+                    <div class="col-12 col-md-6 col-lg-3">
+                        <a href="#" class="footer-logo d-inline-block mb-3">
+                            <img src="{% static 'images/hospital-logo.png' %}" alt="Novacare logo" class="img-fluid">
+                        </a>
+                        <p class="footer-about">
+                            Novacare — Compassionate care,<br class="d-none d-lg-block"> modern medicine.
+                        </p>
+                        <div class="footer-social d-flex gap-2">
+                            <a href="#" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+                            <a href="#" aria-label="Twitter"><i class="bi bi-twitter"></i></a>
+                            <a href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+                            <a href="#" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- Quick links -->
+                    <div class="col-12 col-md-6 col-lg-3">
+                        <h6 class="footer-title">Quick links</h6>
+                        <ul class="footer-links list-unstyled mb-0">
+                            <li><a href="{% url 'home_page' %}">Home</a></li>
+                            <li><a href="{% url 'about_us' %}">About</a></li>
+                            <li><a href="{% url 'departments' %}">Departments</a></li>
+                            <li><a href="{% url 'doctors' %}">Doctors</a></li>
+                            <li><a href="{% url 'contact-us' %}">Contact</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Contact -->
+                    <div class="col-12 col-md-6 col-lg-3">
+                        <h6 class="footer-title">Contact</h6>
+                        <ul class="footer-contact list-unstyled mb-0">
+                            <li><i class="bi bi-geo-alt"></i><span>123 Hospital Road, Nairobi, Kenya</span></li>
+                            <li><i class="bi bi-telephone"></i><a href="tel:+254746090609">+254746090609</a></li>
+                            <li><i class="bi bi-envelope"></i><a href="mailto:novacareke@gmail.com">novacareke@gmail.com</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Opening hours -->
+                    <div class="col-12 col-md-6 col-lg-3">
+                        <h6 class="footer-title">Opening hours</h6>
+                        <ul class="footer-hours list-unstyled mb-0">
+                            <li><span>Monday - Friday</span><span>7:00 AM - 9:00 PM</span></li>
+                            <li><span>Saturday</span><span>8:00 AM - 6:00 PM</span></li>
+                            <li><span>Sunday &amp; Holidays</span><span>9:00 AM - 4:00 PM</span></li>
+                            <li><span>Emergency</span><span>Open 24/7</span></li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Copyright -->
+        <div class="footer-bottom">
+            <p class="mb-0">&copy; 2026 Novacare. All rights reserved.</p>
+        </div>
+    </div>
+{% endblock %}
