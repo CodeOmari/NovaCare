@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&family=Manrope:wght@200..800&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+}
+.company-values{
+    background-color: #F6FAFB;
+}
+.mission, .vision{
+    background-color: #fff;
+    border: 1px solid #D3DDE1
+}
+.hospital-facilities{
+    background-color: #F6FAFB;
+}
+.facility-container{
+    background-color: #fff;
+    border: 1px solid #D3DDE1;
+}
+.facility-description{
+    color: #050b0e;
+    font-family: "Figtree", sans-serif;
+    font-size: 1rem;
+    font-weight: 500;
+}
