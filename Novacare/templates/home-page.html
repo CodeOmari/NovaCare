@@ -131,7 +131,7 @@
                 <h3 class="section-title">Featured departments</h3>
 
                 <div class="ms-auto">
-                    <a href="" class="all-departments align-items-center">
+                    <a href="{% url 'departments' %}" class="all-departments align-items-center">
                         All departments
                         <svg  xmlns="http://www.w3.org/2000/svg" width="20" height="20"  
                             fill="#0097b2" viewBox="0 0 24 24" >
@@ -144,7 +144,7 @@
 
             <div class="container mb-5">
                 <div class="row g-4">
-                    {% for department in departments %}
+                    {% for department in featured_departments %}
                         <div class="col-sm-3">
                             <div class="departments-container d-flex align-items-start rounded pt-3 ps-3 h-100">
                                 <div class="department-icon rounded p-1 me-2">
@@ -173,7 +173,7 @@
                 <h3 class="section-title pt-5">Meet our doctors</h3>
 
                 <div class="ms-auto">
-                    <a href="" class="all-departments align-items-center">
+                    <a href="{% url 'doctors' %}" class="all-departments align-items-center">
                         All doctors
                         <svg  xmlns="http://www.w3.org/2000/svg" width="20" height="20"  
                             fill="#0097b2" viewBox="0 0 24 24" >
@@ -212,7 +212,7 @@
                             </div>
                             <div class="profile-book d-flex align-items-center justify-content-between pb-2">
                                 <div>
-                                    <a href="" class="view-profile p-2 rounded">View Profile</a>
+                                    <a href="{% url 'doctor_profile' doctor.slug %}" class="view-profile p-2 rounded">View Profile</a>
                                 </div>
                                 <div>
                                     <a href="" class="book-appointment-link p-2 rounded">Book Appointment</a>
@@ -335,11 +335,11 @@
                     <div class="col-12 col-md-6 col-lg-3">
                         <h6 class="footer-title">Quick links</h6>
                         <ul class="footer-links list-unstyled mb-0">
-                            <li><a href="#">Home</a></li>
-                            <li><a href="#">About</a></li>
-                            <li><a href="#">Departments</a></li>
-                            <li><a href="#">Doctors</a></li>
-                            <li><a href="#">Contact</a></li>
+                            <li><a href="{% url 'home_page' %}">Home</a></li>
+                            <li><a href="{% url 'about_us' %}">About</a></li>
+                            <li><a href="{% url 'departments' %}">Departments</a></li>
+                            <li><a href="{% url 'doctors' %}">Doctors</a></li>
+                            <li><a href="{% url 'contact-us' %}">Contact</a></li>
                         </ul>
                     </div>
 
