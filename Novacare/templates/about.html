@@ -1,0 +1,184 @@
+{% extends 'master.html' %}
+{% load static %}
+
+{% block title %}
+    <title>About Us</title>
+{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/departments.css' %}">
+    <link rel="stylesheet" href="{% static 'css/footer.css' %}">
+    <link rel="stylesheet" href="{% static 'css/about.css' %}">
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+{% endblock %}
+
+
+{% block content %}
+    <div class="container-fluid department-introduction pb-5">
+        <div class="container mt-5">
+            <h5 class="first-header">ABOUT US</h5>
+
+            <h3 class="second-header">About Novacare</h3>
+
+            <p class="text-secondary w-50 department-duty">
+                A community hospital delivering high-quality, accessible healthcare with modern 
+                facilities and experienced specialists.
+            </p>
+        </div>
+    </div>
+
+    <div class="company-values p-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="mission  rounded ps-3 pt-3 pb-3">
+                        <svg  xmlns="http://www.w3.org/2000/svg" width="24" height="24"  
+                            fill="#0097b2" viewBox="0 0 24 24" >
+                            <!--Boxicons v3.0.8 https://boxicons.com | License  https://docs.boxicons.com/free-->
+                            <path d="M12 18c3.31 0 6-2.69 6-6s-2.69-6-6-6-6 2.69-6 6 2.69 6 6 6m0-10c2.21 0 4 1.79 4 4s-1.79 4-4 4-4-1.79-4-4 1.79-4 4-4"></path><path d="M12 22c5.42 0 10-4.58 10-10S17.42 2 12 2 2 6.58 2 12s4.58 10 10 10m0-18c4.34 0 8 3.66 8 8s-3.66 8-8 8-8-3.66-8-8 3.66-8 8-8"></path><path d="M12 10a2 2 0 1 0 0 4 2 2 0 1 0 0-4"></path>
+                        </svg>
+                        <div class="service-details mt-3">
+                            <h5 class="service-name">Our mission</h5>
+                            <p class="text-secondary">
+                                To provide safe, compassionate and affordable healthcare that 
+                                improves the lives of the patients and communities we serve.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="vision  rounded ps-3 pt-3 pb-3">
+                        <svg  xmlns="http://www.w3.org/2000/svg" width="24" height="24"  
+                            fill="#0097b2" viewBox="0 0 24 24" >
+                            <!--Boxicons v3.0.8 https://boxicons.com | License  https://docs.boxicons.com/free-->
+                            <path d="M12 9a3 3 0 1 0 0 6 3 3 0 1 0 0-6"></path><path d="M12 19c7.63 0 9.93-6.62 9.95-6.68.07-.21.07-.43 0-.63-.02-.07-2.32-6.68-9.95-6.68s-9.93 6.61-9.95 6.67c-.07.21-.07.43 0 .63.02.07 2.32 6.68 9.95 6.68Zm0-12c5.35 0 7.42 3.85 7.93 5-.5 1.16-2.58 5-7.93 5s-7.42-3.84-7.93-5c.5-1.16 2.58-5 7.93-5"></path>
+                        </svg>
+                        <div class="service-details mt-3">
+                            <h5 class="service-name">Our vision</h5>
+                            <p class="text-secondary">
+                                To be the region's most trusted hospital, recognized for clinical excellence and 
+                                patient-centered care.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="core-values">
+        <div class="container">
+            <div class="our-services pt-5 pb-5">
+                <h3 class="section-title mb-4">Core values</h3>
+                <div class="container">
+                    <div class="row">
+                        {% for value in corevalues %}
+                            <div class="col-sm-3">
+                                <div class="service-container rounded ps-3 pt-3 pb-3 h-100">
+                                    {{ value.icon|safe }}
+                                    <div class="service-details mt-3">
+                                        <h5 class="service-name">{{ value.name }}</h5>
+                                        <p class="text-secondary">
+                                            {{ value.description }}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="hospital-facilities">
+        <div class="container pb-4">
+            <div class="facility-section pt-5 pb-5">
+                <h3 class="section-title mb-4">Hospital facilities</h3>
+
+                <div class="container mb-5">
+                    <div class="row g-4">
+                        {% for facility in facilities %}
+                            <div class="col-sm-4">
+                                <div class="facility-container d-flex align-items-start rounded pt-3 ps-3 h-100">
+                                    <div class="department-icon rounded p-1 me-2">
+                                        {{ facility.icon|safe }}
+                                    </div>
+                                    <div class="facility-details d-flex align-items-center">
+                                        <p class="facility-description pt-1">
+                                            {{ facility.description }}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="footer-details">
+            <div class="container-xl">
+                <div class="row gy-4">
+
+                    <!-- Brand -->
+                    <div class="col-12 col-md-6 col-lg-3">
+                        <a href="#" class="footer-logo d-inline-block mb-3">
+                            <img src="{% static 'images/hospital-logo.png' %}" alt="Novacare logo" class="img-fluid">
+                        </a>
+                        <p class="footer-about">
+                            Novacare — Compassionate care,<br class="d-none d-lg-block"> modern medicine.
+                        </p>
+                        <div class="footer-social d-flex gap-2">
+                            <a href="#" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+                            <a href="#" aria-label="Twitter"><i class="bi bi-twitter"></i></a>
+                            <a href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+                            <a href="#" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- Quick links -->
+                    <div class="col-12 col-md-6 col-lg-3">
+                        <h6 class="footer-title">Quick links</h6>
+                        <ul class="footer-links list-unstyled mb-0">
+                            <li><a href="{% url 'home_page' %}">Home</a></li>
+                            <li><a href="{% url 'about_us' %}">About</a></li>
+                            <li><a href="{% url 'departments' %}">Departments</a></li>
+                            <li><a href="{% url 'doctors' %}">Doctors</a></li>
+                            <li><a href="{% url 'contact-us' %}">Contact</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Contact -->
+                    <div class="col-12 col-md-6 col-lg-3">
+                        <h6 class="footer-title">Contact</h6>
+                        <ul class="footer-contact list-unstyled mb-0">
+                            <li><i class="bi bi-geo-alt"></i><span>123 Hospital Road, Nairobi, Kenya</span></li>
+                            <li><i class="bi bi-telephone"></i><a href="tel:+254746090609">+254746090609</a></li>
+                            <li><i class="bi bi-envelope"></i><a href="mailto:novacareke@gmail.com">novacareke@gmail.com</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Opening hours -->
+                    <div class="col-12 col-md-6 col-lg-3">
+                        <h6 class="footer-title">Opening hours</h6>
+                        <ul class="footer-hours list-unstyled mb-0">
+                            <li><span>Monday - Friday</span><span>7:00 AM - 9:00 PM</span></li>
+                            <li><span>Saturday</span><span>8:00 AM - 6:00 PM</span></li>
+                            <li><span>Sunday &amp; Holidays</span><span>9:00 AM - 4:00 PM</span></li>
+                            <li><span>Emergency</span><span>Open 24/7</span></li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Copyright -->
+        <div class="footer-bottom">
+            <p class="mb-0">&copy; 2026 Novacare. All rights reserved.</p>
+        </div>
+    </div>
+{% endblock %}
