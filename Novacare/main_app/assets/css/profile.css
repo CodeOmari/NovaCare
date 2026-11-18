@@ -1,0 +1,85 @@
+@import url('https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&family=Manrope:wght@200..800&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+}
+.profile-container{
+    background-color: #F6FAFB;
+    border-top: 1px solid #D3DDE1;
+}
+.all-doctors{
+    color: #6C757D;
+    text-decoration: none;
+    font-size: 0.87rem;
+    font-weight: 400;
+    font-family: "Figtree", sans-serif;
+}
+.doctor-container{
+    background-color: #fff;
+    border: 1px solid #D3DDE1;
+}
+.field{
+    color: #1CA3BA;
+    font-family: "Figtree", sans-serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+.name{
+    font-size: 1.5rem;
+    font-family: "Figtree", sans-serif;
+    font-weight: 600;
+    color: #004f71;
+}
+.profession{
+    color: #050b0e;
+    font-family: "Figtree", sans-serif;
+    font-size: 1rem;
+    font-weight: 400;
+}
+.rating{
+    color: #050b0e;
+    font-family: "Figtree", sans-serif;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+.about-doctor{
+    font-size: 1rem;
+    font-weight: 500;
+    font-family: "Figtree", sans-serif;
+}
+.qualification-container, .experience-container, .doctors-section{
+    background-color: #F6FAFB;
+}
+.section-title{
+    font-size: 0.8rem;
+    font-weight: 500;
+    font-family: "Figtree", sans-serif;
+}
+.achievement{
+    color: #050b0e;
+    font-weight: 500;
+    font-size: 1rem;
+}
+.weekly-availability{
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #050b0e;
+    font-family: "Figtree", sans-serif;
+}
+.days{
+    color: #004f71;
+    font-size: 0.9rem;
+    font-family: "Figtree", sans-serif;
+    font-weight: 500;
+}
+.appointment{
+    text-decoration: none;
+    font-family: "Figtree", sans-serif;
+    font-size: 0.9rem;
+    background-color: #004f71;
+    color: #fff;
+    transition: opacity 0.3s ease;
+}
+.appointment:hover{
+    opacity: 0.9;
+}
