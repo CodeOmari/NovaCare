@@ -1,0 +1,25 @@
+{% extends 'master.html' %}
+{% load static %}
+
+{% block title %}
+    <title>Contact Us</title>
+{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/departments.css' %}">
+    <link rel="stylesheet" href="{% static 'css/footer.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="container-fluid department-introduction pb-5">
+        <div class="container mt-5">
+            <h5 class="first-header">CONTACT US</h5>
+
+            <h3 class="second-header">We're here to help</h3>
+
+            <p class="text-secondary w-50 department-duty">
+                Questions about appointments, billing or services? Send us a message or call us.
+            </p>
+        </div>
+    </div>
+{% endblock %}
