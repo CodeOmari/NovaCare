@@ -11,4 +11,10 @@ urlpatterns = [
     path('departments/orthopedics', views.orthopedics, name='orthopedics'),
     path('departments/dentistry', views.dentistry, name='dentistry'),
     path('departments/radiology', views.radiology, name='radiology'),
+
+    path('about', views.about, name='about_us'),
+    path('departments', views.departments, name='departments'),
+    path('doctors', views.doctors, name='doctors'),
+    path('doctors/<slug:slug>', views.profile, name='doctor_profile'),
+    path('contact', views.contact, name='contact-us'),
 ]
