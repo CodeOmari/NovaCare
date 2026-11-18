@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&family=Manrope:wght@200..800&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+}
+.general-departments{
+    background-color: #F6FAFB;
+}
+.department-activities li{
+    font-size: 0.85rem;
+    font-family: "Figtree", sans-serif;
+    font-weight: 500;
+}
+.learn-more{
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    font-family: "Figtree", sans-serif;
+    color: #1CA3BA;
+}
+.learn-more-container{
+    margin-top: auto;
+}
