@@ -1,0 +1,131 @@
+{% extends 'master.html' %}
+{% load static %}
+
+{% block title %}
+    <title>Doctors</title>
+{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/departments.css' %}">
+    <link rel="stylesheet" href="{% static 'css/footer.css' %}">
+    <link rel="stylesheet" href="{% static 'css/profile.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="container-fluid department-introduction pb-5">
+        <div class="container mt-5">
+            <h5 class="first-header">OUR DOCTORS</h5>
+
+            <h3 class="second-header">Find the right specialist</h3>
+
+            <p class="text-secondary w-50 department-duty">
+                Browse profiles, check availability and book an appointment in minutes.
+            </p>
+        </div>
+    </div>
+
+   <div class="doctors-section">
+         <div class="container specialist-details pb-5 pt-5">
+            <div class="row g-4">
+                {% for doctor in profiledetails %}
+                    <div class="col-sm-4 details-container">
+                        <img src="{% static doctor.image %}" alt="{{ doctor.alt }}" class="img-fluid rounded-top doctor-image">
+                        <div class="details-section rounded-bottom p-3">
+                            <div class="name d-flex align-items-start justify-content-between">
+                                <div class="left-section">
+                                    <p class="doctor-names">{{ doctor.name }}</p>
+                                    <p class="role">{{ doctor.role }}</p>
+                                    <p class="text-secondary qualification">{{ doctor.qualification }}</p>
+
+                                    <p class="text-secondary availability-days">
+                                        {{ doctor.calendar_icon|safe }}
+                                        {{ doctor.availability }}
+                                    </p>
+                                </div>
+
+                                <div class="right-section">
+                                    <div>
+                                        {{ doctor.rating_icon|safe }}
+                                        <span class="rating">{{ doctor.rating}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="profile-book d-flex align-items-center justify-content-between pb-2">
+                                <div>
+                                    <a href="{% url 'doctor_profile' doctor.slug %}" class="view-profile p-2 rounded">View Profile</a>
+                                </div>
+                                <div>
+                                    <a href="" class="book-appointment-link p-2 rounded">Book Appointment</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+   </div>
+
+   <div class="footer">
+        <div class="footer-details">
+            <div class="container-xl">
+                <div class="row gy-4">
+
+                    <!-- Brand -->
+                    <div class="col-12 col-md-6 col-lg-3">
+                        <a href="#" class="footer-logo d-inline-block mb-3">
+                            <img src="{% static 'images/hospital-logo.png' %}" alt="Novacare logo" class="img-fluid">
+                        </a>
+                        <p class="footer-about">
+                            Novacare — Compassionate care,<br class="d-none d-lg-block"> modern medicine.
+                        </p>
+                        <div class="footer-social d-flex gap-2">
+                            <a href="#" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+                            <a href="#" aria-label="Twitter"><i class="bi bi-twitter"></i></a>
+                            <a href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+                            <a href="#" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- Quick links -->
+                    <div class="col-12 col-md-6 col-lg-3">
+                        <h6 class="footer-title">Quick links</h6>
+                        <ul class="footer-links list-unstyled mb-0">
+                            <li><a href="{% url 'home_page' %}">Home</a></li>
+                            <li><a href="{% url 'about_us' %}">About</a></li>
+                            <li><a href="{% url 'departments' %}">Departments</a></li>
+                            <li><a href="{% url 'doctors' %}">Doctors</a></li>
+                            <li><a href="{% url 'contact-us' %}">Contact</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Contact -->
+                    <div class="col-12 col-md-6 col-lg-3">
+                        <h6 class="footer-title">Contact</h6>
+                        <ul class="footer-contact list-unstyled mb-0">
+                            <li><i class="bi bi-geo-alt"></i><span>123 Hospital Road, Nairobi, Kenya</span></li>
+                            <li><i class="bi bi-telephone"></i><a href="tel:+254746090609">+254746090609</a></li>
+                            <li><i class="bi bi-envelope"></i><a href="mailto:novacareke@gmail.com">novacareke@gmail.com</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Opening hours -->
+                    <div class="col-12 col-md-6 col-lg-3">
+                        <h6 class="footer-title">Opening hours</h6>
+                        <ul class="footer-hours list-unstyled mb-0">
+                            <li><span>Monday - Friday</span><span>7:00 AM - 9:00 PM</span></li>
+                            <li><span>Saturday</span><span>8:00 AM - 6:00 PM</span></li>
+                            <li><span>Sunday &amp; Holidays</span><span>9:00 AM - 4:00 PM</span></li>
+                            <li><span>Emergency</span><span>Open 24/7</span></li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Copyright -->
+        <div class="footer-bottom">
+            <p class="mb-0">&copy; 2026 Novacare. All rights reserved.</p>
+        </div>
+    </div>
+{% endblock %}
