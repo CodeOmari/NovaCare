@@ -8,6 +8,9 @@
 {% block extra_css %}
     <link rel="stylesheet" href="{% static 'css/departments.css' %}">
     <link rel="stylesheet" href="{% static 'css/footer.css' %}">
+    <link rel="stylesheet" href="{% static 'css/contact.css' %}">
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    <link rel="stylesheet" href="{% static 'css/about.css' %}">
 {% endblock %}
 
 {% block content %}
@@ -20,6 +23,187 @@
             <p class="text-secondary w-50 department-duty">
                 Questions about appointments, billing or services? Send us a message or call us.
             </p>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="contact-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-7">
+                        <div class="contact-form-card rounded-4 p-4 mt-5">
+                            <form action="" method="post">
+                                {% csrf_token %}
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <label for="full-name" class="form-label">Full name</label>
+                                        <input type="text" id="full-name" name="full_name" class="form-control" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="email" class="form-label">Email</label>
+                                        <input type="email" id="email" name="email" class="form-control" required>
+                                    </div>
+                                    <div class="col-12">
+                                        <label for="subject" class="form-label">Subject</label>
+                                        <input type="text" id="subject" name="subject" class="form-control" required>
+                                    </div>
+                                    <div class="col-12">
+                                        <label for="message" class="form-label">Message</label>
+                                        <textarea id="message" name="message" rows="4" class="form-control" required></textarea>
+                                    </div>
+                                    <div class="col-12">
+                                        <button type="submit" class="send-message-btn d-inline-flex align-items-center gap-2">
+                                            <i class="bi bi-send"></i>
+                                            Send message
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-sm-5">
+                        <div class="facility-container d-flex align-items-start rounded pt-3 ps-3 mb-4 mt-5">
+                            <div class="department-icon rounded p-1 me-2">
+                                <svg  xmlns="http://www.w3.org/2000/svg" width="24" height="24"  
+                                    fill="#004f71" viewBox="0 0 24 24" >
+                                    <!--Boxicons v3.0.8 https://boxicons.com | License  https://docs.boxicons.com/free-->
+                                    <path d="M16 10c0-2.21-1.79-4-4-4s-4 1.79-4 4 1.79 4 4 4 4-1.79 4-4m-6 0c0-1.1.9-2 2-2s2 .9 2 2-.9 2-2 2-2-.9-2-2"></path><path d="M11.42 21.81c.17.12.38.19.58.19s.41-.06.58-.19c.3-.22 7.45-5.37 7.42-11.82 0-4.41-3.59-8-8-8s-8 3.59-8 8c-.03 6.44 7.12 11.6 7.42 11.82M12 4c3.31 0 6 2.69 6 6 .02 4.44-4.39 8.43-6 9.74-1.61-1.31-6.02-5.29-6-9.74 0-3.31 2.69-6 6-6"></path>
+                                </svg>
+                            </div>
+                            <div class="facility-details">
+                                <h5 class="contact-title text-secondary">
+                                    Address
+                                </h5>
+
+                                <p class="facility-description">
+                                    123 Hospital Road, Nairobi, Kenya
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="facility-container d-flex align-items-start rounded pt-3 ps-3 mb-4">
+                            <div class="department-icon rounded p-1 me-2">
+                                <svg  xmlns="http://www.w3.org/2000/svg" width="24" height="24"  
+                                    fill="#004f71" viewBox="0 0 24 24" >
+                                    <!--Boxicons v3.0.8 https://boxicons.com | License  https://docs.boxicons.com/free-->
+                                    <path d="M18.07 22h.35c.47-.02.9-.26 1.17-.64l2.14-3.09c.23-.33.32-.74.24-1.14s-.31-.74-.64-.97l-4.64-3.09a1.47 1.47 0 0 0-.83-.25c-.41 0-.81.16-1.1.48l-1.47 1.59c-.69-.43-1.61-1.07-2.36-1.82-.72-.72-1.37-1.64-1.82-2.36l1.59-1.47c.54-.5.64-1.32.23-1.93L7.84 2.67c-.22-.33-.57-.57-.97-.64a1.46 1.46 0 0 0-1.13.24L2.65 4.41c-.39.27-.62.7-.64 1.17-.03.69-.16 6.9 4.68 11.74 4.35 4.35 9.81 4.69 11.38 4.69ZM6.88 10.05c-.16.15-.21.39-.11.59.05.09 1.15 2.24 2.74 3.84 1.6 1.6 3.75 2.7 3.84 2.75.2.1.44.06.59-.11l1.99-2.15 3.86 2.57-1.7 2.46c-1.16 0-6.13-.24-9.99-4.1S4 7.06 4 5.91l2.46-1.7 2.57 3.86-2.15 1.99Z"></path>
+                                </svg>
+                            </div>
+                            <div class="facility-details">
+                                <h5 class="contact-title text-secondary">
+                                    Telephone
+                                </h5>
+
+                                <p class="facility-description">
+                                    +254746090609
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="facility-container d-flex align-items-start rounded ps-3 pt-3 mb-4">
+                            <div class="department-icon rounded p-1 me-2">
+                                <svg  xmlns="http://www.w3.org/2000/svg" width="24" height="24"  
+                                    fill="#004f71" viewBox="0 0 24 24" >
+                                    <!--Boxicons v3.0.8 https://boxicons.com | License  https://docs.boxicons.com/free-->
+                                    <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2m0 2v.51l-8 6.22-8-6.22V6zM4 18V9.04l7.39 5.74c.18.14.4.21.61.21s.43-.07.61-.21L20 9.03v8.96H4Z"></path>
+                                </svg>
+                            </div>
+                            <div class="facility-details">
+                                 <h5 class="contact-title text-secondary">
+                                    Email
+                                </h5>
+
+                                <p class="facility-description">
+                                    novacareke@gmail.com
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="operating-hours rounded-4 p-4 mb-4">
+                            <h5 class="operating-title d-flex align-items-center gap-2 mb-3">
+                                <i class="bi bi-clock"></i>
+                                Operating hours
+                            </h5>
+
+                            <ul class="hours-list list-unstyled mb-0">
+                                <li><span>Monday - Friday</span><span>7:00 AM - 9:00 PM</span></li>
+                                <li><span>Saturday</span><span>8:00 AM - 6:00 PM</span></li>
+                                <li><span>Sunday &amp; Holidays</span><span>9:00 AM - 4:00 PM</span></li>
+                                <li><span>Emergency</span><span>Open 24/7</span></li>
+                            </ul>
+                        </div>
+
+                        <div class="map-placeholder rounded-4 d-flex align-items-center justify-content-center gap-2 mb-5">
+                            <i class="bi bi-geo-alt"></i>
+                            <span>Map placeholder</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+     <div class="footer">
+        <div class="footer-details">
+            <div class="container-xl">
+                <div class="row gy-4">
+
+                    <!-- Brand -->
+                    <div class="col-12 col-md-6 col-lg-3">
+                        <a href="#" class="footer-logo d-inline-block mb-3">
+                            <img src="{% static 'images/hospital-logo.png' %}" alt="Novacare logo" class="img-fluid">
+                        </a>
+                        <p class="footer-about">
+                            Novacare — Compassionate care,<br class="d-none d-lg-block"> modern medicine.
+                        </p>
+                        <div class="footer-social d-flex gap-2">
+                            <a href="#" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+                            <a href="#" aria-label="Twitter"><i class="bi bi-twitter"></i></a>
+                            <a href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+                            <a href="#" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- Quick links -->
+                    <div class="col-12 col-md-6 col-lg-3">
+                        <h6 class="footer-title">Quick links</h6>
+                        <ul class="footer-links list-unstyled mb-0">
+                            <li><a href="{% url 'main_app:home_page' %}">Home</a></li>
+                            <li><a href="{% url 'main_app:about_us' %}">About</a></li>
+                            <li><a href="{% url 'main_app:departments' %}">Departments</a></li>
+                            <li><a href="{% url 'main_app:doctors' %}">Doctors</a></li>
+                            <li><a href="{% url 'main_app:contact-us' %}">Contact</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Contact -->
+                    <div class="col-12 col-md-6 col-lg-3">
+                        <h6 class="footer-title">Contact</h6>
+                        <ul class="footer-contact list-unstyled mb-0">
+                            <li><i class="bi bi-geo-alt"></i><span>123 Hospital Road, Nairobi, Kenya</span></li>
+                            <li><i class="bi bi-telephone"></i><a href="tel:+254746090609">+254746090609</a></li>
+                            <li><i class="bi bi-envelope"></i><a href="mailto:novacareke@gmail.com">novacareke@gmail.com</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Opening hours -->
+                    <div class="col-12 col-md-6 col-lg-3">
+                        <h6 class="footer-title">Opening hours</h6>
+                        <ul class="footer-hours list-unstyled mb-0">
+                            <li><span>Monday - Friday</span><span>7:00 AM - 9:00 PM</span></li>
+                            <li><span>Saturday</span><span>8:00 AM - 6:00 PM</span></li>
+                            <li><span>Sunday &amp; Holidays</span><span>9:00 AM - 4:00 PM</span></li>
+                            <li><span>Emergency</span><span>Open 24/7</span></li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Copyright -->
+        <div class="footer-bottom">
+            <p class="mb-0">&copy; 2026 Novacare. All rights reserved.</p>
         </div>
     </div>
 {% endblock %}
