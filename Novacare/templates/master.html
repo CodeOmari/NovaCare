@@ -62,28 +62,28 @@
                     <div class="offcanvas-body">
                         <ul class="navbar-nav d-flex align-items-center mx-auto">
                             <li class="nav-item">
-                                <a class="nav-link p-2 navigation-link" href="{% url 'home_page' %}">Home</a>
+                                <a class="nav-link p-2 navigation-link" href="{% url 'main_app:home_page' %}">Home</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link p-2 navigation-link" href="{% url 'about_us' %}">About</a>
+                                <a class="nav-link p-2 navigation-link" href="{% url 'main_app:about_us' %}">About</a>
                             </li>
                             <li class="nav-item create-event">
-                                <a class="nav-link p-2 navigation-link" href="{% url 'departments' %}">Departments</a>
+                                <a class="nav-link p-2 navigation-link" href="{% url 'main_app:departments' %}">Departments</a>
                             </li>
                             <li class="nav-item create-event">
-                                <a class="nav-link p-2 navigation-link" href="{% url 'doctors' %}">Doctors</a>
+                                <a class="nav-link p-2 navigation-link" href="{% url 'main_app:doctors' %}">Doctors</a>
                             </li>
                             <li class="nav-item create-event">
-                                <a class="nav-link p-2 navigation-link" href="{% url 'contact-us' %}">Contact</a>
+                                <a class="nav-link p-2 navigation-link" href="{% url 'main_app:contact-us' %}">Contact</a>
                             </li>
                         </ul>
 
                         <ul class="navbar-nav d-flex align-items-center">
                             <li class="nav-item">
-                                <a class="nav-link p-2 navigation-link" href="">Staff</a>
+                                <a class="nav-link p-2 navigation-link" href="{% url 'user_management:staff-login' %}">Staff</a>
                             </li>
                             <li class="nav-item patient-login rounded me-2">
-                                <a class="nav-link p-2 patient-link" href="">Patient Login</a>
+                                <a class="nav-link p-2 patient-link" href="{% url 'user_management:patient-login' %}">Patient Login</a>
                             </li>
                             <li class="nav-item book-appointment rounded">
                                 <a class="nav-link p-2 book-link" href="">Book Appointment</a>
