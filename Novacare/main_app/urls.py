@@ -1,9 +1,11 @@
 from django.urls import path
 from main_app import views
 
+app_name = 'main_app'
+
 urlpatterns = [
     path('', views.home_page, name='home_page'),
-    path('departments/general-medicine', views.general_medicine, name='general-medicine'),
+    path('departments/general-medicine', views.general_medicine, name='general_medicine'),
     path('departments/pediatrics', views.pediatrics, name='pediatrics'),
     path('departments/cardiology', views.cardiology, name='cardiology'),
     path('departments/dermatology', views.dermatology, name='dermatology'),
