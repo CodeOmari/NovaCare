@@ -46,7 +46,7 @@
                             </a>
                         </div>
                         <div class="patients">
-                            <a href="" class="patient-login pt-2 pb-2 ps-3 pe-3 rounded">
+                            <a href="{% url 'user_management:patient-login' %}" class="patient-login pt-2 pb-2 ps-3 pe-3 rounded">
                                 <svg  xmlns="http://www.w3.org/2000/svg" width="18" height="18"  
                                     fill="#004f71" viewBox="0 0 24 24" >
                                     <!--Boxicons v3.0.8 https://boxicons.com | License  https://docs.boxicons.com/free-->
@@ -56,7 +56,7 @@
                             </a>
                         </div>
                         <div class="contact-us-btn">
-                            <a href="" class="contact-us pt-2 pb-2 ps-3 pe-3 rounded">
+                            <a href="{% url 'main_app:contact-us' %}" class="contact-us pt-2 pb-2 ps-3 pe-3 rounded">
                                 <svg  xmlns="http://www.w3.org/2000/svg" width="18" height="18"  
                                     fill="#004f71" viewBox="0 0 24 24" >
                                     <!--Boxicons v3.0.8 https://boxicons.com | License  https://docs.boxicons.com/free-->
@@ -85,8 +85,8 @@
 
                 <div class='col-12 col-sm-7 mb-5 pb-3'>
                     <div class='hospital-helpdesk'>
-                        <img src={% static 'images/hero-img.jpg' %} alt='novacare help desk' class="img-fluid rounded">
-                        <div class="emergency-line d-flex align-items-center rounded p-2">
+                        <img src={% static 'images/hero-img.jpg' %} alt='novacare help desk' class="img-fluid rounded-4">
+                        <div class="emergency-line d-flex align-items-center rounded-4 p-2">
                             <svg  xmlns="http://www.w3.org/2000/svg" width="40" height="40"  
                                 fill="#DB2D34" viewBox="0 0 24 24"  class="alert-icon p-2 rounded me-2">
                                 <!--Boxicons v3.0.8 https://boxicons.com | License  https://docs.boxicons.com/free-->
@@ -109,7 +109,7 @@
                     <div class="row">
                         {% for service in services %}
                             <div class="col-sm-3">
-                                <div class="service-container rounded ps-3 pt-3 pb-3">
+                                <div class="service-container rounded-4 ps-3 pt-3 pb-3">
                                     {{ service.icon|safe }}
                                     <div class="service-details mt-3">
                                         <h5 class="service-name">{{ service.name }}</h5>
@@ -131,7 +131,7 @@
                 <h3 class="section-title">Featured departments</h3>
 
                 <div class="ms-auto">
-                    <a href="{% url 'departments' %}" class="all-departments align-items-center">
+                    <a href="{% url 'main_app:departments' %}" class="all-departments align-items-center">
                         All departments
                         <svg  xmlns="http://www.w3.org/2000/svg" width="20" height="20"  
                             fill="#0097b2" viewBox="0 0 24 24" >
@@ -146,13 +146,13 @@
                 <div class="row g-4">
                     {% for department in featured_departments %}
                         <div class="col-sm-3">
-                            <div class="departments-container d-flex align-items-start rounded pt-3 ps-3 h-100">
+                            <div class="departments-container d-flex align-items-start rounded-4 pt-3 ps-3 h-100">
                                 <div class="department-icon rounded p-1 me-2">
                                      {{ department.icon|safe }}
                                 </div>
                                 <div class="department-details">
                                     <h5>
-                                        <a href="{% url department.url %}" class="department-name">{{ department.name }}</a>
+                                        <a href="{% url 'main_app:'|add:department.url %}" class="department-name">{{ department.name }}</a>
                                     </h5>
 
                                     <p class="department-description text-secondary">
@@ -173,7 +173,7 @@
                 <h3 class="section-title pt-5">Meet our doctors</h3>
 
                 <div class="ms-auto">
-                    <a href="{% url 'doctors' %}" class="all-departments align-items-center">
+                    <a href="{% url 'main_app:doctors' %}" class="all-departments align-items-center">
                         All doctors
                         <svg  xmlns="http://www.w3.org/2000/svg" width="20" height="20"  
                             fill="#0097b2" viewBox="0 0 24 24" >
@@ -189,8 +189,8 @@
             <div class="row">
                 {% for doctor in doctordetails %}
                     <div class="col-sm-4 details-container">
-                        <img src="{% static doctor.image %}" alt="{{ doctor.alt }}" class="img-fluid rounded-top doctor-image">
-                        <div class="details-section rounded-bottom p-3">
+                        <img src="{% static doctor.image %}" alt="{{ doctor.alt }}" class="img-fluid rounded-top-4 doctor-image">
+                        <div class="details-section rounded-bottom-4 p-3">
                             <div class="name d-flex align-items-start justify-content-between">
                                 <div class="left-section">
                                     <p class="doctor-names">{{ doctor.name }}</p>
@@ -212,7 +212,7 @@
                             </div>
                             <div class="profile-book d-flex align-items-center justify-content-between pb-2">
                                 <div>
-                                    <a href="{% url 'doctor_profile' doctor.slug %}" class="view-profile p-2 rounded">View Profile</a>
+                                    <a href="{% url 'main_app:doctor_profile' doctor.slug %}" class="view-profile p-2 rounded">View Profile</a>
                                 </div>
                                 <div>
                                     <a href="" class="book-appointment-link p-2 rounded">Book Appointment</a>
@@ -253,7 +253,7 @@
         <div class="container pb-5">
             <div class="row">
                 <div class="col-sm-6">
-                    <div class="emergency-section mt-5 rounded p-3">
+                    <div class="emergency-section mt-5 rounded-4 p-3 h-75">
                         <h5>
                             <svg  xmlns="http://www.w3.org/2000/svg" width="24" height="24"  
                                 fill="#DB2D34" viewBox="0 0 24 24"  class="alert-icon">
@@ -273,7 +273,7 @@
                     </div>
                 </div>
                 <div class="col-sm-6">
-                    <div class="hours-section rounded mt-5 p-3">
+                    <div class="hours-section rounded-4 mt-5 p-3 h-75">
                         <h5>
                             <svg  xmlns="http://www.w3.org/2000/svg" width="24" height="24"  
                                 fill="#004f71" viewBox="0 0 24 24" >
@@ -335,11 +335,11 @@
                     <div class="col-12 col-md-6 col-lg-3">
                         <h6 class="footer-title">Quick links</h6>
                         <ul class="footer-links list-unstyled mb-0">
-                            <li><a href="{% url 'home_page' %}">Home</a></li>
-                            <li><a href="{% url 'about_us' %}">About</a></li>
-                            <li><a href="{% url 'departments' %}">Departments</a></li>
-                            <li><a href="{% url 'doctors' %}">Doctors</a></li>
-                            <li><a href="{% url 'contact-us' %}">Contact</a></li>
+                            <li><a href="{% url 'main_app:home_page' %}">Home</a></li>
+                            <li><a href="{% url 'main_app:about_us' %}">About</a></li>
+                            <li><a href="{% url 'main_app:departments' %}">Departments</a></li>
+                            <li><a href="{% url 'main_app:doctors' %}">Doctors</a></li>
+                            <li><a href="{% url 'main_app:contact-us' %}">Contact</a></li>
                         </ul>
                     </div>
 
