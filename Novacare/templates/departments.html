@@ -30,39 +30,58 @@
             <div class="row g-4">
                 {% for department in featured_departments %}
                     <div class="col-sm-3">
-                        <div class="departments-container d-flex flex-column align-items-start rounded p-3 h-100">
+                        <div class="departments-container d-flex flex-column align-items-start rounded-4 p-3 h-100">
                             <div class="department-icon rounded p-2">
-                                {{ department.iconB|safe }}
+                                {% if department.slug == 'general-medicine' %}
+                                    <i class="bi bi-heart-pulse"></i>
+                                {% elif department.slug == 'pediatrics' %}
+                                    <i class="bi bi-balloon-heart"></i>
+                                {% elif department.slug == 'cardiology' %}
+                                    <i class="bi bi-heart-pulse"></i>
+                                {% elif department.slug == 'dermatology' %}
+                                    <i class="bi bi-droplet"></i>
+                                {% elif department.slug == 'gynecology' %}
+                                    <i class="bi bi-gender-female"></i>
+                                {% elif department.slug == 'orthopedics' %}
+                                    <i class="bi bi-person-walking"></i>
+                                {% elif department.slug == 'dentistry' %}
+                                    <i class="bi bi-emoji-smile"></i>
+                                {% elif department.slug == 'radiology' %}
+                                    <i class="bi bi-radioactive"></i>
+                                {% endif %}
                             </div>
                             <div class="department-details">
                                 <div>
                                     <h5 class="pt-2">
-                                        <a href="{% url department.url %}" class="department-name">{{ department.name }}</a>
+                                        <a href="{% url 'main_app:'|add:department.url_name %}" class="department-name">
+                                            {{ department.name }}
+                                        </a>
                                     </h5>
 
                                     <p class="department-description text-secondary">
                                         {{ department.description }}
                                     </p>
                                 </div>
-
                                 <div>
                                     <ul class="department-activities">
-                                        <li>{{ department.itemA }}</li>
-                                        <li>{{ department.itemB }}</li>
-                                        <li>{{ department.itemC }}</li>
+                                        <li>{{ department.service_one }}</li>
+                                        <li>{{ department.service_two }}</li>
+                                        <li>{{ department.service_three }}</li>
                                     </ul>
                                 </div>
-
                                 <div class="learn-more-container">
-                                    <a href="{% url department.url %}" class="learn-more">
-                                        {{ department.learn }}
-                                        {{ department.arrow_icon|safe }}
+                                    <a href="{% url 'main_app:'|add:department.url_name %}" class="learn-more">
+                                        Learn More
+                                        <i class="bi bi-arrow-right"></i>
                                     </a>
                                 </div>
                             </div>
                         </div>
                     </div>
+                {% empty %}
+                    <p class="text-secondary">No departments are currently available.</p>
                 {% endfor %}
+
             </div>
         </div>
     </div>
@@ -92,11 +111,11 @@
                     <div class="col-12 col-md-6 col-lg-3">
                         <h6 class="footer-title">Quick links</h6>
                         <ul class="footer-links list-unstyled mb-0">
-                            <li><a href="{% url 'home_page' %}">Home</a></li>
-                            <li><a href="{% url 'about_us' %}">About</a></li>
-                            <li><a href="{% url 'departments' %}">Departments</a></li>
-                            <li><a href="{% url 'doctors' %}">Doctors</a></li>
-                            <li><a href="{% url 'contact-us' %}">Contact</a></li>
+                            <li><a href="{% url 'main_app:home_page' %}">Home</a></li>
+                            <li><a href="{% url 'main_app:about_us' %}">About</a></li>
+                            <li><a href="{% url 'main_app:departments' %}">Departments</a></li>
+                            <li><a href="{% url 'main_app:doctors' %}">Doctors</a></li>
+                            <li><a href="{% url 'main_app:contact-us' %}">Contact</a></li>
                         </ul>
                     </div>
 
