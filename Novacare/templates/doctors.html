@@ -29,8 +29,8 @@
             <div class="row g-4">
                 {% for doctor in profiledetails %}
                     <div class="col-sm-4 details-container">
-                        <img src="{% static doctor.image %}" alt="{{ doctor.alt }}" class="img-fluid rounded-top doctor-image">
-                        <div class="details-section rounded-bottom p-3">
+                        <img src="{% static doctor.image %}" alt="{{ doctor.alt }}" class="img-fluid rounded-top-4 doctor-image">
+                        <div class="details-section rounded-bottom-4 p-3">
                             <div class="name d-flex align-items-start justify-content-between">
                                 <div class="left-section">
                                     <p class="doctor-names">{{ doctor.name }}</p>
@@ -52,7 +52,7 @@
                             </div>
                             <div class="profile-book d-flex align-items-center justify-content-between pb-2">
                                 <div>
-                                    <a href="{% url 'doctor_profile' doctor.slug %}" class="view-profile p-2 rounded">View Profile</a>
+                                    <a href="{% url 'main_app:doctor_profile' doctor.slug %}" class="view-profile p-2 rounded">View Profile</a>
                                 </div>
                                 <div>
                                     <a href="" class="book-appointment-link p-2 rounded">Book Appointment</a>
@@ -90,11 +90,11 @@
                     <div class="col-12 col-md-6 col-lg-3">
                         <h6 class="footer-title">Quick links</h6>
                         <ul class="footer-links list-unstyled mb-0">
-                            <li><a href="{% url 'home_page' %}">Home</a></li>
-                            <li><a href="{% url 'about_us' %}">About</a></li>
-                            <li><a href="{% url 'departments' %}">Departments</a></li>
-                            <li><a href="{% url 'doctors' %}">Doctors</a></li>
-                            <li><a href="{% url 'contact-us' %}">Contact</a></li>
+                            <li><a href="{% url 'main_app:home_page' %}">Home</a></li>
+                            <li><a href="{% url 'main_app:about_us' %}">About</a></li>
+                            <li><a href="{% url 'main_app:departments' %}">Departments</a></li>
+                            <li><a href="{% url 'main_app:doctors' %}">Doctors</a></li>
+                            <li><a href="{% url 'main_app:contact-us' %}">Contact</a></li>
                         </ul>
                     </div>
 
