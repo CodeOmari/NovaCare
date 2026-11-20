@@ -31,7 +31,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-6">
-                    <div class="mission  rounded ps-3 pt-3 pb-3">
+                    <div class="mission  rounded-4 ps-3 pt-3 pb-3">
                         <svg  xmlns="http://www.w3.org/2000/svg" width="24" height="24"  
                             fill="#0097b2" viewBox="0 0 24 24" >
                             <!--Boxicons v3.0.8 https://boxicons.com | License  https://docs.boxicons.com/free-->
@@ -47,7 +47,7 @@
                     </div>
                 </div>
                 <div class="col-sm-6">
-                    <div class="vision  rounded ps-3 pt-3 pb-3">
+                    <div class="vision  rounded-4 ps-3 pt-3 pb-3">
                         <svg  xmlns="http://www.w3.org/2000/svg" width="24" height="24"  
                             fill="#0097b2" viewBox="0 0 24 24" >
                             <!--Boxicons v3.0.8 https://boxicons.com | License  https://docs.boxicons.com/free-->
@@ -74,7 +74,7 @@
                     <div class="row">
                         {% for value in corevalues %}
                             <div class="col-sm-3">
-                                <div class="service-container rounded ps-3 pt-3 pb-3 h-100">
+                                <div class="service-container rounded-4 ps-3 pt-3 pb-3 h-100">
                                     {{ value.icon|safe }}
                                     <div class="service-details mt-3">
                                         <h5 class="service-name">{{ value.name }}</h5>
@@ -100,7 +100,7 @@
                     <div class="row g-4">
                         {% for facility in facilities %}
                             <div class="col-sm-4">
-                                <div class="facility-container d-flex align-items-start rounded pt-3 ps-3 h-100">
+                                <div class="facility-container d-flex align-items-start rounded-4 pt-3 ps-3 h-100">
                                     <div class="department-icon rounded p-1 me-2">
                                         {{ facility.icon|safe }}
                                     </div>
@@ -143,11 +143,11 @@
                     <div class="col-12 col-md-6 col-lg-3">
                         <h6 class="footer-title">Quick links</h6>
                         <ul class="footer-links list-unstyled mb-0">
-                            <li><a href="{% url 'home_page' %}">Home</a></li>
-                            <li><a href="{% url 'about_us' %}">About</a></li>
-                            <li><a href="{% url 'departments' %}">Departments</a></li>
-                            <li><a href="{% url 'doctors' %}">Doctors</a></li>
-                            <li><a href="{% url 'contact-us' %}">Contact</a></li>
+                            <li><a href="{% url 'main_app:home_page' %}">Home</a></li>
+                            <li><a href="{% url 'main_app:about_us' %}">About</a></li>
+                            <li><a href="{% url 'main_app:departments' %}">Departments</a></li>
+                            <li><a href="{% url 'main_app:doctors' %}">Doctors</a></li>
+                            <li><a href="{% url 'main_app:contact-us' %}">Contact</a></li>
                         </ul>
                     </div>
 
