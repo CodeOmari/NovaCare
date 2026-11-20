@@ -4,88 +4,67 @@
     --nc-accent: #0f9fb0;
     --nc-border: #e3e8eb;
 }
-
 body {
     font-family: "Manrope", sans-serif;
     color: var(--nc-text);
     margin: 0;
 }
-
-/* ---------- Footer ---------- */
 .footer {
     background: #fff;
     border-top: 1px solid var(--nc-border);
     font-size: 14px;
 }
-
 .footer-details {
     padding: 48px 0 40px;
 }
-
-/* Logo */
 .footer-logo img {
     height: 52px;
     width: auto;
     display: block;
 }
-
 .footer-about {
     line-height: 1.55;
     margin-bottom: 20px;
     max-width: 260px;
 }
-
-/* Titles */
 .footer-title {
     color: var(--nc-heading);
     font-size: 15px;
     font-weight: 500;
     margin-bottom: 14px;
 }
-
-/* Links */
 .footer-links li,
 .footer-contact li,
 .footer-hours li {
     margin-bottom: 8px;
 }
-
 .footer a {
     color: var(--nc-text);
     text-decoration: none;
     transition: color 0.2s ease;
 }
-
 .footer a:hover {
     color: var(--nc-accent);
 }
-
-/* Contact */
 .footer-contact li {
     display: flex;
     align-items: center;
     gap: 10px;
 }
-
 .footer-contact i {
     font-size: 15px;
     color: var(--nc-heading);
     flex-shrink: 0;
 }
-
-/* Opening hours */
 .footer-hours li {
     display: flex;
     justify-content: space-between;
     gap: 16px;
 }
-
 .footer-hours li span:last-child {
     color: var(--nc-heading);
     white-space: nowrap;
 }
-
-/* Social icons */
 .footer-social a {
     width: 34px;
     height: 34px;
@@ -98,22 +77,17 @@ body {
     font-size: 14px;
     transition: all 0.2s ease;
 }
-
 .footer-social a:hover {
     background: var(--nc-accent);
     border-color: var(--nc-accent);
     color: #fff;
 }
-
-/* Bottom bar */
 .footer-bottom {
     border-top: 1px solid var(--nc-border);
     padding: 16px 0;
     text-align: center;
     font-size: 12px;
 }
-
-/* Small screens */
 @media (max-width: 575.98px) {
     .footer-details {
         padding: 36px 0 24px;
