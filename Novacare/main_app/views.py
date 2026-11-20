@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from .featured_departments import featured_departments
 from .general_medicine import generalmedicine_work
 from .cardiology import cardiologywork
@@ -14,42 +14,82 @@ from .profile import profiledetails
 from .choose_us import why_us
 from .core_values import corevalues
 from .facilities import facilities
-
+from .models import Department
 from django.http import Http404
+from .models import Department, Doctor
 # Create your views here.
 def home_page(request):
     return render(request, 'home-page.html', {'featured_departments': featured_departments, 'services': services, 'doctordetails': doctordetails, 'why_us': why_us })
 
 def general_medicine(request):
-    return render(request, 'general_medicine.html', {'generalmedicine_work': generalmedicine_work})
+    department = get_object_or_404(Department, slug='general-medicine')
+    doctors = Doctor.objects.filter(department=department, is_available=True)
+    services = department.services.all()
+    return render(request, 'general_medicine.html', {'department': department, 'doctors': doctors, 'services': services,})
 
 def pediatrics(request):
-    return render(request, 'pediatrics.html', {'pediatricwork': pediatricwork})
+    department = get_object_or_404(Department,slug='pediatrics')
+    doctors = Doctor.objects.filter(department=department,is_available=True)
+    services = department.services.all()
+    return render(request, 'pediatrics.html', {'department': department,'doctors': doctors,'services': services,'pediatricwork': pediatricwork,})
 
 def cardiology(request):
-    return render(request, 'cardiology.html', {'cardiologywork': cardiologywork })
+    department = get_object_or_404(Department,slug='cardiology')
+    doctors = Doctor.objects.filter(department=department,is_available=True)
+    services = department.services.all()
+    return render(request, 'cardiology.html', {'department': department,'doctors': doctors,'services': services,'cardiologywork': cardiologywork,})
 
 def dermatology(request):
-    return render(request, 'dermatology.html', {'dermatologywork': dermatologywork })
+    department = get_object_or_404(Department,slug='dermatology')
+    doctors = Doctor.objects.filter(department=department,is_available=True)
+    services = department.services.all()
+    return render(request, 'dermatology.html', {'department': department,'doctors': doctors,'services': services,'dermatologywork': dermatologywork,})
 
 def gynecology(request):
-    return render(request, 'gynecology.html', { 'gynecologywork': gynecologywork})
+    department = get_object_or_404(Department,slug='gynecology')
+    doctors = Doctor.objects.filter(department=department,is_available=True)
+    services = department.services.all()
+    return render(request, 'gynecology.html', {'department': department,'doctors': doctors,'services': services,'gynecologywork': gynecologywork,})
 
 def orthopedics(request):
-    return render(request, 'orthopedics.html', {'orthopedicswork': orthopedicswork})
+    department = get_object_or_404(Department,slug='orthopedics')
+    doctors = Doctor.objects.filter(department=department, is_available=True)
+    services = department.services.all()
+    return render(request, 'orthopedics.html', {'department': department,'doctors': doctors,'services': services,'orthopedicswork': orthopedicswork,})
+
 
 def dentistry(request):
-    return render(request, 'dentistry.html', {'dentistrywork': dentistrywork})
+    department = get_object_or_404(Department,slug='dentistry')
+    doctors = Doctor.objects.filter(department=department,is_available=True)
+    services = department.services.all()
+    return render(request, 'dentistry.html', {'department': department,'doctors': doctors,'services': services,'dentistrywork': dentistrywork,})
 
 def radiology(request):
-    return render(request, 'radiology.html', {'radiologywork': radiologywork})
-
+    department = get_object_or_404(Department,slug='radiology')
+    doctors = Doctor.objects.filter(department=department,is_available=True)
+    services = department.services.all()
+    return render(request, 'radiology.html', {'department': department,'doctors': doctors,'services': services,'radiologywork': radiologywork,})
 
 def about(request):
     return render(request, 'about.html', {'corevalues': corevalues, 'facilities': facilities })
 
 def departments(request):
-    return render(request, 'departments.html', {'featured_departments': featured_departments})
+    departments = Department.objects.all()
+
+    department_urls = {
+        'general-medicine': 'general_medicine',
+        'pediatrics': 'pediatrics',
+        'cardiology': 'cardiology',
+        'dermatology': 'dermatology',
+        'gynecology': 'gynecology',
+        'orthopedics': 'orthopedics',
+        'dentistry': 'dentistry',
+        'radiology': 'radiology',
+    }
+
+    for department in departments:
+        department.url_name = department_urls.get(department.slug)
+    return render(request, 'departments.html', {'featured_departments': departments})
 
 def doctors(request):
     return render(request, 'doctors.html', {'doctordetails': doctordetails, 'profiledetails': profiledetails })
