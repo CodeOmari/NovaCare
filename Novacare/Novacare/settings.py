@@ -15,6 +15,8 @@ from pathlib import Path
 
 load_dotenv()
 
+from django.contrib import messages
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -125,6 +127,8 @@ STATIC_URL = 'static/'
 STATIC_ROOT = BASE_DIR / 'static'
 STATICFILES_DIRS = [BASE_DIR / 'main_app/assets']
 
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
 
 # Email
 # https://docs.djangoproject.com/en/6.1/topics/email/#topic-email-configuration
@@ -141,3 +145,15 @@ AUTH_USER_MODEL = 'user_management.User'
 AUTHENTICATION_BACKENDS = [
     'user_management.backends.EmailOrWorkIDBackend',
 ]
+
+
+MESSAGE_TAGS = {
+    messages.DEBUG: 'alert-info',
+    messages.INFO: 'alert-info',
+    messages.SUCCESS: 'alert-success',
+    messages.WARNING: 'alert-warning',
+    messages.ERROR: 'alert-danger',
+}
+
+
+LOGOUT_REDIRECT_URL = 'main_app:home_page'
