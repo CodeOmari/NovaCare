@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Figtree:wght@300..900&family=Manrope:wght@200..800&display=swap');
-
 :root {
     --nc-primary: #004f71;
     --nc-accent: #0097b2;
@@ -8,53 +7,43 @@
     --nc-text: #5b6b76;
     --nc-heading: #050b0e;
 }
-
 * {
     margin: 0;
     padding: 0;
 }
-
 body {
     font-family: "Figtree", sans-serif;
     color: var(--nc-text);
 }
-
-/* ---------- Left panel ---------- */
 .register-left {
     background-color: var(--nc-primary);
     padding: 28px 36px;
 }
-
 .logo-box {
     background-color: #fff;
     width: 88px;
     height: 64px;
     padding: 6px;
 }
-
 .logo-box img {
     max-width: 100%;
     max-height: 100%;
 }
-
 .heart-icon {
     color: #1CA3BA;
     font-size: 2.4rem;
 }
-
 .portal-title {
     color: #fff;
     font-family: "Manrope", sans-serif;
     font-size: 1.9rem;
     font-weight: 700;
 }
-
 .portal-text {
     color: #c3d6de;
     font-size: 0.95rem;
     line-height: 1.7;
 }
-
 .left-copyright {
     color: #b7c7cf;
     font-size: 0.75rem;
