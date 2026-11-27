@@ -6,18 +6,17 @@ class EmailOrWorkIDBackend(ModelBackend):
     STAFF_ROLES = [
         'DOCTOR',
         'NURSE',
+        'NURSE MANAGER',
         'PHARMACIST',
         'RECEPTIONIST',
         'LABORATORY TECHNICIAN',
         'ACCOUNTANT',
+        'ADMISSIONS OFFICER',
         'ADMINISTRATOR',
         'STAFF',
     ]
 
-    EMAIL_ROLES = [
-        'PATIENT',
-        'ADMIN',
-    ]
+    EMAIL_ROLES = ['PATIENT', 'ADMIN',]
 
     def authenticate(self, request, username=None, password=None, **kwargs):
         User = get_user_model()
