@@ -10,14 +10,7 @@ class DepartmentAdmin(admin.ModelAdmin):
 
 @admin.register(Doctor)
 class DoctorAdmin(admin.ModelAdmin):
-    list_display = (
-        'name',
-        'department',
-        'role',
-        'experience',
-        'rating',
-        'is_available'
-    )
+    list_display = ('name','department', 'role', 'experience', 'rating', 'is_available')
     list_filter = ('department', 'is_available')
     search_fields = ('name', 'department__name')
     prepopulated_fields = {'slug': ('name',)}
