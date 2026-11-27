@@ -99,10 +99,6 @@ class PatientRegistrationForm(forms.Form):
             is_superuser=False
         )
 
-        PatientProfile.objects.create(
-            user=user,
-            full_name=self.cleaned_data['full_name'],
-            phone=self.cleaned_data['phone']
-        )
+        PatientProfile.objects.create(user=user, full_name=self.cleaned_data['full_name'], phone=self.cleaned_data['phone'])
 
         return user
