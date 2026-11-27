@@ -10,10 +10,12 @@ User = get_user_model()
 STAFF_ROLE_CHOICES = [
     ('DOCTOR', 'Doctor'),
     ('NURSE', 'Nurse'),
+    ('NURSE MANAGER', 'Nurse Manager'),
     ('PHARMACIST', 'Pharmacist'),
     ('RECEPTIONIST', 'Receptionist'),
     ('ACCOUNTANT', 'Accountant'),
     ('LABORATORY TECHNICIAN', 'Laboratory Technician'),
+    ('ADMISSIONS OFFICER', 'Admissions Officer'),
     ('ADMINISTRATOR', 'Administrator'),
 ]
 
@@ -25,7 +27,7 @@ class StaffCreationForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ('email', 'role', 'doctor_profile')
+        fields = ('first_name','last_name','email', 'role', 'doctor_profile')
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -72,6 +74,8 @@ class StaffChangeForm(forms.ModelForm):
     class Meta:
         model = User
         fields = (
+            'first_name',
+            'last_name',
             'email',
             'work_id',
             'role',
@@ -104,32 +108,11 @@ class StaffChangeForm(forms.ModelForm):
 
 @admin.register(User)
 class UserAdmin(admin.ModelAdmin):
-
-    list_display = (
-        'work_id',
-        'email',
-        'role',
-        'doctor_profile',
-        'is_active',
-    )
-
-    list_filter = (
-        'role',
-        'is_active',
-    )
-
-    search_fields = (
-        'work_id',
-        'email',
-    )
-
+    list_display = ('work_id', 'email', 'role', 'doctor_profile', 'is_active',)
+    list_filter = ('role', 'is_active',)
+    search_fields = ('work_id', 'email',)
     readonly_fields = ('work_id',)
-
-    filter_horizontal = (
-        'groups',
-        'user_permissions',
-    )
-
+    filter_horizontal = ('groups', 'user_permissions',)
     ordering = ('work_id',)
 
     def get_queryset(self, request):
@@ -139,11 +122,13 @@ class UserAdmin(admin.ModelAdmin):
             role__in=[
                 'DOCTOR',
                 'NURSE',
+                'NURSE MANAGER',
                 'PHARMACIST',
                 'RECEPTIONIST',
                 'ACCOUNTANT',
                 'LABORATORY TECHNICIAN',
                 'ADMINISTRATOR',
+                'ADMISSIONS OFFICER'
                 'STAFF',
                 'ADMIN',
             ]
@@ -162,6 +147,8 @@ class UserAdmin(admin.ModelAdmin):
             return (
                 ('Staff Account Details', {
                     'fields': (
+                        'first_name',
+                        'last_name',
                         'email',
                         'role',
                         'doctor_profile',
@@ -174,6 +161,8 @@ class UserAdmin(admin.ModelAdmin):
         return (
             ('Staff Information', {
                 'fields': (
+                    'first_name',
+                    'last_name',
                     'email',
                     'work_id',
                     'role',
