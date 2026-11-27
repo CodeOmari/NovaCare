@@ -6,12 +6,14 @@ class UserManager(BaseUserManager):
     STAFF_ROLES = [
         'DOCTOR',
         'NURSE',
+        'NURSE MANAGER',
         'PHARMACIST',
         'RECEPTIONIST',
         'ACCOUNTANT',
         'LABORATORY TECHNICIAN',
         'ADMINISTRATOR',
         'STAFF',
+        'ADMISSIONS OFFICER',
     ]
 
     def create_user(self, email=None, password=None, **extra_fields):
@@ -50,11 +52,13 @@ class UserManager(BaseUserManager):
         if role not in [
             'DOCTOR',
             'NURSE',
+            'NURSE MANAGER',
             'PHARMACIST',
             'RECEPTIONIST',
             'LABORATORY TECHNICIAN',
             'ACCOUNTANT',
             'ADMINISTRATOR',
+            'ADMISSIONS OFFICER',
         ]:
             raise ValueError("Invalid staff role.")
 
@@ -69,16 +73,20 @@ class User(AbstractBaseUser, PermissionsMixin):
         ('PATIENT', 'Patient'),
         ('DOCTOR', 'Doctor'),
         ('NURSE', 'Nurse'),
+        ('NURSE MANAGER', 'Nurse Manager'),
         ('PHARMACIST', 'Pharmacist'),
         ('RECEPTIONIST', 'Receptionist'),
         ('ACCOUNTANT', 'Accountant'),
         ('LABORATORY TECHNICIAN', 'Laboratory Technician'),
+        ('ADMISSIONS OFFICER', 'Admissions Officer'),
         ('ADMINISTRATOR', 'Administrator'),
 
         ('STAFF', 'Legacy Staff'),
         ('ADMIN', 'Legacy Administrator'),
     ]
 
+    first_name = models.CharField(max_length=150, blank=True)
+    last_name = models.CharField(max_length=150, blank=True)
     email = models.EmailField(unique=True, null=True, blank=True)
     work_id = models.CharField(max_length=30, unique=True, null=True, blank=True)
     role = models.CharField(max_length=25, choices=ROLE_CHOICES, default='PATIENT')
@@ -96,10 +104,12 @@ class User(AbstractBaseUser, PermissionsMixin):
         staff_roles = [
             'DOCTOR',
             'NURSE',
+            'NURSE MANAGER',
             'PHARMACIST',
             'RECEPTIONIST',
             'ACCOUNTANT',
             'LABORATORY TECHNICIAN',
+            'ADMISSIONS OFFICER',
             'ADMINISTRATOR',
             'STAFF',
         ]
@@ -114,5 +124,9 @@ class User(AbstractBaseUser, PermissionsMixin):
 
         super().save(*args, **kwargs)
 
+    def get_full_name(self):
+        return f"{self.first_name} {self.last_name}".strip()
+
     def __str__(self):
-        return self.email or self.work_id or str(self.pk)
+        full_name = f"{self.first_name} {self.last_name}".strip()
+        return full_name or self.email or self.work_id or str(self.pk)
