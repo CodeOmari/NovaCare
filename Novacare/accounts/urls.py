@@ -11,6 +11,7 @@ urlpatterns = [
     path('medical-records/', views.medical_records, name='medical-records'),
     path('prescriptions/', views.patient_prescriptions, name='patient-prescriptions'),
     path('laboratory-results/', views.patient_laboratory_results, name='patient-laboratory-results'),
+    path('billing/', views.patient_billing, name='patient-billing'),
 ]
 
 if settings.DEBUG:
