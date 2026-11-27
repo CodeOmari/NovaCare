@@ -2,17 +2,19 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from .forms import PatientRegistrationForm
 
-
 STAFF_ROLES = [
     'DOCTOR',
     'NURSE',
+    'NURSE MANAGER',
     'PHARMACIST',
     'RECEPTIONIST',
     'ACCOUNTANT',
     'LABORATORY TECHNICIAN',
+    'ADMISSIONS OFFICER',
     'ADMINISTRATOR',
     'STAFF',
 ]
+
 def create_account(request):
     if request.method == 'POST':
         form = PatientRegistrationForm(request.POST)
@@ -41,6 +43,15 @@ def staff_login(request):
 
             elif user.role == 'DOCTOR':
                 return redirect('staff:doctor-dashboard')
+
+            elif user.role == 'ACCOUNTANT':
+                return redirect('staff:accountant-dashboard')
+
+            elif user.role == 'NURSE':
+                return redirect('staff:nurse-dashboard')
+
+            elif user.role == 'NURSE MANAGER':
+                return redirect('staff:nurse-manager-dashboard')
 
             return redirect('staff:staff-dashboard')
 
