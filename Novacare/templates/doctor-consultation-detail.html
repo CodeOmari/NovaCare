@@ -1,0 +1,183 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consultation Details | NovaCare</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="{% static 'css/doctor-dashboard.css' %}">
+    <link rel="icon" href="{% static 'images/logo.jpeg' %}">
+</head>
+<body>
+<div class="container-fluid">
+    <div class="dashboard-wrapper">
+    <main class="main-area">
+        <header class="topbar">
+            <div class="page-heading">
+                <h6>Consultation details</h6>
+                <span>Doctor workspace</span>
+            </div>
+
+            <div class="topbar-right">
+                <div class="profile-details">
+                    <strong>{{ doctor.name }}</strong>
+                    <span>Doctor</span>
+                </div>
+            </div>
+        </header>
+
+        <section class="dashboard-content">
+            <div class="appointments-page-header">
+                <div>
+                    <span class="eyebrow">STAFF WORKSPACE</span>
+                    <h1>Consultation details</h1>
+                    <p>Recorded patient consultation and treatment information.</p>
+                </div>
+
+                <div class="appointments-header-actions">
+                    <a href="{% url 'staff:edit-consultation' consultation.id %}"
+                       class="primary-button">
+                        <i class="bi bi-pencil-square"></i>
+                        Edit consultation
+                    </a>
+
+                    <a href="{% url 'staff:doctor-consultations' %}"
+                       class="primary-outline-button">
+                        <i class="bi bi-arrow-left"></i>
+                        Back
+                    </a>
+                </div>
+            </div>
+
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+
+            <div class="appointments-table-card p-4 mb-4">
+                <h4>Patient information</h4>
+
+                <div class="row mt-3">
+                    <div class="col-md-6 mb-3">
+                        <strong>Patient name</strong>
+                        <p>{{ consultation.appointment.patient.patient_profile.full_name }}</p>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <strong>Email address</strong>
+                        <p>{{ consultation.appointment.patient.email }}</p>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <strong>Phone number</strong>
+                        <p>{{ consultation.appointment.patient.patient_profile.phone }}</p>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <strong>Department</strong>
+                        <p>{{ consultation.appointment.department.name }}</p>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <strong>Consultation date</strong>
+                        <p>{{ consultation.date|date:"d M Y, g:i A" }}</p>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <strong>Appointment time</strong>
+                        <p>{{ consultation.appointment.appointment_time|time:"g:i A" }}</p>
+                    </div>
+                </div>
+
+                <hr>
+
+                <h4>Consultation notes</h4>
+
+                <div class="mt-3 mb-3">
+                    <strong>Symptoms reported</strong>
+                    <p>{{ consultation.symptoms|default:"No symptoms recorded."|linebreaksbr }}</p>
+                </div>
+
+                <div class="mb-3">
+                    <strong>Examination notes</strong>
+                    <p>{{ consultation.examination_notes|default:"No examination notes recorded."|linebreaksbr }}</p>
+                </div>
+
+                <hr>
+
+                <h4>Diagnosis and treatment</h4>
+
+                <div class="mt-3 mb-3">
+                    <strong>Diagnosis</strong>
+                    <p>{{ consultation.diagnosis|default:"Not recorded."|linebreaksbr }}</p>
+                </div>
+
+                <div class="mb-3">
+                    <strong>Treatment plan</strong>
+                    <p>{{ consultation.treatment_plan|default:"Not recorded."|linebreaksbr }}</p>
+                </div>
+
+                <div class="mb-3">
+                    <strong>Follow-up date</strong>
+                    <p>
+                        {% if consultation.follow_up_date %}
+                            {{ consultation.follow_up_date|date:"d M Y" }}
+                        {% else %}
+                            No follow-up scheduled.
+                        {% endif %}
+                    </p>
+                </div>
+            </div>
+            <div class="appointments-table-card p-4">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h4>Prescriptions</h4>
+
+                    <a href="{% url 'staff:issue-prescription' consultation.id %}"
+                       class="primary-button">
+                        <i class="bi bi-plus-lg"></i>
+                        Add medicine
+                    </a>
+                </div>
+
+                {% if prescriptions %}
+                    <div class="table-responsive">
+                        <table class="table align-middle">
+                            <thead>
+                                <tr>
+                                    <th>Medicine</th>
+                                    <th>Quantity</th>
+                                    <th>Dosage</th>
+                                    <th>Duration</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                {% for prescription in prescriptions %}
+                                    <tr>
+                                        <td>{{ prescription.medication_name }}</td>
+                                        <td>{{ prescription.quantity }}</td>
+                                        <td>{{ prescription.dosage_frequency }}</td>
+                                        <td>{{ prescription.duration_days }} days</td>
+                                        <td>{{ prescription.get_status_display }}</td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                {% else %}
+                    <p class="text-muted mb-0">No medicines have been prescribed for this consultation.</p>
+                {% endif %}
+            </div>
+        </section>
+    </main>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+</div>
+</body>
+</html>
