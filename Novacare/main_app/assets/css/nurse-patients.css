@@ -1,0 +1,106 @@
+.patients-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 22px;
+    flex-wrap: wrap;
+}
+.patient-search {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 9px;
+    padding: 0 13px;
+    min-width: 280px;
+}
+.patient-search input {
+    border: none;
+    outline: none;
+    padding: 12px 0;
+    width: 100%;
+    background: transparent;
+}
+.patient-search button {
+    border: none;
+    background: none;
+    color: #004f71;
+}
+.patient-count {
+    font-size: 14px;
+    color: #64748b;
+}
+.patient-table-card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 22px;
+    border: 1px solid #edf0f3;
+}
+.patient-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+.patient-table th {
+    color: #64748b;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 14px 12px;
+    border-bottom: 1px solid #edf0f3;
+    white-space: nowrap;
+}
+.patient-table td {
+    padding: 16px 12px;
+    font-size: 13px;
+    color: #475569;
+    border-bottom: 1px solid #f1f3f5;
+    vertical-align: middle;
+}
+.patient-table tr:last-child td {
+    border-bottom: none;
+}
+.patient-name {
+    font-weight: 700;
+    color: #263746 !important;
+}
+.patient-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: #e8f2f6;
+    color: #004f71;
+    font-weight: 700;
+    margin-right: 9px;
+}
+.assignment-badge {
+    background: #e8f5ed;
+    color: #23834b;
+    padding: 6px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 700;
+}
+.empty-state {
+    text-align: center;
+    padding: 55px 20px;
+    color: #64748b;
+}
+.empty-state i {
+    font-size: 38px;
+    color: #94a3b8;
+    display: block;
+    margin-bottom: 12px;
+}
+@media (max-width: 768px) {
+    .patient-table-card {
+        padding: 12px;
+    }
+    .patient-search {
+        min-width: 100%;
+    }
+}
