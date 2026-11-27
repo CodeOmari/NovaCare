@@ -96,14 +96,11 @@ def doctors(request):
 
 
 def profile(request, slug):
-    doctor = next(
-        (doctor for doctor in profiledetails if doctor['slug'] == slug),
-        None
-    )
+    doctor = next((doctor for doctor in profiledetails if doctor['slug'] == slug),None)
 
     if doctor is None:
         raise Http404("Doctor not found")
-
+    
     return render(request, 'profile.html', {'doctor': doctor})
 
 def contact(request):
