@@ -1,0 +1,119 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Consultation | NovaCare</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="{% static 'css/doctor-dashboard.css' %}">
+    <link rel="stylesheet" href="{% static 'css/new-consultation.css' %}">
+    <link rel="icon" href="{% static 'images/logo.jpeg' %}">
+</head>
+<body>
+    <div class="dashboard-wrapper">
+        <main class="main-area">
+            <header class="topbar">
+                <div class="page-heading">
+                    <h6>Edit consultation</h6>
+                    <span>Doctor workspace</span>
+                </div>
+
+                <div class="topbar-right">
+                    <div class="profile-details">
+                        <strong>{{ doctor.name }}</strong>
+                        <span>Doctor</span>
+                    </div>
+                </div>
+            </header>
+
+            <section class="dashboard-content">
+                <div class="appointments-page-header">
+                    <div>
+                        <span class="eyebrow">STAFF WORKSPACE</span>
+                        <h1>Edit consultation</h1>
+                        <p>Update the recorded consultation information.</p>
+                    </div>
+
+                    <a href="{% url 'staff:doctor-consultation-detail' consultation.id %}" class="primary-outline-button">
+                        <i class="bi bi-arrow-left"></i>
+                        Back to details
+                    </a>
+                </div>
+
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert alert-{{ message.tags }}">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+
+                <form method="POST" class="consultation-form">
+                    {% csrf_token %}
+                    <div class="form-section">
+                        <h3><i class="bi bi-person-vcard"></i> Patient details</h3>
+
+                        <div class="form-group">
+                            <label>Patient name</label>
+                            <input type="text" value="{{ consultation.appointment.patient.patient_profile.full_name }}" readonly>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Consultation date</label>
+                            <input type="text" value="{{ consultation.date|date:'d M Y' }}" readonly>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h3><i class="bi bi-clipboard2-pulse"></i> Consultation notes</h3>
+
+                        <div class="form-group">
+                            <label for="symptoms">Symptoms reported</label>
+                            <textarea name="symptoms" id="symptoms" rows="4">{{ consultation.symptoms }}</textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="examination_notes">Examination notes *</label>
+                            <textarea name="examination_notes" id="examination_notes" rows="5" required>{{ consultation.examination_notes }}</textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h3><i class="bi bi-journal-medical"></i> Diagnosis and treatment</h3>
+
+                        <div class="form-group">
+                            <label for="diagnosis">Diagnosis *</label>
+                            <textarea name="diagnosis" id="diagnosis" rows="4" required>{{ consultation.diagnosis }}</textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="treatment_plan">Treatment plan *</label>
+                            <textarea name="treatment_plan" id="treatment_plan" rows="5" required>{{ consultation.treatment_plan }}</textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="follow_up_date">Follow-up date</label>
+                            <input type="date" name="follow_up_date" id="follow_up_date" value="{{ consultation.follow_up_date|date:'Y-m-d' }}">
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <a href="{% url 'staff:doctor-consultation-detail' consultation.id %}" class="cancel-button">
+                            Cancel
+                        </a>
+
+                        <button type="submit" class="primary-button">
+                            <i class="bi bi-check-circle"></i>
+                            Save changes
+                        </button>
+                    </div>
+                </form>
+            </section>
+        </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
