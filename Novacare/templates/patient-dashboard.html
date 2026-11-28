@@ -1,0 +1,274 @@
+{% extends 'base_patient.html' %}
+
+{% block title %}Dashboard | NovaCare{% endblock %}
+
+{% block breadcrumb %}Dashboard{% endblock %}
+
+{% block patient_content %}
+    <div class="dashboard-welcome">
+        <div>
+            <h2>Welcome back, {{ patient.full_name }}</h2>
+            <p>{{ request.user.email }}</p>
+        </div>
+
+        <a href="{% url 'accounts:patient-appointments' %}" class="book-appointment-btn">
+            <i class="bi bi-calendar-plus"></i>
+            Book appointment
+        </a>
+    </div>
+
+    <div class="dashboard-stats">
+        <div class="stat-card">
+            <div class="stat-header">
+                <span>Total appointments</span>
+
+                <div class="stat-icon appointments-icon">
+                    <i class="bi bi-calendar3"></i>
+                </div>
+            </div>
+
+            <h3>{{ total_appointments }}</h3>
+            <p>Total appointments</p>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-header">
+                <span>Active prescriptions</span>
+
+                <div class="stat-icon prescriptions-icon">
+                    <i class="bi bi-capsule"></i>
+                </div>
+            </div>
+
+            <h3>{{ active_prescriptions }}</h3>
+            <p>Current medications</p>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-header">
+                <span>Laboratory results</span>
+
+                <div class="stat-icon laboratory-icon">
+                    <i class="bi bi-virus"></i>
+                </div>
+            </div>
+
+            <h3>0</h3>
+            <p>Available reports</p>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-header">
+                <span>Outstanding balance</span>
+
+                <div class="stat-icon billing-icon">
+                    <i class="bi bi-wallet2"></i>
+                </div>
+            </div>
+
+            <h3>KES 0</h3>
+            <p>Payment due</p>
+        </div>
+    </div>
+
+    <div class="dashboard-main-grid">
+        <section class="next-appointment-section">
+            <div class="section-heading">
+                <h5>Your next appointment</h5>
+                <a href="{% url 'accounts:patient-appointments' %}" class="view-all-link">
+                    View all <i class="bi bi-arrow-right"></i>
+                </a>
+            </div>
+
+            <div class="appointment-card">
+                {% if next_appointment %}
+                    <div class="appointment-date">
+                        <div>
+                            <i class="bi bi-calendar3"></i>
+                            <span>Upcoming appointment</span>
+                        </div>
+
+                        <span class="appointment-status">
+                            {{ next_appointment.get_status_display }}
+                        </span>
+                    </div>
+
+                    <div class="appointment-details">
+
+                        <div class="appointment-doctor">
+                            <div class="doctor-icon">
+                                <i class="bi bi-person-badge"></i>
+                            </div>
+
+                            <div>
+                                <h6>{{ next_appointment.doctor.name }}</h6>
+                                <p>{{ next_appointment.department.name }}</p>
+                            </div>
+                        </div>
+
+                        <div class="appointment-info">
+                            <div>
+                                <i class="bi bi-calendar-event"></i>
+                                <span>
+                                    {{ next_appointment.appointment_date|date:"F j, Y" }}
+                                </span>
+                            </div>
+
+                            <div>
+                                <i class="bi bi-clock"></i>
+                                <span>
+                                    {{ next_appointment.appointment_time|time:"g:i A" }}
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="appointment-reason">
+                            <strong>Reason for appointment</strong>
+                            <p>{{ next_appointment.reason }}</p>
+                        </div>
+                    </div>
+                {% else %}
+
+                    <div class="appointment-date">
+                        <div>
+                            <i class="bi bi-calendar3"></i>
+                            <span>Upcoming appointments</span>
+                        </div>
+
+                        <span class="appointment-status">
+                            No appointments
+                        </span>
+                    </div>
+
+                    <div class="appointment-empty">
+                        <div class="empty-icon">
+                            <i class="bi bi-calendar2-check"></i>
+                        </div>
+
+                        <h6>No upcoming appointments</h6>
+
+                        <p>
+                            You don't have any scheduled appointments at the moment.
+                            Book an appointment to get started.
+                        </p>
+
+                        <a href="{% url 'accounts:patient-appointments' %}" class="empty-book-btn">
+                            <i class="bi bi-calendar-plus"></i>
+                            Book an appointment
+                        </a>
+                    </div>
+                {% endif %}
+            </div>
+        </section>
+
+        <section class="quick-actions-section">
+            <div class="section-heading">
+                <h5>Quick actions</h5>
+            </div>
+
+            <div class="quick-actions-grid">
+                <div class="quick-action-card">
+                    <div class="quick-action-icon">
+                        <i class="bi bi-calendar-plus"></i>
+                    </div>
+
+                    <h6>Book appointment</h6>
+                </div>
+
+
+                <div class="quick-action-card">
+                    <div class="quick-action-icon">
+                        <i class="bi bi-file-earmark-medical"></i>
+                    </div>
+
+                    <h6>Medical records</h6>
+                </div>
+
+                <div class="quick-action-card">
+                    <div class="quick-action-icon">
+                        <i class="bi bi-capsule"></i>
+                    </div>
+
+                    <h6>Prescriptions</h6>
+                </div>
+
+                <div class="quick-action-card">
+                    <div class="quick-action-icon">
+                        <i class="bi bi-wallet2"></i>
+                    </div>
+
+                    <h6>Make payment</h6>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div class="recent-activity-grid">
+        <section class="recent-section">
+            <div class="section-heading">
+                <h5>Recent prescriptions</h5>
+                <span class="view-all-link">
+                    <a href="{% url 'accounts:patient-prescriptions' %}" class="view-all-link">
+                        View all <i class="bi bi-arrow-right"></i>
+                    </a>
+                </span>
+            </div>
+
+            <div class="activity-list">
+                <div class="activity-empty">
+                    <i class="bi bi-capsule"></i>
+                    <div>
+                        <h6>No prescriptions available</h6>
+                        <p>Your prescribed medications will appear here.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="recent-section">
+            <div class="section-heading">
+                <h5>Recent lab results</h5>
+                <span class="view-all-link">
+                    <a href="{% url 'accounts:patient-laboratory-results' %}" class="view-all-link">
+                        View all <i class="bi bi-arrow-right"></i>
+                    </a>
+                </span>
+            </div>
+
+            <div class="activity-list">
+                <div class="activity-empty">
+                    <i class="bi bi-virus"></i>
+                    <div>
+                        <h6>No laboratory results available</h6>
+                        <p>Your laboratory reports will appear here when available.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <section class="notifications-section">
+        <div class="section-heading">
+            <h5>Recent notifications</h5>
+            <span class="view-all-link">
+                View all <i class="bi bi-arrow-right"></i>
+            </span>
+        </div>
+
+        <div class="notifications-grid">
+            <div class="notification-empty-card no-notifications">
+                <div class="notification-card-header">
+                    <i class="bi bi-bell"></i>
+                </div>
+
+                <h6>No notifications yet</h6>
+
+                <p>
+                    Appointment confirmations, laboratory updates,
+                    prescription changes and other important messages
+                    will appear here.
+                </p>
+            </div>
+        </div>
+    </section>
+{% endblock %}
