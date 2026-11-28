@@ -1,0 +1,480 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patients | NovaCare</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="{% static 'css/receptionist-dashboard.css' %}">
+    <link rel="stylesheet" href="{% static 'css/receptionist-patients.css' %}">
+    <link rel="icon" href="{% static 'images/logo.jpeg' %}">
+</head>
+<body>
+    <div class="staff-layout">
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-logo">
+                <div class="logo-mark">
+                    <span>NOVACARE</span>
+                </div>
+            </div>
+
+            <div class="sidebar-label">STAFF WORKSPACE</div>
+
+            <nav class="sidebar-nav">
+                <a href="{% url 'staff:receptionist-dashboard' %}" class="nav-link">
+                    <i class="bi bi-grid"></i>
+                    <span>Overview</span>
+                </a>
+
+                <a href="{% url 'staff:receptionist-patients' %}" class="nav-link active">
+                    <i class="bi bi-people"></i>
+                    <span>Patients</span>
+                </a>
+
+                <a href="{% url 'staff:receptionist-appointments' %}" class="nav-link">
+                    <i class="bi bi-calendar3"></i>
+                    <span>Appointments</span>
+                </a>
+
+                <a href="{% url 'staff:receptionist-doctors' %}" class="nav-link">
+                    <i class="bi bi-briefcase"></i>
+                    <span>Doctors</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-bottom">
+                <a href="#" class="nav-link">
+                    <i class="bi bi-gear"></i>
+                    <span>Settings</span>
+                </a>
+
+                <form method="POST" action="{% url 'user_management:logout' %}" class="sidebar-logout-form">
+                    {% csrf_token %}
+                    <button type="submit" class="sidebar-logout-button nav-link">
+                        <i class="bi bi-box-arrow-left"></i>
+                        <span>Logout</span>
+                    </button>
+                </form>
+
+                <div class="demo-label">
+                    <i class="bi bi-activity"></i>
+                    <span>NovaCare workspace</span>
+                </div>
+            </div>
+        </aside>
+
+        <div class="main-area">
+            <header class="topbar">
+                <div class="topbar-heading">
+                    <button class="sidebar-toggle" type="button" aria-label="Toggle sidebar" id="sidebarToggle">
+                        <i class="bi bi-layout-sidebar-inset"></i>
+                    </button>
+
+                    <div>
+                        <h6>Patients</h6>
+                        <span>Receptionist</span>
+                    </div>
+                </div>
+
+                <div class="topbar-actions">
+                    <button class="notification-button" type="button" aria-label="Notifications">
+                        <i class="bi bi-bell"></i>
+                        <span class="notification-dot"></span>
+                    </button>
+
+                    <div class="topbar-divider"></div>
+
+                    <div class="profile-avatar">
+                        {{ request.user.get_full_name|default:"R"|first|upper }}
+                    </div>
+
+                    <div class="profile-details">
+                        <strong>{{ request.user.get_full_name|default:"Receptionist" }}</strong>
+                        <span>Receptionist</span>
+                    </div>
+
+                    <i class="bi bi-chevron-down profile-chevron"></i>
+                </div>
+            </header>
+
+            <main class="dashboard-content">
+                <div class="appointments-page-header">
+                    <div>
+                        <span class="eyebrow">STAFF WORKSPACE</span>
+                        <h1>Patients</h1>
+                        <p>{{ today|date:"Y-m-d" }} · {{ patients|length }} registered patients</p>
+                    </div>
+
+                    <div class="appointments-header-actions">
+                        <button class="primary-outline-button" type="button" id="exportPatients">
+                            <i class="bi bi-download"></i>
+                            Export
+                        </button>
+                    </div>
+                </div>
+
+                <div class="appointments-filters">
+                    <div class="search-wrap">
+                        <i class="bi bi-search"></i>
+
+                        <input type="text" id="patientSearch" placeholder="Search patients..." autocomplete="off">
+                    </div>
+
+                    <div class="patient-status-filter">
+                        <select id="statusFilter">
+                            <option value="all">All statuses</option>
+                            <option value="pending">Pending</option>
+                            <option value="approved">Approved</option>
+                            <option value="completed">Completed</option>
+                            <option value="rejected">Rejected</option>
+                            <option value="cancelled">Cancelled</option>
+                            <option value="no-appointment">No appointment</option>
+                        </select>
+                    </div>
+
+                    <span class="records-count" id="recordsCount">
+                        {{ patients|length }} records
+                    </span>
+                </div>
+
+                <div class="appointments-table-wrapper appointments-table-card">
+                    <table class="appointments-table" id="patientsTable">
+                        <thead>
+                            <tr>
+                                <th>Patient name</th>
+                                <th>Doctor treating</th>
+                                <th>Status</th>
+                                <th>Phone number</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            {% for patient in patients %}
+                                {% with latest_appointment=patient.user.appointments.all|first %}
+                                <tr data-status="{% if latest_appointment %}{{ latest_appointment.status|lower }}{% else %}no-appointment{% endif %}">
+                                    <td class="patient-name">
+                                        {{ patient.full_name }}
+                                    </td>
+
+                                    <td>
+                                        {% if latest_appointment %}
+                                            Dr. {{ latest_appointment.doctor.name }}
+                                        {% else %}
+                                            <span class="not-assigned">Not assigned</span>
+                                        {% endif %}
+                                    </td>
+
+                                    <td>
+                                        {% if latest_appointment %}
+                                            <span class="status-badge status-{{ latest_appointment.status|lower }}">
+                                                {{ latest_appointment.get_status_display }}
+                                            </span>
+                                        {% else %}
+                                            <span class="status-badge status-no-appointment">
+                                                No appointment
+                                            </span>
+                                        {% endif %}
+                                    </td>
+
+                                    <td>
+                                        {{ patient.phone }}
+                                    </td>
+
+                                    <td class="table-actions">
+                                        <button type="button" class="action-btn" title="View patient details and history" data-bs-toggle="modal" data-bs-target="#patientModal{{ patient.id }}">
+                                            <i class="bi bi-eye"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                            {% endwith %}
+                            {% empty %}
+                                <tr>
+                                    <td colspan="5" class="empty-state">
+                                        <i class="bi bi-people"></i>
+                                        No patients found.
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+
+                    <div class="patients-no-results" id="noResults" hidden>
+                        <i class="bi bi-search"></i>
+                        <p>No patients match your search.</p>
+                    </div>
+                </div>
+
+                <footer class="dashboard-footer">
+                    <p class="mb-0">&copy; 2026 Novacare. All rights reserved.</p>
+                </footer>
+            </main>
+        </div>
+    </div>
+
+    {% for patient in patients %}
+        <div class="modal fade patient-details-modal" id="patientModal{{ patient.id }}" tabindex="-1" aria-labelledby="patientModalLabel{{ patient.id }}" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <div>
+                            <span class="eyebrow">PATIENT RECORD</span>
+
+                            <h5 class="modal-title" id="patientModalLabel{{ patient.id }}">
+                                {{ patient.full_name }}
+                            </h5>
+                        </div>
+
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+
+                    <div class="modal-body">
+                        <div class="patient-profile-heading">
+
+                            <div class="patient-profile-icon">
+                                <i class="bi bi-person"></i>
+                            </div>
+
+                            <div>
+                                <h5>{{ patient.full_name }}</h5>
+                                <p>Registered patient</p>
+                            </div>
+                        </div>
+
+                        <div class="patient-details-grid">
+                            <div class="patient-detail-item">
+                                <span>Full name</span>
+                                <strong>{{ patient.full_name }}</strong>
+                            </div>
+
+                            <div class="patient-detail-item">
+                                <span>Phone number</span>
+                                <strong>{{ patient.phone }}</strong>
+                            </div>
+
+                            <div class="patient-detail-item">
+                                <span>Email address</span>
+                                <strong>{{ patient.user.email }}</strong>
+                            </div>
+
+                            <div class="patient-detail-item">
+                                <span>Registration date</span>
+                                <strong>{{ patient.created_at|date:"d M Y" }}</strong>
+                            </div>
+                        </div>
+
+                        <div class="patient-history-section">
+                            <div class="patient-section-heading">
+                                <h6>Current / Latest Appointment</h6>
+                            </div>
+
+                            {% with latest_appointment=patient.user.appointments.all|first %}
+                                {% if latest_appointment %}
+                                    <div class="latest-appointment-card">
+                                        <div class="latest-appointment-top">
+                                            <div>
+                                                <span>Attending doctor</span>
+                                                <strong>Dr. {{ latest_appointment.doctor.name }}</strong>
+                                            </div>
+
+                                            <span class="status-badge status-{{ latest_appointment.status|lower }}">
+                                                {{ latest_appointment.get_status_display }}
+                                            </span>
+                                        </div>
+
+                                        <div class="latest-appointment-details">
+                                            <div>
+                                                <span>Department</span>
+                                                <strong>{{ latest_appointment.department.name }}</strong>
+                                            </div>
+
+                                            <div>
+                                                <span>Date</span>
+                                                <strong>{{ latest_appointment.appointment_date|date:"d M Y" }}</strong>
+                                            </div>
+
+                                            <div>
+                                                <span>Time</span>
+                                                <strong>{{ latest_appointment.appointment_time|time:"g:i A" }}</strong>
+                                            </div>
+                                        </div>
+
+                                        <div class="appointment-reason-section">
+                                            <span>Reason for appointment</span>
+                                            <p>{{ latest_appointment.reason }}</p>
+                                        </div>
+                                    </div>
+                                {% else %}
+                                    <div class="patient-empty-history">
+                                        <i class="bi bi-calendar-x"></i>
+                                        <p>This patient has no appointments yet.</p>
+                                    </div>
+                                {% endif %}
+                            {% endwith %}
+                        </div>
+
+                        <div class="patient-history-section">
+                            <div class="patient-section-heading">
+                                <h6>Consultation & Appointment History</h6>
+
+                                <span>
+                                    {{ patient.user.appointments.all|length }} records
+                                </span>
+                            </div>
+
+                            {% for appointment in patient.user.appointments.all %}
+                                <div class="history-item">
+                                    <div class="history-indicator">
+                                        <i class="bi bi-calendar-check"></i>
+                                    </div>
+
+                                    <div class="history-content">
+                                        <div class="history-item-heading">
+                                            <strong>
+                                                Dr. {{ appointment.doctor.name }}
+                                            </strong>
+
+                                            <span class="status-badge status-{{ appointment.status|lower }}">
+                                                {{ appointment.get_status_display }}
+                                            </span>
+                                        </div>
+
+                                        <p>{{ appointment.department.name }}</p>
+
+                                        <div class="history-meta">
+                                            <span>
+                                                <i class="bi bi-calendar3"></i>
+                                                {{ appointment.appointment_date|date:"d M Y" }}
+                                            </span>
+
+                                            <span>
+                                                <i class="bi bi-clock"></i>
+                                                {{ appointment.appointment_time|time:"g:i A" }}
+                                            </span>
+                                        </div>
+
+                                        <div class="history-reason">
+                                            {{ appointment.reason }}
+                                        </div>
+                                    </div>
+                                </div>
+                            {% empty %}
+                                <div class="patient-empty-history">
+                                    <i class="bi bi-journal-x"></i>
+                                    <p>No appointment history available.</p>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="modal-close-button" data-bs-dismiss="modal">
+                            Close
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const toggleButton = document.getElementById('sidebarToggle');
+        const sidebar = document.getElementById('sidebar');
+
+        toggleButton.addEventListener('click', () => {
+            sidebar.classList.toggle('sidebar-open');
+        });
+
+        const searchInput = document.getElementById('patientSearch');
+        const statusFilter = document.getElementById('statusFilter');
+        const table = document.getElementById('patientsTable');
+        const tableRows = table.querySelectorAll('tbody tr[data-status]');
+        const recordsCount = document.getElementById('recordsCount');
+        const noResults = document.getElementById('noResults');
+
+        function applyFilters() {
+            const term = searchInput.value.toLowerCase().trim();
+            const status = statusFilter.value;
+
+            let visibleCount = 0;
+
+            tableRows.forEach(row => {
+                const rowText = row.textContent.toLowerCase();
+                const rowStatus = row.dataset.status;
+
+                const matchesSearch = rowText.includes(term);
+                const matchesStatus = status === 'all' || rowStatus === status;
+
+                const shouldDisplay = matchesSearch && matchesStatus;
+
+                row.style.display = shouldDisplay ? '' : 'none';
+
+                if (shouldDisplay) {
+                    visibleCount++;
+                }
+
+            });
+
+            recordsCount.textContent = `${visibleCount} records`;
+            noResults.hidden = visibleCount !== 0;
+            table.style.display = visibleCount === 0 ? 'none' : '';
+        }
+
+        searchInput.addEventListener('input', applyFilters);
+        statusFilter.addEventListener('change', applyFilters);
+
+        document.getElementById('exportPatients').addEventListener('click', () => {
+            const visibleRows = Array.from(tableRows).filter(
+                row => row.style.display !== 'none'
+            );
+
+            if (visibleRows.length === 0) {
+                alert('There are no patient records to export.');
+                return;
+            }
+
+            const csvRows = [
+                ['Patient Name', 'Doctor', 'Appointment Status', 'Phone Number']
+            ];
+
+            visibleRows.forEach(row => {
+
+                const cells = row.querySelectorAll('td');
+
+                const values = [
+                    cells[0].textContent.trim(),
+                    cells[1].textContent.trim(),
+                    cells[2].textContent.trim(),
+                    cells[3].textContent.trim()
+                ];
+                csvRows.push(values);
+            });
+
+            const csvContent = csvRows
+                .map(row => row.map(value => `"${value.replace(/"/g, '""')}"`).join(','))
+                .join('\n');
+
+            const blob = new Blob([csvContent], {
+                type: 'text/csv;charset=utf-8;'
+            });
+
+            const link = document.createElement('a');
+            const url = URL.createObjectURL(blob);
+
+            link.href = url;
+            link.download = 'novacare-patients.csv';
+
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+
+            URL.revokeObjectURL(url);
+        });
+    </script>
+</body>
+</html>
