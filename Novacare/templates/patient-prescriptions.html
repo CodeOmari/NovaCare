@@ -1,0 +1,86 @@
+{% extends 'base_patient.html' %}
+{% load static %}
+
+{% block title %}Prescriptions | NovaCare{% endblock %}
+
+{% block breadcrumb %}
+    <span style="color: #627b8d; margin: 0 8px;">/</span> Prescriptions
+{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/prescriptions.css' %}">
+{% endblock %}
+
+{% block patient_content %}
+    <div class="prescriptions-header">
+        <h2>Prescriptions</h2>
+        <p>Your prescribed medications and treatment schedule.</p>
+    </div>
+
+    <div class="prescriptions-grid">
+        {% for prescription in prescriptions %}
+            <div class="prescription-card">
+                <div class="card-top">
+                    <div class="pill-icon">
+                        <i class="bi bi-capsule"></i>
+                    </div>
+
+                    <span class="status-badge status-{{ prescription.status|lower }}">
+                        {{ prescription.get_status_display }}
+                    </span>
+                </div>
+
+                <div class="prescription-info">
+                    <h3>{{ prescription.medication_name }}</h3>
+
+                    <p class="doctor-name">
+                        Dr. {{ prescription.consultation.appointment.doctor.name }}
+                    </p>
+
+                    <p class="department-name">
+                        {{ prescription.consultation.appointment.department.name }}
+                    </p>
+                </div>
+
+                <div class="prescription-details-grid">
+                    <div class="detail-block">
+                        <h5>Dosage & frequency</h5>
+                        <p>{{ prescription.dosage_frequency|default:"-" }}</p>
+                    </div>
+
+                    <div class="detail-block">
+                        <h5>Duration</h5>
+                        <p>
+                            {{ prescription.start_date|date:"d M Y" }} &ndash; {{ prescription.end_date|date:"d M Y" }}
+                        </p>
+                    </div>
+
+                    <div class="detail-block">
+                        <h5>Prescription date</h5>
+                        <p>{{ prescription.prescribed_date|date:"d M Y" }}</p>
+                    </div>
+
+                    <div class="detail-block">
+                        <h5>Prescription number</h5>
+                        <p>{{ prescription.prescription_number }}</p>
+                    </div>
+
+                </div>
+
+                {% if prescription.instructions %}
+                    <div class="prescription-instructions">
+                        <h5>Additional instructions</h5>
+                        <p>{{ prescription.instructions|linebreaksbr }}</p>
+                    </div>
+                {% endif %}
+            </div>
+        {% empty %}
+            <div class="prescription-card empty-prescriptions" style="grid-column: 1 / -1; text-align: center; padding: 40px;">
+                <i class="bi bi-capsule" style="font-size: 32px; color: #627b8d;"></i>
+                <p style="color: #627b8d; margin: 12px 0 0;">
+                    No prescriptions found.
+                </p>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
