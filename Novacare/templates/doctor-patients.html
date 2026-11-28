@@ -1,0 +1,242 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patients | NovaCare</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="icon" href="{% static 'images/logo.jpeg' %}">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/doctor-dashboard.css' %}">
+</head>
+<body>
+<div class="dashboard-wrapper">
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-brand">
+            <div class="brand-logo">
+                <img src="{% static 'images/hospital-logo.png' %}" alt="novacare logo" class="img-fluid p-1">
+            </div>
+        </div>
+
+        <div class="sidebar-content">
+            <p class="sidebar-heading">STAFF WORKSPACE</p>
+
+            <nav class="sidebar-nav">
+                <a href="{% url 'staff:doctor-dashboard' %}" class="nav-link">
+                    <i class="bi bi-grid"></i>
+                    <span>Overview</span>
+                </a>
+
+                <a href="{% url 'staff:doctor-patients' %}" class="nav-link active">
+                    <i class="bi bi-people"></i>
+                    <span>Patients</span>
+                </a>
+
+                <a href="{% url 'staff:doctor-appointments' %}" class="nav-link">
+                    <i class="bi bi-calendar3"></i>
+                    <span>Appointments</span>
+                </a>
+
+                <a href="{% url 'staff:doctor-consultations' %}" class="nav-link">
+                    <i class="bi bi-heart-pulse"></i>
+                    <span>Consultations</span>
+                </a>
+
+                <a href="#" class="nav-link">
+                    <i class="bi bi-flask"></i>
+                    <span>Laboratory</span>
+                </a>
+
+                <a href="" class="nav-link">
+                    <form method="POST" action="{% url 'user_management:logout' %}">
+                        {% csrf_token %}
+                        <button type="submit" class="dropdown-item" style="background:none; border:none; color:inherit; padding:0; display:flex; align-items:center; gap:11px; font-size:14px; font-weight:600; width:100%;">
+                            <i class="bi bi-box-arrow-left pe-2"></i>
+                            <span>Logout</span>
+                        </button>
+                    </form>
+                </a>
+            </nav>
+        </div>
+
+        <div class="sidebar-bottom">
+            <a href="#" class="nav-link">
+                <i class="bi bi-gear"></i>
+                <span>Settings</span>
+            </a>
+
+            <div class="workspace-label">
+                <span class="workspace-dot"></span>
+                <span>Novacare HMS</span>
+            </div>
+        </div>
+    </aside>
+
+    <main class="main-area">
+        <header class="topbar">
+            <button class="sidebar-toggle" id="sidebarToggle" aria-label="Toggle sidebar">
+                <i class="bi bi-layout-sidebar"></i>
+            </button>
+
+            <div class="page-heading">
+                <h6>Patients</h6>
+                <span>Doctor</span>
+            </div>
+
+            <div class="topbar-right">
+                <button class="notification-btn" aria-label="Notifications">
+                    <i class="bi bi-bell"></i>
+                    <span class="notification-dot"></span>
+                </button>
+
+                <div class="topbar-divider"></div>
+
+                <div class="profile-menu">
+                    <div class="profile-avatar">
+                        {{ doctor.name|slice:":2"|upper }}
+                    </div>
+
+                    <div class="profile-details">
+                        <strong>{{ doctor.name }}</strong>
+                        <span>Doctor</span>
+                    </div>
+
+                    <i class="bi bi-chevron-down profile-chevron"></i>
+                </div>
+            </div>
+        </header>
+
+        <section class="dashboard-content">
+            <div class="appointments-page-header">
+                <div>
+                    <p class="eyebrow">STAFF WORKSPACE</p>
+                    <h1>Patients</h1>
+                    <p class="current-date">Your assigned patient list</p>
+                </div>
+
+                <div class="appointments-header-actions">
+                    <button class="btn-outline">
+                        <i class="bi bi-download"></i> Export
+                    </button>
+                </div>
+            </div>
+
+            <form method="GET" class="appointments-filters">
+                <div class="search-wrap">
+                    <i class="bi bi-search"></i>
+                    <input type="text" name="search" placeholder="Search by patient name, email or phone..." value="{{ search_query }}">
+                </div>
+
+                <div class="status-filter-wrap">
+                    <select name="status" onchange="this.form.submit()">
+                        <option value="">All statuses</option>
+
+                        {% for value, label in status_choices %}
+                            <option value="{{ value }}"
+                                {% if selected_status == value %}selected{% endif %}>
+                                {{ label }}
+                            </option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <button type="submit" class="btn-outline">
+                    <i class="bi bi-search"></i> Search
+                </button>
+
+                <a href="{% url 'staff:doctor-patients' %}" class="btn-outline">
+                    <i class="bi bi-arrow-counterclockwise"></i> Reset
+                </a>
+
+                <span class="records-count">
+                    {{ patients|length }} records
+                </span>
+            </form>
+
+            <div class="appointments-table-wrapper appointments-table-card">
+                <table class="appointments-table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Doctor</th>
+                            <th>Latest Appointment</th>
+                            <th>Status</th>
+                            <th>Phone</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        {% for patient in patients %}
+                            {% with latest_appointment=patient.user.doctor_appointments.0 %}
+                            <tr>
+                                <td class="patient-name">
+                                    {{ patient.full_name }}
+                                </td>
+
+                                <td>
+                                    {{ patient.user.email }}
+                                </td>
+
+                                <td>
+                                    {{ doctor.name }}
+                                </td>
+
+                                <td>
+                                    {{ latest_appointment.appointment_date|date:"d M Y" }}
+                                </td>
+
+                                <td>
+                                    <span class="status-badge">
+                                        {{ latest_appointment.get_status_display }}
+                                    </span>
+                                </td>
+
+                                <td>
+                                    {{ patient.phone }}
+                                </td>
+
+                                <td>
+                                    <div class="table-actions">
+                                        <a href="{% url 'staff:doctor-patient-detail' patient.id %}" class="action-btn" title="View Patient" aria-label="View {{ patient.full_name }}">
+                                            <i class="bi bi-eye"></i>
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                        {% endwith %}
+                        {% empty %}
+                            <tr>
+                                <td colspan="7" class="empty-state">
+                                    <i class="bi bi-people"></i>
+                                    <span>No assigned patients found.</span>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            <footer class="dashboard-footer">
+                <p class="mb-0">&copy; 2026 Novacare. All rights reserved.</p>
+            </footer>
+        </section>
+    </main>
+</div>
+
+<script>
+    const sidebar = document.getElementById('sidebar');
+    const sidebarToggle = document.getElementById('sidebarToggle');
+
+    sidebarToggle.addEventListener('click', function () {
+        sidebar.classList.toggle('sidebar-open');
+    });
+</script>
+
+</body>
+</html>
