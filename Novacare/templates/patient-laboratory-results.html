@@ -1,0 +1,86 @@
+{% extends 'base_patient.html' %}
+{% load static %}
+
+{% block title %}Laboratory Results | NovaCare{% endblock %}
+
+{% block breadcrumb %}
+    <span style="color: #627b8d; margin: 0 8px;">/</span> Laboratory results
+{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/laboratory-results.css' %}">
+{% endblock %}
+
+{% block patient_content %}
+    <div class="lab-header">
+        <h2>Laboratory results</h2>
+        <p>Requested tests and your latest reports.</p>
+    </div>
+
+    <div class="lab-results-list">
+        {% for result in lab_results %}
+            <div class="lab-card">
+                <div class="lab-card-header">
+                    <div class="lab-title-wrap">
+                        <div class="lab-icon">
+                            <i class="bi bi-flask"></i>
+                        </div>
+
+                        <div>
+                            <h3>{{ result.test_name }}</h3>
+
+                            <p class="lab-meta">
+                                {{ result.reference_number }} · Requested {{ result.requested_date|date:"d M Y" }}
+                                · Dr. {{ result.consultation.appointment.doctor.name }}
+                            </p>
+                        </div>
+                    </div>
+
+                    <span class="status-badge status-{{ result.status|lower }}">
+                        {{ result.get_status_display }}
+                    </span>
+                </div>
+
+                <div class="lab-card-footer">
+                    <div class="lab-result-text">
+                        <span style="color: #627b8d; margin-right: 4px;">
+                            Result:
+                        </span>
+
+                        {{ result.result_summary|default:"Results are not yet available." }}
+                    </div>
+
+                    {% if result.status == 'COMPLETED' and result.report_file %}
+                        <a href="{{ result.report_file.url }}" download class="download-btn">
+                            <i class="bi bi-download"></i>
+                            Download report
+                        </a>
+                    {% else %}
+                        <button class="download-btn" disabled style="opacity: 0.6; cursor: not-allowed;">
+                            <i class="bi bi-download"></i>
+                            {% if result.status == 'COMPLETED' %}
+                                No report uploaded
+                            {% else %}
+                                Report unavailable
+                            {% endif %}
+                        </button>
+                    {% endif %}
+                </div>
+
+                {% if result.completed_date %}
+                    <p class="lab-completed-date">
+                        Completed on {{ result.completed_date|date:"d M Y" }}
+                    </p>
+                {% endif %}
+            </div>
+        {% empty %}
+            <div class="lab-card" style="text-align: center; padding: 40px;">
+                <i class="bi bi-flask" style="font-size: 32px; color: #627b8d;"></i>
+
+                <p style="color: #627b8d; margin: 12px 0 0;">
+                    No laboratory results available.
+                </p>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
