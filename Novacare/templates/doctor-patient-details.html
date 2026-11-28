@@ -1,0 +1,60 @@
+{% extends 'master.html' %}
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/patient-dashboard.css' %}">
+{% endblock %}
+
+
+{% block content %}
+<div class="container-fluid details-container">
+    <div class="container py-4">
+        <h3>Patient Details</h3>
+
+        <div class="card p-4 mt-3">
+            <h5>{{ patient.full_name }}</h5>
+            <p>
+                <strong>Email:</strong>
+                {{ patient.user.email }}
+            </p>
+
+            <p>
+                <strong>Phone:</strong>
+                {{ patient.phone }}
+            </p>
+        </div>
+
+        <h5 class="mt-4">Appointment History</h5>
+
+        {% for appointment in appointments %}
+            <div class="card p-3 mb-2">
+                <p>
+                    <strong>Date:</strong>
+                    {{ appointment.appointment_date|date:"d M Y" }}
+                </p>
+
+                <p>
+                    <strong>Department:</strong>
+                    {{ appointment.department }}
+                </p>
+
+                <p>
+                    <strong>Status:</strong>
+                    {{ appointment.get_status_display }}
+                </p>
+
+                <p>
+                    <strong>Reason:</strong>
+                    {{ appointment.reason }}
+                </p>
+            </div>
+        {% empty %}
+            <p>No appointment history found.</p>
+        {% endfor %}
+
+        <a href="{% url 'staff:doctor-patients' %}" class="btn btn-secondary mt-3">
+            Back to Patients
+        </a>
+    </div>
+</div>
+{% endblock %}
