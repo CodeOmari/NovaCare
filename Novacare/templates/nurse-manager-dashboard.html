@@ -1,0 +1,306 @@
+{% load static %}
+{% load humanize %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nurse Manager Dashboard | NovaCare</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/nurse-manager-dashboard.css' %}">
+    <link rel="icon" href="{% static 'images/logo.jpeg' %}">
+</head>
+<body>
+    <aside class="sidebar">
+        <div class="brand">
+            <div class="brand-icon">
+                <img src="{% static 'images/hospital-logo.png' %}" alt="novacare logo" class="img-fluid p-1">
+            </div>
+        </div>
+
+        <div class="nav-heading">Main Menu</div>
+
+        <nav>
+            <a href="{% url 'staff:nurse-manager-dashboard' %}" class="active">
+                <i class="bi bi-grid"></i>
+                Dashboard
+            </a>
+
+            <a href="#">
+                <i class="bi bi-people"></i>
+                Nurses
+            </a>
+
+            <a href="{% url 'staff:nurse-manager-assignments' %}">
+                <i class="bi bi-people"></i>
+                Patient Assignments
+            </a>
+
+            <a href="#">
+                <i class="bi bi-hospital"></i>
+                Ward Management
+            </a>
+
+            <a href="#">
+                <i class="bi bi-person-vcard"></i>
+                Admissions
+            </a>
+        </nav>
+
+        <div class="nav-heading">Account</div>
+
+        <form method="POST" action="{% url 'user_management:logout' %}" class="logout-form">
+            {% csrf_token %}
+            <button type="submit">
+                <i class="bi bi-box-arrow-left me-2"></i>
+                Sign Out
+            </button>
+        </form>
+    </aside>
+
+    <main class="main">
+        <header class="topbar">
+            <div>
+                <h1 class="page-title">Nurse Manager Dashboard</h1>
+                <p class="page-subtitle">
+                    Nursing operations overview · {{ today|date:"l, d F Y" }}
+                </p>
+            </div>
+
+            <div class="profile">
+                <div class="profile-avatar">
+                    {{ request.user.email|first|upper }}
+                </div>
+                <div>
+                    <div class="profile-name">
+                        {{ request.user.get_full_name|default:request.user.email }}
+                    </div>
+                    <div class="profile-role">Nurse Manager</div>
+                </div>
+            </div>
+        </header>
+
+        <section class="welcome">
+            <h2>Welcome back, {{ request.user.get_full_name|default:request.user.email }}!</h2>
+            <p>
+                Manage your nursing team, coordinate patient assignments
+                and monitor ward occupancy from one place.
+            </p>
+        </section>
+
+        <section class="mb-4">
+            <h2 class="section-heading">Nursing Overview</h2>
+            <div class="row g-3">
+                <div class="col-12 col-sm-6 col-xl-3">
+                    <div class="stat-card">
+                        <div class="stat-top">
+                            <span class="stat-label">Active Nurses</span>
+                            <div class="stat-icon icon-blue">
+                                <i class="bi bi-person-badge"></i>
+                            </div>
+                        </div>
+                        <div class="stat-value">{{ total_nurses|intcomma }}</div>
+                        <div class="muted-text">Registered nursing staff</div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-sm-6 col-xl-3">
+                    <div class="stat-card">
+                        <div class="stat-top">
+                            <span class="stat-label">Assigned Patients</span>
+                            <div class="stat-icon icon-green">
+                                <i class="bi bi-people"></i>
+                            </div>
+                        </div>
+                        <div class="stat-value">{{ assigned_patients|intcomma }}</div>
+                        <div class="muted-text">Patients with active assignments</div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-sm-6 col-xl-3">
+                    <div class="stat-card">
+                        <div class="stat-top">
+                            <span class="stat-label">Unassigned Patients</span>
+                            <div class="stat-icon icon-orange">
+                                <i class="bi bi-person-exclamation"></i>
+                            </div>
+                        </div>
+                        <div class="stat-value">{{ unassigned_patients|intcomma }}</div>
+                        <div class="muted-text">Patients without a nurse assignment</div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-sm-6 col-xl-3">
+                    <div class="stat-card">
+                        <div class="stat-top">
+                            <span class="stat-label">Active Admissions</span>
+                            <div class="stat-icon icon-purple">
+                                <i class="bi bi-hospital"></i>
+                            </div>
+                        </div>
+                        <div class="stat-value">{{ current_admissions|intcomma }}</div>
+                        <div class="muted-text">Currently admitted patients</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="row g-3 mb-4">
+            <div class="col-12 col-xl-7">
+                <div class="content-card">
+                    <h2 class="section-heading">Recent Nurse Assignments</h2>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Patient</th>
+                                    <th>Assigned Nurse</th>
+                                    <th>Assigned Date</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                {% for assignment in recent_assignments %}
+                                    <tr>
+                                        <td>
+                                            <div class="patient-name">
+                                                {{ assignment.patient.patient_profile.full_name|default:assignment.patient.email }}
+                                            </div>
+                                            <div class="muted-text">
+                                                {{ assignment.patient.email }}
+                                            </div>
+                                        </td>
+
+                                        <td>
+                                            {{ assignment.nurse.get_full_name|default:assignment.nurse.work_id }}
+                                        </td>
+
+                                        <td>
+                                            {{ assignment.assigned_at|date:"d M Y" }}
+                                        </td>
+
+                                        <td>
+                                            {% if assignment.is_active %}
+                                                <span class="badge-status">Active</span>
+                                            {% else %}
+                                                <span class="badge bg-secondary">Inactive</span>
+                                            {% endif %}
+                                        </td>
+                                    </tr>
+                                {% empty %}
+                                    <tr>
+                                        <td colspan="4">
+                                            <div class="empty-state">
+                                                <i class="bi bi-people"></i>
+                                                No nurse assignments available yet.
+                                            </div>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-xl-5">
+                <div class="content-card">
+                    <h2 class="section-heading">Ward Occupancy</h2>
+
+                    {% for ward in ward_occupancy %}
+                        <div class="occupancy">
+                            <div class="occupancy-info">
+                                <span>{{ ward.name }} ({{ ward.ward_number }})</span>
+                                <span>
+                                    {{ ward.occupied_beds }} / {{ ward.capacity }}
+                                </span>
+                            </div>
+
+                            <div class="progress">
+                                {% if ward.capacity > 0 %}
+                                    <div class="progress-bar ward-progress-bar" role="progressbar" data-occupancy="{{ ward.occupancy_percentage }}"
+                                        aria-valuenow="{{ ward.occupied_beds }}" aria-valuemin="0" aria-valuemax="{{ ward.capacity }}">
+                                    </div>
+                                {% else %}
+                                    <div class="progress-bar" style="width: 0%"></div>
+                                {% endif %}
+                            </div>
+
+                            <div class="muted-text mt-1">
+                                {% if ward.capacity > 0 %}
+                                    {% widthratio ward.occupied_beds ward.capacity 100 %}% occupied
+                                {% else %}
+                                    Ward capacity not configured
+                                {% endif %}
+                            </div>
+                        </div>
+                    {% empty %}
+                        <div class="empty-state">
+                            <i class="bi bi-hospital"></i>
+                            No active wards have been registered.
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-4">
+            <h2 class="section-heading">Management Shortcuts</h2>
+            <div class="row g-3">
+                <div class="col-12 col-md-4">
+                    <div class="content-card">
+                        <h6 class="fw-bold mb-2">Nursing Team</h6>
+                        <p class="muted-text mb-3">
+                            View nurses and monitor their assignments.
+                        </p>
+                        <a href="#" class="quick-link">
+                            Manage Nurses
+                            <i class="bi bi-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-4">
+                    <div class="content-card">
+                        <h6 class="fw-bold mb-2">Patient Assignments</h6>
+                        <p class="muted-text mb-3">
+                            Allocate patients to available nurses.
+                        </p>
+                        <a href="#" class="quick-link">
+                            Manage Assignments
+                            <i class="bi bi-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-4">
+                    <div class="content-card">
+                        <h6 class="fw-bold mb-2">Ward Management</h6>
+                        <p class="muted-text mb-3">
+                            Monitor wards and their available capacity.
+                        </p>
+                        <a href="#" class="quick-link">
+                            Manage Wards
+                            <i class="bi bi-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        document.querySelectorAll('.ward-progress-bar').forEach(bar => {
+            const percentage = Number(bar.dataset.occupancy) || 0;
+            bar.style.width = `${Math.min(percentage, 100)}%`;
+        });
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
