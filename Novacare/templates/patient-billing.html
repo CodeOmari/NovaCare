@@ -1,0 +1,151 @@
+{% extends 'base_patient.html' %}
+{% load static %}
+
+{% block title %}Billing & payments | NovaCare{% endblock %}
+
+{% block breadcrumb %}
+    <span style="color: #627b8d; margin: 0 8px;">/</span> Billing & payments
+{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/patient-billing.css' %}">
+{% endblock %}
+
+{% block patient_content %}
+    <div class="billing-header">
+        <h2>Billing & payments</h2>
+        <p>Your invoices, outstanding balance and payment history.</p>
+    </div>
+
+    <div class="balance-block">
+        <div class="balance-left">
+            <div class="balance-icon">
+                <i class="bi bi-receipt"></i>
+            </div>
+
+            <div class="balance-text">
+                <h4>Outstanding balance</h4>
+                <h3>KES {{ outstanding_balance|floatformat:2 }}</h3>
+            </div>
+        </div>
+
+        <div class="unpaid-count">
+            {{ unpaid_count }} unpaid invoices
+        </div>
+    </div>
+
+    <h3 class="section-title">Invoices</h3>
+    <div class="billing-table-wrapper">
+        <table class="billing-table">
+            <thead>
+                <tr>
+                    <th>Invoice</th>
+                    <th>Service</th>
+                    <th>Amount due</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for invoice in invoices %}
+                    <tr>
+                        <td>
+                            <div class="invoice-id">
+                                {{ invoice.invoice_number }}
+                            </div>
+
+                            <div class="invoice-date">
+                                {{ invoice.date|date:"d M Y" }}
+                            </div>
+                        </td>
+
+                        <td>{{ invoice.service_name }}</td>
+
+                        <td class="amount-text">
+                            KES {{ invoice.amount_due|floatformat:2 }}
+                        </td>
+
+                        <td>
+                            <span class="status-badge status-{{ invoice.status|lower }}">
+                                {{ invoice.get_status_display }}
+                            </span>
+                        </td>
+
+                        <td>
+                            <div class="action-cell">
+                                {% if invoice.invoice_pdf %}
+                                    <a href="{{ invoice.invoice_pdf.url }}" class="icon-btn" title="Download invoice" download>
+                                        <i class="bi bi-download"></i>
+                                    </a>
+                                {% endif %}
+
+                                {% if invoice.amount_due > 0 and invoice.status != 'CANCELLED' %}
+                                    <button class="btn-pay" disabled title="Payment processing will be enabled next">
+                                        <i class="bi bi-wallet2"></i> Pay
+                                    </button>
+                                {% endif %}
+
+                            </div>
+                        </td>
+                    </tr>
+                {% empty %}
+                    <tr>
+                        <td colspan="5" style="text-align: center; padding: 30px; color: #627b8d;">
+                            No invoices found.
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <h3 class="section-title">Payment history</h3>
+    <div class="payment-history-list">
+        {% for payment in payment_history %}
+            <div class="history-item">
+                <div class="history-left">
+                    <div class="history-icon">
+                        <i class="bi bi-check-circle"></i>
+                    </div>
+
+                    <div class="history-details">
+                        <h4>{{ payment.service_name }}</h4>
+
+                        <p>
+                            {{ payment.invoice_number }} · {{ payment.date|date:"d M Y" }} · {{ payment.get_payment_method_display }}
+                        </p>
+                    </div>
+                </div>
+
+                <div class="history-right">
+                    <div class="history-amount">
+                        KES {{ payment.amount_paid|floatformat:2 }}
+                    </div>
+
+                    {% if payment.receipt_pdf %}
+                        <a href="{{ payment.receipt_pdf.url }}" class="btn-receipt" download>
+                            <i class="bi bi-download"></i> Receipt
+                        </a>
+                    {% endif %}
+                </div>
+            </div>
+        {% empty %}
+            <div style="padding: 20px 0; color: #627b8d; font-size: 14px;">
+                No payment history available.
+            </div>
+        {% endfor %}
+    </div>
+
+    <div class="patient-footer">
+        <div>
+            <p class="mb-0">&copy; 2026 Novacare. All rights reserved.</p>
+        </div>
+
+        <div>
+            <a href="{% url 'main_app:contact-us' %}">
+                Contact hospital 
+                <i class="bi bi-arrow-up-right"></i>
+            </a>
+        </div>
+    </div>
+{% endblock %}
