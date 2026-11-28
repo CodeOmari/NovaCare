@@ -1,0 +1,393 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctors & Availability | NovaCare</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="{% static 'css/receptionist-dashboard.css' %}">
+    <link rel="stylesheet" href="{% static 'css/receptionist-doctors.css' %}">
+    <link rel="icon" href="{% static 'images/logo.jpeg' %}">
+</head>
+<body>
+<div class="staff-layout">
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-logo">
+            <div class="logo-mark">
+                <span>NOVACARE</span>
+            </div>
+        </div>
+
+        <div class="sidebar-label">STAFF WORKSPACE</div>
+
+        <nav class="sidebar-nav">
+            <a href="{% url 'staff:receptionist-dashboard' %}" class="nav-link">
+                <i class="bi bi-grid"></i>
+                <span>Overview</span>
+            </a>
+
+            <a href="{% url 'staff:receptionist-patients' %}" class="nav-link">
+                <i class="bi bi-people"></i>
+                <span>Patients</span>
+            </a>
+
+            <a href="{% url 'staff:receptionist-appointments' %}" class="nav-link">
+                <i class="bi bi-calendar3"></i>
+                <span>Appointments</span>
+            </a>
+
+            <a href="{% url 'staff:receptionist-doctors' %}" class="nav-link active">
+                <i class="bi bi-briefcase"></i>
+                <span>Doctors</span>
+            </a>
+        </nav>
+
+        <div class="sidebar-bottom">
+            <a href="#" class="nav-link">
+                <i class="bi bi-gear"></i>
+                <span>Settings</span>
+            </a>
+
+            <form method="POST" action="{% url 'user_management:logout' %}" class="sidebar-logout-form">
+                {% csrf_token %}
+                <button type="submit" class="nav-link sidebar-logout">
+                    <i class="bi bi-box-arrow-left"></i>
+                    <span>Logout</span>
+                </button>
+            </form>
+
+            <div class="demo-label">
+                <i class="bi bi-activity"></i>
+                <span>NovaCare workspace</span>
+            </div>
+        </div>
+    </aside>
+
+    <div class="main-area">
+        <header class="topbar">
+            <div class="topbar-heading">
+                <button class="sidebar-toggle" type="button" aria-label="Toggle sidebar" id="sidebarToggle">
+                    <i class="bi bi-layout-sidebar-inset"></i>
+                </button>
+                <div>
+                    <h6>Doctors</h6>
+                    <span>Receptionist</span>
+                </div>
+            </div>
+            <div class="topbar-actions">
+                <button class="notification-button" type="button" aria-label="Notifications">
+                    <i class="bi bi-bell"></i>
+                    <span class="notification-dot"></span>
+                </button>
+
+                <div class="topbar-divider"></div>
+
+                <div class="profile-avatar">
+                    {{ request.user.get_full_name|default:"R"|first|upper }}
+                </div>
+
+                <div class="profile-details">
+                    <strong>{{ request.user.get_full_name|default:"Receptionist" }}</strong>
+                    <span>Receptionist</span>
+                </div>
+
+                <i class="bi bi-chevron-down profile-chevron"></i>
+            </div>
+        </header>
+
+        <main class="dashboard-content">
+            <div class="appointments-page-header">
+                <div>
+                    <span class="eyebrow">STAFF WORKSPACE</span>
+                    <h1>Doctors & availability</h1>
+                    <p>{{ today|date:"Y-m-d" }} · {{ doctors|length }} records</p>
+                </div>
+
+                <div class="appointments-header-actions">
+                    <button class="primary-outline-button" type="button" id="exportDoctors">
+                        <i class="bi bi-download"></i>
+                        Export
+                    </button>
+                </div>
+            </div>
+
+            <div class="appointments-filters">
+                <div class="search-wrap">
+                    <i class="bi bi-search"></i>
+                    <input type="text" id="doctorSearch" placeholder="Search doctors..." autocomplete="off">
+                </div>
+
+                <div class="status-filter-wrap">
+                    <select id="statusFilter">
+                        <option value="all">All statuses</option>
+                        <option value="active">Active</option>
+                        <option value="inactive">Inactive</option>
+                    </select>
+                </div>
+
+                <span class="records-count" id="recordsCount">
+                    {{ doctors|length }} records
+                </span>
+            </div>
+
+            <div class="appointments-table-wrapper appointments-table-card">
+                <table class="appointments-table" id="doctorsTable">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Specialization</th>
+                            <th>Availability</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        {% for doctor in doctors %}
+                            <tr data-status="{% if doctor.is_available %}active{% else %}inactive{% endif %}">
+                                <td class="patient-name">
+                                    Dr. {{ doctor.name }}
+                                </td>
+
+                                <td>
+                                    {{ doctor.role }}
+                                </td>
+
+                                <td>
+                                    {{ doctor.availability|default:"Not specified" }}
+                                </td>
+
+                                <td>
+                                    {% if doctor.is_available %}
+                                        <span class="status-badge status-active">
+                                            Active
+                                        </span>
+                                    {% else %}
+                                        <span class="status-badge status-inactive">
+                                            Inactive
+                                        </span>
+                                    {% endif %}
+                                </td>
+
+                                <td class="table-actions">
+                                    <button type="button" class="action-btn" title="View doctor details" data-bs-toggle="modal" data-bs-target="#doctorModal{{ doctor.id }}">
+                                        <i class="bi bi-eye"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        {% empty %}
+                            <tr>
+                                <td colspan="5" class="empty-state">
+                                    <i class="bi bi-person-x"></i>
+                                    <p>No doctors found.</p>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+
+                <div class="doctors-no-results" id="noResults" hidden>
+                    <i class="bi bi-search"></i>
+                    <p>No doctors match your search.</p>
+                </div>
+            </div>
+
+            <footer class="dashboard-footer">
+                <p class="mb-0">&copy; 2026 Novacare. All rights reserved.</p>
+            </footer>
+        </main>
+    </div>
+</div>
+{% for doctor in doctors %}
+    <div class="modal fade doctor-details-modal" id="doctorModal{{ doctor.id }}" tabindex="-1" aria-labelledby="doctorModalLabel{{ doctor.id }}" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div>
+                        <span class="eyebrow">DOCTOR PROFILE</span>
+
+                        <h5 class="modal-title" id="doctorModalLabel{{ doctor.id }}">
+                            Dr. {{ doctor.name }}
+                        </h5>
+                    </div>
+
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body">
+                    <div class="doctor-profile-heading">
+
+                        <div class="doctor-profile-icon">
+                            <i class="bi bi-person-badge"></i>
+                        </div>
+
+                        <div>
+                            <h5>Dr. {{ doctor.name }}</h5>
+                            <p>{{ doctor.role }}</p>
+
+                            {% if doctor.is_available %}
+                                <span class="status-badge status-active">Active</span>
+                            {% else %}
+                                <span class="status-badge status-inactive">Inactive</span>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    <div class="doctor-details-grid">
+                        <div class="doctor-detail-item">
+                            <span>Department</span>
+                            <strong>{{ doctor.department.name }}</strong>
+                        </div>
+
+                        <div class="doctor-detail-item">
+                            <span>Specialization</span>
+                            <strong>{{ doctor.role }}</strong>
+                        </div>
+
+                        <div class="doctor-detail-item">
+                            <span>Qualification</span>
+                            <strong>{{ doctor.qualification }}</strong>
+                        </div>
+
+                        <div class="doctor-detail-item">
+                            <span>Experience</span>
+                            <strong>{{ doctor.experience }} years</strong>
+                        </div>
+
+                        <div class="doctor-detail-item">
+                            <span>Availability</span>
+                            <strong>{{ doctor.availability|default:"Not specified" }}</strong>
+                        </div>
+
+                        <div class="doctor-detail-item">
+                            <span>Rating</span>
+                            <strong>
+                                {% if doctor.rating %}
+                                    <i class="bi bi-star-fill"></i>
+                                    {{ doctor.rating }}/5
+                                {% else %}
+                                    Not rated
+                                {% endif %}
+                            </strong>
+                        </div>
+                    </div>
+
+                    <div class="doctor-about">
+                        <h6>About the doctor</h6>
+                        <p>{{ doctor.about|default:"No profile information available." }}</p>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="modal-close-button" data-bs-dismiss="modal">
+                        Close
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endfor %}
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+    const toggleButton = document.getElementById('sidebarToggle');
+    const sidebar = document.getElementById('sidebar');
+
+    toggleButton.addEventListener('click', () => {
+        sidebar.classList.toggle('sidebar-open');
+    });
+
+    const searchInput = document.getElementById('doctorSearch');
+    const statusFilter = document.getElementById('statusFilter');
+    const table = document.getElementById('doctorsTable');
+    const tableRows = table.querySelectorAll('tbody tr[data-status]');
+    const recordsCount = document.getElementById('recordsCount');
+    const noResults = document.getElementById('noResults');
+
+    function applyFilters() {
+
+        const term = searchInput.value.toLowerCase().trim();
+        const status = statusFilter.value;
+
+        let visibleCount = 0;
+
+        tableRows.forEach(row => {
+            const rowText = row.textContent.toLowerCase();
+            const rowStatus = row.dataset.status;
+
+            const matchesSearch = rowText.includes(term);
+            const matchesStatus = status === 'all' || rowStatus === status;
+
+            const shouldDisplay = matchesSearch && matchesStatus;
+
+            row.style.display = shouldDisplay ? '' : 'none';
+
+            if (shouldDisplay) {
+                visibleCount++;
+            }
+        });
+
+        recordsCount.textContent = `${visibleCount} records`;
+        noResults.hidden = visibleCount !== 0;
+
+        table.style.display = visibleCount === 0 ? 'none' : '';
+    }
+
+    searchInput.addEventListener('input', applyFilters);
+    statusFilter.addEventListener('change', applyFilters);
+
+    document.getElementById('exportDoctors').addEventListener('click', () => {
+        const visibleRows = Array.from(tableRows).filter(row => row.style.display !== 'none');
+
+        if (visibleRows.length === 0) {
+            alert('There are no doctor records to export.');
+            return;
+        }
+
+        const csvRows = [
+            ['Name', 'Specialization', 'Availability', 'Status']
+        ];
+
+        visibleRows.forEach(row => {
+
+            const cells = row.querySelectorAll('td');
+
+            const values = [
+                cells[0].textContent.trim(),
+                cells[1].textContent.trim(),
+                cells[2].textContent.trim(),
+                cells[3].textContent.trim()
+            ];
+
+            csvRows.push(values);
+        });
+
+        const csvContent = csvRows
+            .map(row => row.map(value => `"${value.replace(/"/g, '""')}"`).join(','))
+            .join('\n');
+
+        const blob = new Blob([csvContent], {
+            type: 'text/csv;charset=utf-8;'
+        });
+
+        const link = document.createElement('a');
+        const url = URL.createObjectURL(blob);
+
+        link.setAttribute('href', url);
+        link.setAttribute('download', 'novacare-doctors.csv');
+
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+
+        URL.revokeObjectURL(url);
+    });
+</script>
+</body>
+</html>
