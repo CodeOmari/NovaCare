@@ -1,0 +1,103 @@
+{% extends 'base_patient.html' %}
+{% load static %}
+
+{% block title %}Medical Records | NovaCare{% endblock %}
+
+{% block breadcrumb %}
+    <span style="color: #627b8d; margin: 0 8px;">/</span> Medical records
+{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/medical-records.css' %}">
+{% endblock %}
+
+{% block patient_content %}
+    <div class="records-header">
+        <h2>Medical records</h2>
+        <p>Your consultations, diagnoses and care plans.</p>
+    </div>
+
+    <div class="medical-alerts-grid">
+        <div class="alert-card allergy">
+            <div class="alert-icon">
+                <i class="bi bi-exclamation-circle"></i>
+            </div>
+            <div class="alert-content">
+                <h4>Allergies</h4>
+                <p>{{ patient.allergies|default:"No known allergies recorded." }}</p>
+            </div>
+        </div>
+
+        <div class="alert-card conditions">
+            <div class="alert-icon">
+                <i class="bi bi-heart-pulse"></i>
+            </div>
+            <div class="alert-content">
+                <h4>Medical conditions</h4>
+                <p>{{ patient.medical_conditions|default:"No chronic medical conditions recorded." }}</p>
+            </div>
+        </div>
+    </div>
+
+    <h3 class="history-section-title">Consultation history</h3>
+    <div class="consultation-list">
+        {% for consultation in consultations %}
+            <div class="consultation-card">
+                <div class="consultation-card-header">
+                    <div>
+                        <h3>
+                            {{ consultation.appointment.department.name|default:"General Consultation" }}
+                        </h3>
+
+                        <p class="doctor-name">
+                            Dr. {{ consultation.appointment.doctor.name }}
+                        </p>
+                    </div>
+
+                    <div class="consultation-date">
+                        {{ consultation.date|date:"d M Y" }}
+                    </div>
+                </div>
+
+                <div class="consultation-details-grid">
+                    <div class="detail-block">
+                        <h5>Diagnosis</h5>
+                        <p>{{ consultation.diagnosis|default:"Not recorded" }}</p>
+                    </div>
+
+                    <div class="detail-block">
+                        <h5>Treatment plan</h5>
+                        <p>{{ consultation.treatment_plan|default:"Not recorded" }}</p>
+                    </div>
+
+                    <div class="detail-block">
+                        <h5>Doctor's notes</h5>
+                        <p>{{ consultation.examination_notes|default:"No additional notes." }}</p>
+                    </div>
+
+                    <div class="detail-block">
+                        <h5>Symptoms</h5>
+                        <p>{{ consultation.symptoms|default:"Not recorded" }}</p>
+                    </div>
+
+                    <div class="detail-block">
+                        <h5>Follow-up date</h5>
+                        <p>
+                            {% if consultation.follow_up_date %}
+                                {{ consultation.follow_up_date|date:"d M Y" }}
+                            {% else %}
+                                No follow-up scheduled
+                            {% endif %}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        {% empty %}
+            <div class="consultation-card" style="text-align: center; padding: 40px;">
+                <p style="color: #627b8d; margin: 0;">
+                    No past consultations found.
+                </p>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
